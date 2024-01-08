@@ -1,4 +1,4 @@
-package org.codingweek.model.database;
+package org.codingweek.model;
 
 import org.codingweek.controller.Observeur;
 
