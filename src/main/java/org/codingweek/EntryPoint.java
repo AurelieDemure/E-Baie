@@ -3,6 +3,7 @@ package org.codingweek;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.codingweek.db.DatabaseManager;
+import org.codingweek.model.Offer;
 import org.codingweek.model.User;
 import org.codingweek.view.MainView;
 import java.io.IOException;
@@ -19,16 +20,8 @@ public class EntryPoint extends Application {
     public static void main(String[] args) {
 
         DatabaseManager dbManager = new DatabaseManager();
-        dbManager.setup(); // Initialise Hibernate et la SessionFactory
+        dbManager.setup();
 
-        User newUser = new User();
-        newUser.setFirstName("John");
-        newUser.setLastName("Doe");
-        newUser.setEmail("johndoe@example.com");
-        newUser.setPassword("password123");
-        newUser.setBalance(100);
-
-        dbManager.saveUser(newUser);
         launch();
         }
 }

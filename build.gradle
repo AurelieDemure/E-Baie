@@ -6,6 +6,10 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
+run {
+    jvmArgs '--add-opens', 'java.base/java.lang=ALL-UNNAMED'
+}
+
 repositories {
     mavenCentral()
 }

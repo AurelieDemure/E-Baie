@@ -25,7 +25,8 @@ public class User {
     @Column(name = "balance")
     private int balance;
 
-    public void setFirstName(String john) {
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public int getId() {

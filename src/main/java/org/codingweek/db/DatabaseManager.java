@@ -1,6 +1,6 @@
 package org.codingweek.db;
 
-import org.codingweek.model.User;
+import org.codingweek.model.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -12,6 +12,10 @@ public class DatabaseManager {
     public void setup() {
         Configuration configuration = new Configuration()
                 .addAnnotatedClass(User.class)
+                .addAnnotatedClass(Offer.class)
+                .addAnnotatedClass(Chat.class)
+                .addAnnotatedClass(Notification.class)
+                .addAnnotatedClass(Query.class)
                 .setProperty("hibernate.connection.driver_class", "org.sqlite.JDBC")
                 .setProperty("hibernate.connection.url", "jdbc:sqlite:src/main/resources/org/codingweek/db/database.sqlite")
                 .setProperty("hibernate.dialect", "org.codingweek.db.SQLiteDialect")
@@ -21,12 +25,12 @@ public class DatabaseManager {
         factory = configuration.buildSessionFactory();
     }
 
-    public void saveUser(User user) {
+    public <T> void saveEntity(T entity) {
         Session session = factory.openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            session.save(user);
+            session.save(entity);
             tx.commit();
         } catch (Exception e) {
             if (tx != null) tx.rollback();
