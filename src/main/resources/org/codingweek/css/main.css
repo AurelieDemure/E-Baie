@@ -5,6 +5,12 @@
     -fx-grey: #747C92;
     -fx-purple: #372772;
     -fx-dark-purple: #3A2449;
+    -fx-white: #f1f1f1;
+    -fx-dark: #000000
+}
+
+.root{
+    -fx-font-family: "Arial";
     -fx-logo: #ef939d;
     -fx-logo-hand: #f3b5b8;
     -fx-black: #000000;
@@ -17,7 +23,12 @@
 
 .buttonNavbar{
     -fx-background-color: -fx-dark-green;
-    -fx-text-decoration-color: -fx-dark-purple;
+    -fx-text-fill: -fx-dark;
+    -fx-cursor: hand;
+}
+
+.buttonNavbar:hover{
+    -fx-underline: true;
 }
 
 .text-fieldConnect{
