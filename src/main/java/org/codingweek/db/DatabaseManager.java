@@ -14,7 +14,7 @@ public class DatabaseManager {
                 .addAnnotatedClass(User.class)
                 .setProperty("hibernate.connection.driver_class", "org.sqlite.JDBC")
                 .setProperty("hibernate.connection.url", "jdbc:sqlite:src/main/resources/org/codingweek/db/database.sqlite")
-                .setProperty("hibernate.dialect", "org.hibernate.dialect.SQLiteDialect")
+                .setProperty("hibernate.dialect", "org.codingweek.db.SQLiteDialect")
                 .setProperty("hibernate.show_sql", "true")
                 .setProperty("hibernate.hbm2ddl.auto", "update");
 
