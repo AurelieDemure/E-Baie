@@ -5,11 +5,10 @@ import javafx.scene.Scene;
 import org.codingweek.Configuration;
 
 import java.io.IOException;
-import java.sql.Connection;
 
-public class ConnexionView implements LoaderFXML{
+public class AccountView implements LoaderFXML{
     public Scene loadScene() throws IOException {
-        return new Scene(new FXMLLoader(ConnexionView.class.getResource("/org/codingweek/fxml/connexion.fxml")).load(),
+        return new Scene(new FXMLLoader(AccountView.class.getResource("/org/codingweek/fxml/account.fxml")).load(),
                 Configuration.APP_WIDTH,
                 Configuration.APP_HEIGHT);
     }

@@ -1,11 +1,14 @@
 *{
     -fx-light-green: #A1E8AF;
+    -fx-light-green-hand: #c8eace;
     -fx-dark-green: #94C595;
     -fx-grey: #747C92;
     -fx-purple: #372772;
     -fx-dark-purple: #3A2449;
     -fx-logo: #ef939d;
     -fx-logo-hand: #f3b5b8;
+    -fx-black: #000000;
+    -fx-transparent : rgba(0, 0, 0, 0);
 }
 
 .navbar{
@@ -17,9 +20,15 @@
     -fx-text-decoration-color: -fx-dark-purple;
 }
 
-.text-field{
+.text-fieldConnect{
     -fx-background-color: -fx-light-green;
     -fx-opacity: 0.2;
+}
+
+.text-fieldAccount {
+    -fx-background-color: -fx-transparent;
+    -fx-border-color: transparent transparent black transparent;
+
 }
 
 .buttonConnect{
@@ -30,4 +39,14 @@
 
 .buttonConnect:hover{
     -fx-background-color: -fx-logo-hand;
+}
+
+.buttonSave{
+    -fx-background-color: -fx-light-green;
+    transition-duration: 0.4s;
+    -fx-cursor: hand;
+}
+
+.buttonSave:hover{
+    -fx-background-color: -fx-light-green-hand;
 }

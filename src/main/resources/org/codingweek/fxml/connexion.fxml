@@ -30,13 +30,13 @@
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <TextField stylesheets="@../css/connexion.css" />
+                        <TextField styleClass="text-fieldConnect" stylesheets="@../css/connexion.css" />
                         <Label text="Mot de passe" underline="true">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <TextField stylesheets="@../css/connexion.css" />
+                        <TextField styleClass="text-fieldConnect" stylesheets="@../css/connexion.css" />
                         <Button mnemonicParsing="false" scaleX="1.5" scaleY="1.5" styleClass="buttonConnect" stylesheets="@../css/main.css" text="Se connecter">
                            <VBox.margin>
                               <Insets left="120.0" top="30.0" />
@@ -59,25 +59,25 @@
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <TextField stylesheets="@../css/connexion.css" />
+                        <TextField styleClass="text-fieldConnect" stylesheets="@../css/connexion.css" />
                         <Label text="Nom" underline="true">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <TextField stylesheets="@../css/connexion.css" />
+                        <TextField styleClass="text-fieldConnect" stylesheets="@../css/connexion.css" />
                         <Label text="Email" underline="true">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <TextField stylesheets="@../css/connexion.css" />
+                        <TextField styleClass="text-fieldConnect" stylesheets="@../css/connexion.css" />
                         <Label text="Mot de passe" underline="true">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <TextField stylesheets="@../css/connexion.css" />
+                        <TextField styleClass="text-fieldConnect" stylesheets="@../css/connexion.css" />
                         <Button mnemonicParsing="false" scaleX="1.5" scaleY="1.5" styleClass="buttonConnect" stylesheets="@../css/main.css" text="   S'inscrire   ">
                            <VBox.margin>
                               <Insets left="155.0" top="30.0" />
