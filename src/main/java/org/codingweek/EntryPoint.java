@@ -4,16 +4,16 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.codingweek.view.MainView;
 
 import java.io.IOException;
 
 public class EntryPoint extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(EntryPoint.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
-        stage.setScene(scene);
+        ApplicationSettings.getInstance().setPrimaryStage(stage);
+        stage.setTitle(Configuration.APP_TITLE);
+        stage.setScene(new MainView().loadScene());
         stage.show();
     }
 
