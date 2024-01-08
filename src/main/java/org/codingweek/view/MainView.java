@@ -12,7 +12,7 @@ import java.io.IOException;
 public class MainView implements LoaderFXML {
     @Override
     public Scene loadScene() throws IOException {
-        return new Scene(new FXMLLoader(MainView.class.getResource("/org/codingweek/fxml/navbar.fxml")).load(),
+        return new Scene(new FXMLLoader(MainView.class.getResource("/org/codingweek/fxml/market.fxml")).load(),
                 Configuration.APP_WIDTH,
                 Configuration.APP_HEIGHT);
     }
