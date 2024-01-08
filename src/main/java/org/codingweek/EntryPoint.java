@@ -4,7 +4,10 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 import org.codingweek.model.Page;
+import org.codingweek.view.ConnexionView;
 import org.codingweek.view.MainView;
+import org.codingweek.view.OfferModalView;
+
 import java.io.IOException;
 
 public class EntryPoint extends Application {
@@ -13,7 +16,7 @@ public class EntryPoint extends Application {
         ApplicationSettings.getInstance().setPrimaryStage(stage);
         ApplicationContext.getInstance().setPageType(Page.MARKET);
         stage.setTitle(Configuration.APP_TITLE);
-        stage.setScene(new MainView().loadScene());
+        stage.setScene(new OfferModalView().loadScene());
         stage.setResizable(false);
         stage.show();
     }
