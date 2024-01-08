@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import org.codingweek.model.ImageHandler;
 
 public class MarketController extends Controller implements Observeur{
 
@@ -21,7 +22,6 @@ public class MarketController extends Controller implements Observeur{
 
     @FXML
     void reaserchText(ActionEvent event) {
-
     }
 
     @Override
