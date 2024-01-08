@@ -1,7 +1,11 @@
-:root{
-    --light-green: #A1E8AF;
-    --dark-green: #94C595;
-    --grey: #747C92;
-    --purple: #372772;
-    --dark-purple: #3A2449;
+*{
+    -fx-light-green: #A1E8AF;
+    -fx-dark-green: #94C595;
+    -fx-grey: #747C92;
+    -fx-purple: #372772;
+    -fx-dark-purple: #3A2449;
+}
+
+.navbar{
+    -fx-background-color: -fx-dark-green;
 }
