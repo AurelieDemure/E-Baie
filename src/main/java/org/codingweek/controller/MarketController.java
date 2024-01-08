@@ -17,6 +17,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import org.codingweek.model.ImageHandler;
 
 public class MarketController extends Controller implements Observeur{
 

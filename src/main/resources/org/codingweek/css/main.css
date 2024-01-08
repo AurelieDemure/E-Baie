@@ -6,7 +6,9 @@
     -fx-purple: #372772;
     -fx-dark-purple: #3A2449;
     -fx-white: #f1f1f1;
-    -fx-dark: #000000
+    -fx-dark: #000000;
+    -fx-light-blue: #9FB4C7;
+    -fx-dark-blue: #778c9d;
 }
 
 .root{
@@ -60,4 +62,14 @@
 
 .buttonSave:hover{
     -fx-background-color: -fx-light-green-hand;
+}
+
+.buttonDisconnect {
+    -fx-background-color: -fx-light-blue;
+    transition-duration: 0.4s;
+    -fx-cursor: hand;
+}
+
+.buttonDisconnect:hover {
+    -fx-background-color: -fx-dark-blue;
 }
