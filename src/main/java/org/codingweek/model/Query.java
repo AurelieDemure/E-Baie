@@ -26,6 +26,19 @@ public class Query {
     @Column(name = "accepted")
     private boolean accepted;
 
+    @Column(name = "notation")
+    private int notation;
+
+    public Query(Offer offer, User user, Date date, boolean accepted, int notation) {
+        this.offer = offer;
+        this.user = user;
+        this.date = date;
+        this.accepted = accepted;
+        this.notation = notation;
+    }
+
+    public Query() {}
+
     public int getId() {
         return id;
     }
@@ -64,5 +77,13 @@ public class Query {
 
     public void setAccepted(boolean accepted) {
         this.accepted = accepted;
+    }
+
+    public int getNotation() {
+        return notation;
+    }
+
+    public void setNotation(int notation) {
+        this.notation = notation;
     }
 }

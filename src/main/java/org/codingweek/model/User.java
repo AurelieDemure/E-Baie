@@ -5,7 +5,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "User")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -24,6 +23,16 @@ public class User {
 
     @Column(name = "balance")
     private int balance;
+
+    public User(String firstName, String lastName, String password, String email, int balance) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.email = email;
+        this.balance = balance;
+    }
+
+    public User() {}
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;

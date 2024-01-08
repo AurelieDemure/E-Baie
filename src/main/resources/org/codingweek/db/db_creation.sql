@@ -26,6 +26,7 @@ CREATE TABLE Query (
                        user_id INTEGER NOT NULL,
                        date_query TEXT NOT NULL,
                        accepted BOOLEAN,
+                       notation INTEGER NOT NULL,
                        FOREIGN KEY (offer_id) REFERENCES Offer(id),
                        FOREIGN KEY (user_id) REFERENCES User(id)
 );
@@ -47,6 +48,5 @@ CREATE TABLE Notification (
                               seen BOOLEAN NOT NULL,
                               frequency TEXT,
                               date_notification TEXT NOT NULL,
-                              notation INTEGER NOT NULL,
                               FOREIGN KEY (user_id) REFERENCES User(id)
 );

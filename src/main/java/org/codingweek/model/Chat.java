@@ -26,6 +26,15 @@ public class Chat {
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
+    public Chat(User user, User user2, String message, Date date) {
+        this.user = user;
+        this.user2 = user2;
+        this.message = message;
+        this.date = date;
+    }
+
+    public Chat() {}
+
     public int getId() {
         return id;
     }

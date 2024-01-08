@@ -28,8 +28,15 @@ public class Notification {
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
-    @Column(name = "notation")
-    private int notation;
+    public Notification(String type, User user, boolean seen, String frequency, Date date) {
+        this.type = type;
+        this.user = user;
+        this.seen = seen;
+        this.frequency = frequency;
+        this.date = date;
+    }
+
+    public Notification() {}
 
     public int getId() {
         return id;
@@ -77,13 +84,5 @@ public class Notification {
 
     public void setDate(Date date) {
         this.date = date;
-    }
-
-    public int getNotation() {
-        return notation;
-    }
-
-    public void setNotation(int notation) {
-        this.notation = notation;
     }
 }

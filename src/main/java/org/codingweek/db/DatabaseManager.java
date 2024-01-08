@@ -39,4 +39,55 @@ public class DatabaseManager {
             session.close();
         }
     }
+
+    public <T> void updateEntity(T entity) {
+        Session session = factory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.update(entity);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    public <T> void deleteEntity(T entity) {
+        Session session = factory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.delete(entity);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    public <T> T getEntity(Class<T> entityClass, int id) {
+        Session session = factory.openSession();
+        Transaction tx = null;
+        T entity = null;
+        try {
+            tx = session.beginTransaction();
+            entity = (T) session.get(entityClass, id);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+            return entity;
+        }
+    }
+
+    public void tearDown() {
+        factory.close();
+    }
 }

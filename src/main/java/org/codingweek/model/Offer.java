@@ -36,6 +36,19 @@ public class Offer {
     @Column(name = "path_offer")
     private String path;
 
+    public Offer(String title, String description, User owner, double price, String type, String frequency, String localization, String path) {
+        this.title = title;
+        this.description = description;
+        this.owner = owner;
+        this.price = price;
+        this.type = type;
+        this.frequency = frequency;
+        this.localization = localization;
+        this.path = path;
+    }
+
+    public Offer() {}
+
     public int getId() {
         return id;
     }
