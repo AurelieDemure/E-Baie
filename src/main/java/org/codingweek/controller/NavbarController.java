@@ -12,10 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import org.codingweek.view.AccountView;
-import org.codingweek.view.MainView;
-import org.codingweek.view.MyOffersView;
-import org.codingweek.view.TchatView;
+import org.codingweek.view.*;
 
 public class NavbarController extends Controller implements Observeur{
 
