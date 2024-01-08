@@ -3,6 +3,7 @@ package org.codingweek.controller;
 import org.codingweek.*;
 import org.codingweek.model.Page;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -11,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import org.codingweek.view.MainView;
 
 public class NavbarController extends Controller implements Observeur{
 
@@ -32,6 +34,11 @@ public class NavbarController extends Controller implements Observeur{
     @FXML
     void clickLogo(MouseEvent event) {
         ApplicationContext.getInstance().setPageType(Page.MARKET);
+        try {
+            ApplicationSettings.getInstance().setCurrentScene(new MainView().loadScene());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         refresh();  
     }
 
@@ -39,24 +46,44 @@ public class NavbarController extends Controller implements Observeur{
     @FXML
     void clickAccount(ActionEvent event) {
         ApplicationContext.getInstance().setPageType(Page.ACCOUNT);
+        try {
+            ApplicationSettings.getInstance().setCurrentScene(new MainView().loadScene());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         refresh();
     }
 
     @FXML
     void clickMarket(ActionEvent event) {
         ApplicationContext.getInstance().setPageType(Page.MARKET);
+        try {
+            ApplicationSettings.getInstance().setCurrentScene(new MainView().loadScene());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         refresh();
     }
 
     @FXML
     void clickMessage(ActionEvent event) {
         ApplicationContext.getInstance().setPageType(Page.MESSAGE);
+        try {
+            ApplicationSettings.getInstance().setCurrentScene(new MainView().loadScene());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         refresh();
     }
 
     @FXML
     void clickOffer(ActionEvent event) {
         ApplicationContext.getInstance().setPageType(Page.OFFER);
+        try {
+            ApplicationSettings.getInstance().setCurrentScene(new MainView().loadScene());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         refresh();
     }
 

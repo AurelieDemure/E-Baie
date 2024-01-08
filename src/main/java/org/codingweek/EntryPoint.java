@@ -14,6 +14,7 @@ public class EntryPoint extends Application {
         ApplicationContext.getInstance().setPageType(Page.MARKET);
         stage.setTitle(Configuration.APP_TITLE);
         stage.setScene(new MainView().loadScene());
+        stage.setResizable(false);
         stage.show();
     }
 
