@@ -37,7 +37,7 @@
                            </font>
                         </Label>
                         <TextField stylesheets="@../css/connexion.css" />
-                        <Button mnemonicParsing="false" scaleX="1.5" scaleY="1.5" stylesheets="@../css/main.css" text="Se connecter">
+                        <Button mnemonicParsing="false" scaleX="1.5" scaleY="1.5" styleClass="buttonConnect" stylesheets="@../css/main.css" text="Se connecter">
                            <VBox.margin>
                               <Insets left="120.0" top="30.0" />
                            </VBox.margin></Button>
@@ -78,7 +78,7 @@
                            </font>
                         </Label>
                         <TextField stylesheets="@../css/connexion.css" />
-                        <Button mnemonicParsing="false" scaleX="1.5" scaleY="1.5" stylesheets="@../css/main.css" text="   S'inscrire   ">
+                        <Button mnemonicParsing="false" scaleX="1.5" scaleY="1.5" styleClass="buttonConnect" stylesheets="@../css/main.css" text="   S'inscrire   ">
                            <VBox.margin>
                               <Insets left="155.0" top="30.0" />
                            </VBox.margin></Button>

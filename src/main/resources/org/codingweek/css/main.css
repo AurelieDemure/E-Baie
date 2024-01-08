@@ -5,6 +5,7 @@
     -fx-purple: #372772;
     -fx-dark-purple: #3A2449;
     -fx-logo: #ef939d;
+    -fx-logo-hand: #f3b5b8;
 }
 
 .navbar{
@@ -21,7 +22,12 @@
     -fx-opacity: 0.2;
 }
 
-.button{
+.buttonConnect{
     -fx-background-color: -fx-logo;
     transition-duration: 0.4s;
+    -fx-cursor: hand;
+}
+
+.buttonConnect:hover{
+    -fx-background-color: -fx-logo-hand;
 }

@@ -2,6 +2,8 @@ package org.codingweek.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import org.codingweek.ApplicationContext;
+import org.codingweek.model.Page;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,6 +24,6 @@ public class ConnexionController extends Controller implements Observeur {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        ApplicationContext.getInstance().setPageType(Page.ACCOUNT);
     }
 }
