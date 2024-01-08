@@ -8,6 +8,10 @@
     -fx-dark: #000000
 }
 
+.root{
+    -fx-font-family: "Arial";
+}
+
 .navbar{
     -fx-background-color: -fx-dark-green;
 }
