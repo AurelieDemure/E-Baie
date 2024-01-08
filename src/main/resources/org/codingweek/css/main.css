@@ -4,13 +4,23 @@
     -fx-grey: #747C92;
     -fx-purple: #372772;
     -fx-dark-purple: #3A2449;
+    -fx-logo: #ef939d;
 }
 
 .navbar{
     -fx-background-color: -fx-dark-green;
 }
 
-.button{
+.buttonNavbar{
     -fx-background-color: -fx-dark-green;
     -fx-text-decoration-color: -fx-dark-purple;
+}
+
+.text-field{
+    -fx-background-color: -fx-light-green;
+}
+
+.button{
+    -fx-background-color: -fx-logo;
+    transition-duration: 0.4s;
 }
