@@ -1,57 +1,72 @@
 plugins {
     id 'java'
     id 'application'
-    id 'org.javamodularity.moduleplugin' version '1.8.12'
-    id 'org.openjfx.javafxplugin' version '0.0.13'
-    id 'org.beryx.jlink' version '2.25.0'
+    id 'com.adarshr.test-logger' version '4.0.0'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
-
-group 'org.codingweek'
-version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
 }
 
+group 'eu.telecomnancy.codingweek'
+version '1.0'
+
 ext {
-    junitVersion = '5.10.0'
+    junitVersion = '5.10.1'
+    javafxVersion = '17'
+    jdkVersion = '17'
 }
 
-sourceCompatibility = '17'
-targetCompatibility = '17'
-
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
+java {
+    sourceCompatibility = "${jdkVersion}"
+    targetCompatibility = "${jdkVersion}"
 }
 
 application {
-    mainModule = 'org.codingweek.codingweek'
-    mainClass = 'org.codingweek.codingweek.HelloApplication'
+    mainModule = 'org.codingweek'
+    mainClass = 'org.codingweek.EntryPoint'
+}
+
+shadowJar {
+    dependencies {
+        exclude(dependency('org.openjfx:'))
+    }
 }
 
 javafx {
-    version = '17.0.6'
+    version = "${javafxVersion}"
     modules = ['javafx.controls', 'javafx.fxml']
 }
 
 dependencies {
-
-    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+    testImplementation(platform('org.junit:junit-bom:5.10.1'))
+    testImplementation('org.junit.jupiter:junit-jupiter')
 }
 
 test {
     useJUnitPlatform()
-}
 
-jlink {
-    imageZip = project.file("${buildDir}/distributions/app-${javafx.platform.classifier}.zip")
-    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
-    launcher {
-        name = 'app'
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
     }
 }
 
-jlinkZip {
-    group = 'distribution'
+testlogger {
+    theme 'mocha'
+    showExceptions true
+    showStackTraces true
+    showFullStackTraces false
+    showCauses true
+    slowThreshold 5000
+    showSummary true
+    showSimpleNames false
+    showPassed true
+    showSkipped true
+    showFailed true
+    showStandardStreams false
+    showPassedStandardStreams true
+    showSkippedStandardStreams true
+    showFailedStandardStreams true
 }

@@ -1,8 +1,8 @@
-module org.codingweek.codingweek {
+module org.codingweek {
     requires javafx.controls;
     requires javafx.fxml;
 
 
-    opens org.codingweek.codingweek to javafx.fxml;
-    exports org.codingweek.codingweek;
+    opens org.codingweek to javafx.fxml;
+    exports org.codingweek;
 }

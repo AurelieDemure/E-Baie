@@ -1,4 +1,4 @@
-package org.codingweek.codingweek;
+package org.codingweek;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
