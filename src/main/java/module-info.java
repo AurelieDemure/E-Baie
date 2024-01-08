@@ -6,4 +6,6 @@ module org.codingweek {
 
     opens org.codingweek to javafx.fxml;
     exports org.codingweek;
+    exports org.codingweek.controller;
+    opens org.codingweek.controller to javafx.fxml;
 }
