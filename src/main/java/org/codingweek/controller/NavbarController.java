@@ -12,7 +12,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import org.codingweek.view.AccountView;
 import org.codingweek.view.MainView;
+import org.codingweek.view.MyOffersView;
+import org.codingweek.view.TchatView;
 
 public class NavbarController extends Controller implements Observeur{
 
@@ -35,7 +38,7 @@ public class NavbarController extends Controller implements Observeur{
     void clickLogo(MouseEvent event) {
         ApplicationContext.getInstance().setPageType(Page.MARKET);
         try {
-            ApplicationSettings.getInstance().setCurrentScene(new MainView().loadScene());
+            ApplicationSettings.getInstance().setCurrentScene(new MarketView().loadScene());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -47,7 +50,7 @@ public class NavbarController extends Controller implements Observeur{
     void clickAccount(ActionEvent event) {
         ApplicationContext.getInstance().setPageType(Page.ACCOUNT);
         try {
-            ApplicationSettings.getInstance().setCurrentScene(new MainView().loadScene());
+            ApplicationSettings.getInstance().setCurrentScene(new AccountView().loadScene());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -58,7 +61,7 @@ public class NavbarController extends Controller implements Observeur{
     void clickMarket(ActionEvent event) {
         ApplicationContext.getInstance().setPageType(Page.MARKET);
         try {
-            ApplicationSettings.getInstance().setCurrentScene(new MainView().loadScene());
+            ApplicationSettings.getInstance().setCurrentScene(new MarketView().loadScene());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -69,7 +72,7 @@ public class NavbarController extends Controller implements Observeur{
     void clickMessage(ActionEvent event) {
         ApplicationContext.getInstance().setPageType(Page.MESSAGE);
         try {
-            ApplicationSettings.getInstance().setCurrentScene(new MainView().loadScene());
+            ApplicationSettings.getInstance().setCurrentScene(new TchatView().loadScene());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -80,7 +83,7 @@ public class NavbarController extends Controller implements Observeur{
     void clickOffer(ActionEvent event) {
         ApplicationContext.getInstance().setPageType(Page.OFFER);
         try {
-            ApplicationSettings.getInstance().setCurrentScene(new MainView().loadScene());
+            ApplicationSettings.getInstance().setCurrentScene(new MyOffersView().loadScene());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
