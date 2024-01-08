@@ -1,11 +1,8 @@
 package org.codingweek;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.codingweek.view.MainView;
-
 import java.io.IOException;
 
 public class EntryPoint extends Application {
@@ -18,6 +15,6 @@ public class EntryPoint extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
-    }
+            launch();
+        }
 }
