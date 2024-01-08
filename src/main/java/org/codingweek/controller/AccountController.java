@@ -1,8 +1,7 @@
 package org.codingweek.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.util.StringConverter;
 import javafx.util.converter.LocalDateStringConverter;
 import org.codingweek.ApplicationContext;
@@ -15,6 +14,14 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class AccountController extends Controller implements Observeur{
+    public TextField firstnameField;
+    public TextField lastnameField;
+    public TextField emailField;
+    public PasswordField passwordField;
+    public DatePicker birthDateField;
+    public TextField phoneNumberField;
+    public TextField addressField;
+    public TextField descriptionField;
     @FXML
     private Label welcomeText;
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.FRENCH);
@@ -51,6 +58,13 @@ public class AccountController extends Controller implements Observeur{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ApplicationContext.getInstance().setPageType(Page.ACCOUNT);
+        firstnameField.setText("a");
+        lastnameField.setText("d");
+        emailField.setText("ad@tn.net");
+        passwordField.setText("");
+        phoneNumberField.setText("");
+        addressField.setText("");
+        descriptionField.setText("");
     }
 }
 

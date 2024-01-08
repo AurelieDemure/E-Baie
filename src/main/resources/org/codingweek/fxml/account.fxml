@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.PasswordField?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codingweek.controller.AccountController">
     <children>
         <fx:include fx:id="navbar" source="navbar.fxml" />
@@ -18,25 +19,25 @@
                   <Font size="19.0" />
                </font>
             </Label>
-            <TextField styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
+            <TextField fx:id="firstnameField" styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
             <Label text="Nom">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <TextField styleClass="text-fieldAccount" />
+            <TextField fx:id="lastnameField" styleClass="text-fieldAccount" />
             <Label text="Email">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <TextField styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
+            <TextField fx:id="emailField" styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
             <Label text="Mot de passe">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <TextField styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
+            <PasswordField fx:id="passwordField" styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
          </children>
       </VBox>
       <VBox layoutX="668.0" layoutY="269.0" prefHeight="461.0" prefWidth="465.0" spacing="20.0">
@@ -46,25 +47,25 @@
                   <Font size="19.0" />
                </font>
             </Label>
-            <DatePicker styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
+            <DatePicker fx:id="birthDateField" styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
             <Label text="Téléphone">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <TextField styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
+            <TextField fx:id="phoneNumberField" styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
             <Label text="Adresse">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <TextField styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
+            <TextField fx:id="addressField" styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
             <Label text="Description">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <TextField styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
+            <TextField fx:id="descriptionField" styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
          </children>
       </VBox>
       <Label layoutX="35.0" layoutY="201.0" text="Mon compte" underline="true">
