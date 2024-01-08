@@ -1,12 +1,16 @@
 package org.codingweek.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.util.StringConverter;
 import javafx.util.converter.LocalDateStringConverter;
 import org.codingweek.ApplicationContext;
+import org.codingweek.ApplicationSettings;
 import org.codingweek.model.Page;
+import org.codingweek.view.ConnexionView;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -65,6 +69,15 @@ public class AccountController extends Controller implements Observeur{
         phoneNumberField.setText("");
         addressField.setText("");
         descriptionField.setText("");
+    }
+
+    public void disconnect(ActionEvent actionEvent) {
+        ApplicationContext.getInstance().setPageType(Page.NONE);
+        try {
+            ApplicationSettings.getInstance().setCurrentScene(new ConnexionView().loadScene());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 

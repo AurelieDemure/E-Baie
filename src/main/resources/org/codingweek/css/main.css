@@ -7,6 +7,12 @@
     -fx-dark-purple: #3A2449;
     -fx-white: #f1f1f1;
     -fx-dark: #000000;
+    -fx-light-blue: #9FB4C7;
+    -fx-dark-blue: #778c9d;
+}
+
+.root{
+    -fx-dark: #000000;
     -fx-font-family: "Arial";
     -fx-logo: #ef939d;
     -fx-logo-hand: #f3b5b8;
@@ -58,4 +64,14 @@
 
 .buttonSave:hover{
     -fx-background-color: -fx-light-green-hand;
+}
+
+.buttonDisconnect {
+    -fx-background-color: -fx-light-blue;
+    transition-duration: 0.4s;
+    -fx-cursor: hand;
+}
+
+.buttonDisconnect:hover {
+    -fx-background-color: -fx-dark-blue;
 }

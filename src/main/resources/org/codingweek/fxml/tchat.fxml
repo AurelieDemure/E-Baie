@@ -5,5 +5,9 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.codingweek.controller.TchatController"
             prefHeight="400.0" prefWidth="600.0">
+    <children>
+        <fx:include fx:id="navbar" source="navbar.fxml" />
+    </children>
+
 
 </AnchorPane>
