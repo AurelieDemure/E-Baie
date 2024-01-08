@@ -1,20 +1,38 @@
 package org.codingweek.db;
 
-import java.sql.SQLException;
+import org.codingweek.model.User;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
 
 public class DatabaseManager {
-    /*private static final String DATABASE_URL = "jdbc:sqlite:src/main/resources/org/codingweek/db/database.sqlite";
-    private static ConnectionSource connectionSource;
+    private SessionFactory factory;
 
-    public static ConnectionSource getConnectionSource() {
-        if (connectionSource == null) {
-            try {
-                connectionSource = new JdbcConnectionSource(DATABASE_URL);
-            } catch (SQLException e) {
-                System.err.println("Erreur lors de la création de la connexion à la base de données : " + e.getMessage());
-            }
+    public void setup() {
+        Configuration configuration = new Configuration()
+                .addAnnotatedClass(User.class)
+                .setProperty("hibernate.connection.driver_class", "org.sqlite.JDBC")
+                .setProperty("hibernate.connection.url", "jdbc:sqlite:src/main/resources/org/codingweek/db/database.sqlite")
+                .setProperty("hibernate.dialect", "org.hibernate.dialect.SQLiteDialect")
+                .setProperty("hibernate.show_sql", "true")
+                .setProperty("hibernate.hbm2ddl.auto", "update");
+
+        factory = configuration.buildSessionFactory();
+    }
+
+    public void saveUser(User user) {
+        Session session = factory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.save(user);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
         }
-        return connectionSource;
-    }*/
+    }
 }
-
