@@ -20,12 +20,12 @@ ext {
 }
 
 java {
+    modularity.inferModulePath = true
     sourceCompatibility = "${jdkVersion}"
     targetCompatibility = "${jdkVersion}"
 }
 
 application {
-    mainModule = 'org.codingweek'
     mainClass = 'org.codingweek.EntryPoint'
 }
 
