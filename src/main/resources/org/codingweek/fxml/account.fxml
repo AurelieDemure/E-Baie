@@ -73,7 +73,7 @@
          </font>
       </Label>
       <Button layoutX="953.0" layoutY="755.0" mnemonicParsing="false" scaleX="1.5" scaleY="1.5" styleClass="buttonSave" stylesheets="@../css/main.css" text="Sauvegarder" />
-      <Button layoutX="1097.0" layoutY="755.0" mnemonicParsing="false" scaleX="1.5" scaleY="1.5" styleClass="buttonConnect" stylesheets="@../css/main.css" text="Supprimer" />
+      <Button layoutX="1097.0" layoutY="755.0" mnemonicParsing="false" onAction="#showConfirmationAddDialog" scaleX="1.5" scaleY="1.5" styleClass="buttonConnect" stylesheets="@../css/main.css" text="Supprimer" />
       <Label layoutX="63.0" layoutY="754.0" text="Crédit restant :">
          <font>
             <Font size="19.0" />
