@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.PasswordField?>
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codingweek.controller.ConnexionController">
    <Pane prefHeight="150.0" prefWidth="1200.0" styleClass="navbar">
       <children>
@@ -39,13 +40,13 @@
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <TextField styleClass="text-fieldConnect" stylesheets="@../css/connexion.css" />
+                        <TextField fx:id="emailField" styleClass="text-fieldConnect" stylesheets="@../css/connexion.css" />
                         <Label text="Mot de passe" underline="true">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <TextField styleClass="text-fieldConnect" stylesheets="@../css/connexion.css" />
+                        <PasswordField fx:id="passwordField" styleClass="text-fieldConnect" stylesheets="@../css/connexion.css" />
                         <Button mnemonicParsing="false" scaleX="1.5" scaleY="1.5" styleClass="buttonConnect" stylesheets="@../css/main.css" onAction="#signin" text="Se connecter">
                            <VBox.margin>
                               <Insets left="120.0" top="30.0" />
@@ -68,25 +69,25 @@
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <TextField styleClass="text-fieldConnect" stylesheets="@../css/connexion.css" />
+                        <TextField fx:id="firstnameField" styleClass="text-fieldConnect" stylesheets="@../css/connexion.css" />
                         <Label text="Nom" underline="true">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <TextField styleClass="text-fieldConnect" stylesheets="@../css/connexion.css" />
+                        <TextField fx:id="lastnameField" styleClass="text-fieldConnect" stylesheets="@../css/connexion.css" />
                         <Label text="Email" underline="true">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <TextField styleClass="text-fieldConnect" stylesheets="@../css/connexion.css" />
+                        <TextField  fx:id="emailInscrField" styleClass="text-fieldConnect" stylesheets="@../css/connexion.css" />
                         <Label text="Mot de passe" underline="true">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <TextField styleClass="text-fieldConnect" stylesheets="@../css/connexion.css" />
+                        <PasswordField fx:id="passwordInscrField" styleClass="text-fieldConnect" stylesheets="@../css/connexion.css" />
                         <Button mnemonicParsing="false" scaleX="1.5" scaleY="1.5" styleClass="buttonConnect" stylesheets="@../css/main.css" onAction="#signup" text="   S'inscrire   ">
                            <VBox.margin>
                               <Insets left="155.0" top="30.0" />
