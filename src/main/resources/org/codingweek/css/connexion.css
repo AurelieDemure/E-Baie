@@ -1,0 +1,20 @@
+*{
+    -fx-light-green: #A1E8AF;
+    -fx-dark-green: #94C595;
+    -fx-grey: #747C92;
+    -fx-purple: #372772;
+    -fx-dark-purple: #3A2449;
+    -fx-logo: #ef939d;
+}
+
+.navbar{
+    -fx-background-color: -fx-dark-green;
+}
+
+.text-field{
+    -fx-background-color: -fx-light-green;
+}
+
+.button{
+    -fx-background-color: -fx-logo;
+}
