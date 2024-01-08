@@ -1,26 +1,19 @@
 package org.codingweek.model;
 
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
-import java.util.Observable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-@DatabaseTable(tableName = "users")
+
+@Entity
+@Table(name="User")
 public class User extends Observable {
-    @DatabaseField(generatedId = true)
+    @Id
+    @Column(name="id")
     private int id;
 
-    @DatabaseField
+    @Column(name="firstName")
     private String firstName;
 
-    @DatabaseField
-    private String lastName;
-
-    @DatabaseField
-    private String password;
-
-    @DatabaseField
-    private String email;
-
-    @DatabaseField
-    private int balance;
 }

@@ -2,8 +2,7 @@ module org.codingweek {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
-    requires ormlite.core;
-    requires ormlite.jdbc;
+    requires java.persistence;
 
     opens org.codingweek to javafx.fxml;
     exports org.codingweek;

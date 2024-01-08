@@ -1,12 +1,9 @@
 package org.codingweek.db;
 
-import com.j256.ormlite.support.ConnectionSource;
-import com.j256.ormlite.jdbc.JdbcConnectionSource;
-
 import java.sql.SQLException;
 
 public class DatabaseManager {
-    private static final String DATABASE_URL = "jdbc:sqlite:src/main/resources/org/codingweek/db/database.sqlite";
+    /*private static final String DATABASE_URL = "jdbc:sqlite:src/main/resources/org/codingweek/db/database.sqlite";
     private static ConnectionSource connectionSource;
 
     public static ConnectionSource getConnectionSource() {
@@ -18,6 +15,6 @@ public class DatabaseManager {
             }
         }
         return connectionSource;
-    }
+    }*/
 }
 
