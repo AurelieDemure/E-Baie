@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
 import org.codingweek.model.ImageHandler;
+import org.codingweek.model.filter.Frequency;
 import org.codingweek.model.filter.OfferType;
 
 public class MarketController extends Controller implements Observeur{
@@ -49,18 +50,18 @@ public class MarketController extends Controller implements Observeur{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.LOAN, "Hebdomadaire", "Ugine", "ljhsdgljf"));
-        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.LOAN, "Hebdomadaire", "Ugine", "ljhsdgljf"));
-        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.LOAN, "Hebdomadaire", "Ugine", "ljhsdgljf"));
-        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.SERVICE, "Hebdomadaire", "Ugine", "ljhsdgljf"));
-        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.SERVICE, "Hebdomadaire", "Ugine", "ljhsdgljf"));
-        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.SERVICE, "Hebdomadaire", "Ugine", "ljhsdgljf"));
-        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.LOAN, "Hebdomadaire", "Ugine", "ljhsdgljf"));
-        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.SERVICE, "Hebdomadaire", "Ugine", "ljhsdgljf"));
-        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.LOAN, "Hebdomadaire", "Ugine", "ljhsdgljf"));
-        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.SERVICE, "Hebdomadaire", "Ugine", "ljhsdgljf"));
-        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.LOAN, "Hebdomadaire", "Ugine", "ljhsdgljf"));
-        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.SERVICE, "Hebdomadaire", "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.LOAN, Frequency.WEEKLY, "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.LOAN, Frequency.WEEKLY, "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.LOAN, Frequency.WEEKLY, "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.SERVICE, Frequency.WEEKLY, "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.SERVICE, Frequency.WEEKLY, "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.SERVICE, Frequency.WEEKLY, "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.LOAN, Frequency.WEEKLY, "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.SERVICE, Frequency.WEEKLY, "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.LOAN, Frequency.WEEKLY, "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.SERVICE, Frequency.WEEKLY, "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.LOAN, Frequency.WEEKLY, "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.SERVICE, Frequency.WEEKLY, "Ugine", "ljhsdgljf"));
 
         this.priceChoice.getItems().setAll("Tout type de prix", "Moins de 100 florains", "Entre 100 et 200 florains", "Entre 200 et 300 florains", "Entre 300 et 400 florains", "Entre 400 et 500 florains", "Plus de 500 florains");
         this.priceChoice.getSelectionModel().select(0);
@@ -160,7 +161,7 @@ public class MarketController extends Controller implements Observeur{
         }
         Label offerTypeLabel = new Label(offerType);
         Label ownerLabel = new Label("by : " + offer.getOwner());
-        Label frequencyLabel = new Label(offer.getFrequency());
+        Label frequencyLabel = new Label(offer.getFrequency().getValue());
         vbox.getChildren().addAll(titleLabel, priceLabel, offerTypeLabel, ownerLabel, frequencyLabel);
         hbox.getChildren().addAll(image, vbox);
         pane.getChildren().add(hbox);

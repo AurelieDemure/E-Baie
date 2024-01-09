@@ -1,5 +1,6 @@
 package org.codingweek.db.entity;
 
+import org.codingweek.model.filter.Frequency;
 import org.codingweek.model.filter.OfferType;
 
 import javax.persistence.*;
@@ -43,13 +44,13 @@ public class Offer {
 
 
 
-    public Offer(String title, String description, User owner, double price, OfferType type, String frequency, String localization, String path) {
+    public Offer(String title, String description, User owner, double price, OfferType type, Frequency frequency, String localization, String path) {
         this.title = title;
         this.description = description;
         this.owner = owner;
         this.price = price;
         this.type = type.getValue();
-        this.frequency = frequency;
+        this.frequency = frequency.getValue();
         this.localization = localization;
         this.path = path;
     }
@@ -104,12 +105,12 @@ public class Offer {
         this.type = type.getValue();
     }
 
-    public String getFrequency() {
-        return frequency;
+    public Frequency getFrequency() {
+        return Frequency.fromString(frequency);
     }
 
-    public void setFrequency(String frequency) {
-        this.frequency = frequency;
+    public void setFrequency(Frequency frequency) {
+        this.frequency = frequency.getValue();
     }
 
     public String getLocalization() {

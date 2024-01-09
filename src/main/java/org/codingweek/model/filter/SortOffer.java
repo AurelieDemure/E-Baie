@@ -4,9 +4,7 @@ public enum SortOffer {
     PRICEASC("Prix croissant"),
     PRICEDESC("Prix décroissant"),
     TITLEASC("Titre A-Z"),
-    TITLEDESC("Titre Z-A"),
-    AUTORASC("Auteur A-Z"),
-    AUTORDESC("Auteur Z-A");
+    TITLEDESC("Titre Z-A");
 
     private final String value;
 
