@@ -19,7 +19,7 @@ version '1.0'
 
 ext {
     junitVersion = '5.10.1'
-    javafxVersion = '17'
+    javafxVersion = '21'
     jdkVersion = '17'
 }
 

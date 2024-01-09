@@ -1,7 +1,77 @@
-:root{
-    --light-green: #A1E8AF;
-    --dark-green: #94C595;
-    --grey: #747C92;
-    --purple: #372772;
-    --dark-purple: #3A2449;
+*{
+    -fx-light-green: #A1E8AF;
+    -fx-light-green-hand: #c8eace;
+    -fx-dark-green: #94C595;
+    -fx-grey: #747C92;
+    -fx-purple: #372772;
+    -fx-dark-purple: #3A2449;
+    -fx-white: #f1f1f1;
+    -fx-dark: #000000;
+    -fx-light-blue: #9FB4C7;
+    -fx-dark-blue: #778c9d;
+}
+
+.root{
+    -fx-dark: #000000;
+    -fx-font-family: "Arial";
+    -fx-logo: #ef939d;
+    -fx-logo-hand: #f3b5b8;
+    -fx-black: #000000;
+    -fx-transparent : rgba(0, 0, 0, 0);
+}
+
+
+.navbar{
+    -fx-background-color: -fx-dark-green;
+}
+
+.buttonNavbar{
+    -fx-background-color: -fx-dark-green;
+    -fx-text-fill: -fx-dark;
+    -fx-cursor: hand;
+}
+
+.buttonNavbar:hover{
+    -fx-underline: true;
+}
+
+.text-fieldConnect{
+    -fx-background-color: -fx-light-green;
+    -fx-opacity: 0.2;
+}
+
+.text-fieldAccount {
+    -fx-background-color: -fx-transparent;
+    -fx-border-color: transparent transparent black transparent;
+
+}
+
+.buttonConnect{
+    -fx-background-color: -fx-logo;
+    transition-duration: 0.4s;
+    -fx-cursor: hand;
+}
+
+.buttonConnect:hover{
+    -fx-background-color: -fx-logo-hand;
+}
+
+.buttonSave{
+    -fx-background-color: -fx-light-green;
+    transition-duration: 0.4s;
+    -fx-cursor: hand;
+}
+
+.buttonSave:hover{
+    -fx-background-color: -fx-light-green-hand;
+}
+
+.buttonDisconnect {
+    -fx-background-color: -fx-light-blue;
+    transition-duration: 0.4s;
+    -fx-cursor: hand;
+}
+
+.buttonDisconnect:hover {
+    -fx-background-color: -fx-dark-blue;
 }

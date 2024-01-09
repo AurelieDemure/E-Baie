@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codingweek.controller.AccountController">
+    <children>
+        <fx:include fx:id="navbar" source="navbar.fxml" />
+      <VBox layoutX="63.0" layoutY="269.0" prefHeight="461.0" prefWidth="465.0" spacing="20.0">
+         <children>
+            <Label text="Prénom">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <TextField fx:id="firstnameField" styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
+            <Label text="Nom">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <TextField fx:id="lastnameField" styleClass="text-fieldAccount" />
+            <Label text="Email">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <TextField fx:id="emailField" styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
+            <Label text="Mot de passe">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="passwordField" styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
+         </children>
+      </VBox>
+      <VBox layoutX="668.0" layoutY="269.0" prefHeight="461.0" prefWidth="465.0" spacing="20.0">
+         <children>
+            <Label text="Date de naissance">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="birthDateField" styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
+            <Label text="Téléphone">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <TextField fx:id="phoneNumberField" styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
+            <Label text="Adresse">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <TextField fx:id="addressField" styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
+            <Label text="Description">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <TextField fx:id="descriptionField" styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
+         </children>
+      </VBox>
+      <Label layoutX="35.0" layoutY="201.0" text="Mon compte" underline="true">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="923.0" layoutY="755.0" mnemonicParsing="false" scaleX="1.5" scaleY="1.5" styleClass="buttonSave" stylesheets="@../css/main.css" text="Sauvegarder" />
+      <Button layoutX="1077.0" layoutY="755.0" mnemonicParsing="false" onAction="#showConfirmationAddDialog" scaleX="1.5" scaleY="1.5" styleClass="buttonConnect" stylesheets="@../css/main.css" text="Supprimer" />
+      <Label layoutX="63.0" layoutY="754.0" text="Crédit restant :">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="204.0" layoutY="754.0" text="                                 " underline="true">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+       <Button layoutX="1004.0" layoutY="208.0" mnemonicParsing="false" onAction="#disconnect" scaleX="1.2" scaleY="1.2" styleClass="buttonDisconnect" text="Se déconnecter" />
+    </children>
+</AnchorPane>
