@@ -19,6 +19,6 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
         </content>
       </ScrollPane>
-      <Button layoutX="933.0" layoutY="202.0" mnemonicParsing="false" onAction="#sendToCreateOffer" scaleX="1.5" scaleY="1.5" styleClass="buttonConnect" stylesheets="@../css/main.css" text="Créer une offre" />
+      <Button layoutX="933.0" layoutY="202.0" mnemonicParsing="false" onAction="#sendToCreateOffer" scaleX="1.5" scaleY="1.5" styleClass="buttonSave" stylesheets="@../css/main.css" text="Créer une offre" />
     </children>
 </AnchorPane>

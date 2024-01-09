@@ -11,7 +11,7 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codingweek.controller.OfferCreateController">
     <children>
         <fx:include fx:id="navbar" source="navbar.fxml" />
-        <VBox layoutX="65.0" layoutY="232.0" prefHeight="461.0" prefWidth="465.0" spacing="20.0">
+        <VBox layoutX="63.0" layoutY="260.0" prefHeight="427.0" prefWidth="465.0" spacing="15.0">
             <children>
                 <Label fx:id="errorFillAll" styleClass="large-label" textFill="RED" />
                 <Label text="Titre">
@@ -26,28 +26,22 @@
                     </font>
                 </Label>
                 <TextField fx:id="description" styleClass="text-fieldAccount" />
-                <Label text="Email">
-                    <font>
-                        <Font size="19.0" />
-                    </font>
-                </Label>
-                <TextField fx:id="owner" styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
                 <Label text="Prix">
                     <font>
                         <Font size="19.0" />
                     </font>
                 </Label>
                 <TextField fx:id="price" styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
-            </children>
-        </VBox>
-        <VBox layoutX="669.0" layoutY="232.0" prefHeight="400.0" prefWidth="465.0" spacing="20.0">
-            <children>
                 <Label text="Type d'offre (LOAN ou SERVICE)">
                     <font>
                         <Font size="19.0" />
                     </font>
                 </Label>
             <TextField fx:id="type_offer" styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
+            </children>
+        </VBox>
+        <VBox layoutX="668.0" layoutY="297.0" prefHeight="400.0" prefWidth="465.0" spacing="15.0">
+            <children>
                 <Label text="Fréquence">
                     <font>
                         <Font size="19.0" />
@@ -66,7 +60,7 @@
                     </font>
                 </Label>
             <Button mnemonicParsing="false" onAction="#selectImage" styleClass="buttonSave" stylesheets="@../css/main.css" text="Choisir une image" />
-            <ImageView fx:id="path_offer" fitHeight="107.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="path_offer" fitHeight="143.0" fitWidth="219.0" pickOnBounds="true" preserveRatio="true" />
             </children>
         </VBox>
         <Label layoutX="31.0" layoutY="172.0" text="Créer une offre" underline="true">
@@ -74,7 +68,7 @@
                 <Font name="System Bold" size="24.0" />
             </font>
         </Label>
-        <Button layoutX="923.0" layoutY="170.0" mnemonicParsing="false" onAction="#saveModifiedOffer" scaleX="1.5" scaleY="1.5" styleClass="buttonSave" stylesheets="@../css/main.css" text="Sauvegarder" />
-        <Button layoutX="1080.0" layoutY="170.0" mnemonicParsing="false" onAction="#showConfirmationAddDialog" scaleX="1.5" scaleY="1.5" styleClass="buttonConnect" stylesheets="@../css/main.css" text="Annuler" />
+        <Button layoutX="912.0" layoutY="187.0" mnemonicParsing="false" onAction="#saveModifiedOffer" scaleX="1.5" scaleY="1.5" styleClass="buttonSave" stylesheets="@../css/main.css" text="Sauvegarder" />
+        <Button layoutX="1061.0" layoutY="187.0" mnemonicParsing="false" onAction="#showConfirmationAddDialog" scaleX="1.5" scaleY="1.5" styleClass="buttonConnect" stylesheets="@../css/main.css" text="Annuler" />
     </children>
 </AnchorPane>
