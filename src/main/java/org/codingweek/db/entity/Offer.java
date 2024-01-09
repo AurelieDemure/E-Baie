@@ -43,12 +43,12 @@ public class Offer {
 
 
 
-    public Offer(String title, String description, User owner, double price, String type, String frequency, String localization, String path) {
+    public Offer(String title, String description, User owner, double price, OfferType type, String frequency, String localization, String path) {
         this.title = title;
         this.description = description;
         this.owner = owner;
         this.price = price;
-        this.type = type;
+        this.type = type.getValue();
         this.frequency = frequency;
         this.localization = localization;
         this.path = path;
@@ -97,19 +97,11 @@ public class Offer {
     }
 
     public OfferType getTypeOffer() {
-        if (type.equals("LOAN")) {
-            return OfferType.LOAN.LOAN;
-        } else {
-            return OfferType.SERVICE;
-        }
+        return OfferType.valueOf(type);
     }
 
     public void setType(OfferType type) {
-        if (type.equals(OfferType.LOAN)) {
-            this.type = "LOAN";
-        } else {
-            this.type = "SERVICE";
-        }
+        this.type = type.getValue();
     }
 
     public String getFrequency() {
