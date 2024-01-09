@@ -87,6 +87,23 @@ public class DatabaseManager {
         }
     }
 
+    public <T> T getEntity(Class<T> entityClass, String email) {
+        Session session = factory.openSession();
+        Transaction tx = null;
+        T entity = null;
+        try {
+            tx = session.beginTransaction();
+            entity = (T) session.get(entityClass, email);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+            return entity;
+        }
+    }
+
     public void tearDown() {
         factory.close();
     }

@@ -18,7 +18,7 @@ public class Offer {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "owner_id", referencedColumnName = "id")
+    @JoinColumn(name = "owner", referencedColumnName = "email")
     private User owner;
 
     @Column(name = "price")

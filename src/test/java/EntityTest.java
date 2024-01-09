@@ -30,11 +30,11 @@ public class EntityTest {
 
     @Test
     public void testSaveUser() {
-        User user = new User("Test", "User", "test123", "test@gmail.com", "0601528495", "Nancy", "description", 100);
+        User user = new User("test@gmail.com","Test", "User", "test123", "0601528495", "Nancy", "description", 100);
 
         dbManager.saveEntity(user);
 
-        User loadUser = dbManager.getEntity(User.class, user.getId());
+        User loadUser = dbManager.getEntity(User.class, user.getEmail());
         assertNotNull(loadUser);
 
         dbManager.deleteEntity(user);
@@ -43,10 +43,10 @@ public class EntityTest {
     @Test
     public void testSaveOffer() {
         Offer offer = new Offer("Test", "Test", null, 100, "Test", "Test", "Test", "Test");
-        User user = new User("Test", "User", "test123", "test@gmail.com", "0601528495", "Nancy", "description", 100);
+        User user = new User("test@gmail.com", "Test", "User", "test123", "0601528495", "Nancy", "description", 100);
         dbManager.saveEntity(user);
 
-        offer.setOwner(dbManager.getEntity(User.class, user.getId()));
+        offer.setOwner(dbManager.getEntity(User.class, user.getEmail()));
 
         dbManager.saveEntity(offer);
 
@@ -61,8 +61,8 @@ public class EntityTest {
     @Test
     public void testUpdateUser() {
 
-        User user1 = new User("Test", "User", "test123", "test1@test.com", "0601528495", "Nancy", "description", 100);
-        User user2 = new User("Test", "User", "test123", "test2@test.com", "0601528495", "Nancy", "description", 100);
+        User user1 = new User("test1@test.com", "Test", "User", "test123", "0601528495", "Nancy", "description", 100);
+        User user2 = new User("test2@test.com","Test", "User", "test123",  "0601528495", "Nancy", "description", 100);
 
         dbManager.saveEntity(user1);
         dbManager.saveEntity(user2);
@@ -88,7 +88,7 @@ public class EntityTest {
 
     @Test
     public void testNotification() {
-        User user1 = new User("Test", "User", "test123", "test@test.com", "0601528495", "Nancy", "description", 100);
+        User user1 = new User("test@test.com","Test", "User", "test123","0601528495", "Nancy", "description", 100);
 
         dbManager.saveEntity(user1);
 
@@ -107,7 +107,7 @@ public class EntityTest {
 
     @Test
     public void testQuery() {
-        User user1 = new User("Test", "User", "test123", "test@test.com", "0601528495", "Nancy", "description", 100);
+        User user1 = new User("test@test.com", "Test", "User", "test123", "0601528495", "Nancy", "description", 100);
         dbManager.saveEntity(user1);
 
         Offer offer = new Offer("Test", "Test", user1, 100, "Test", "Test", "Test", "Test");
