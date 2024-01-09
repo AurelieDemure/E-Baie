@@ -1,4 +1,4 @@
-package org.codingweek.model;
+package org.codingweek.db.entity;
 
 import javax.persistence.*;
 import java.util.Date;

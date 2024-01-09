@@ -1,4 +1,6 @@
-package org.codingweek.model;
+package org.codingweek.db.entity;
+
+import org.codingweek.db.entity.User;
 
 import javax.persistence.*;
 import java.util.Date;

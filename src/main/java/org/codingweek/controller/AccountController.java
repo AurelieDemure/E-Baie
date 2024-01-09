@@ -3,12 +3,10 @@ package org.codingweek.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.util.StringConverter;
-import javafx.util.converter.LocalDateStringConverter;
 import org.codingweek.ApplicationContext;
 import org.codingweek.ApplicationSettings;
 import org.codingweek.model.Page;
-import org.codingweek.model.User;
+import org.codingweek.db.entity.User;
 import org.codingweek.view.ConnexionView;
 
 import java.io.IOException;
