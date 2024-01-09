@@ -75,6 +75,11 @@
          </font>
       </Label>
       <DatePicker fx:id="dateEnd" layoutX="813.0" layoutY="745.0" styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
-      <Button layoutX="508.0" layoutY="194.0" mnemonicParsing="false" text="Contacter l'auteur" />
+      <Button layoutX="577.0" layoutY="194.0" mnemonicParsing="false" onAction="#contactAuthor" scaleX="1.5" scaleY="1.5" styleClass="buttonConnect" stylesheets="@../css/main.css" text="Contacter l'auteur" />
+      <Label layoutX="47.0" layoutY="186.0" text="Note">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

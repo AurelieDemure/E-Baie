@@ -1,5 +1,6 @@
 package org.codingweek.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
@@ -7,6 +8,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.codingweek.ApplicationContext;
+import org.codingweek.db.DatabaseManager;
+import org.codingweek.db.entity.Offer;
+import org.codingweek.model.DatabaseHandler;
 import org.codingweek.model.Page;
 
 import java.net.URL;
@@ -32,11 +36,12 @@ public class OfferMarketController extends Controller implements Observeur{
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText("Etes vous sur ?");
-        alert.setContentText("Voulez vous vraiment supprimer cette offre ?");
+        alert.setContentText("Voulez vous vraiment réserver cette offre ?");
 
         alert.showAndWait().ifPresent(response -> {
             if (response == javafx.scene.control.ButtonType.OK) {
-                // CODE WHEN OK
+                DatabaseManager db = DatabaseHandler.getInstance().getDbManager();
+                //db.get
             }
         });
     }
@@ -64,4 +69,11 @@ public class OfferMarketController extends Controller implements Observeur{
         OfferBook.setText("date prise, date rendu, utilisateur");
     }
 
+    public void contactAuthor(ActionEvent actionEvent) {
+    }
+
+    public void deleteOffer(Offer offer) {
+        DatabaseManager db = DatabaseHandler.getInstance().getDbManager();
+        db.deleteEntity(offer);
+    }
 }
