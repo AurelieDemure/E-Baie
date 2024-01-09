@@ -18,4 +18,12 @@ public enum SortOffer {
         return value;
     }
 
+    public static SortOffer fromString(String value) {
+        for (SortOffer enumVal: SortOffer.values())
+            if (enumVal.value.equals(value))
+                return enumVal;
+
+        throw new IllegalArgumentException("No constant with the value: " + value);
+    }
+
 }

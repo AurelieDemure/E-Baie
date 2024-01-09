@@ -5,13 +5,14 @@ import java.util.*;
 
 import org.codingweek.ApplicationContext;
 import org.codingweek.db.entity.*;
-import org.codingweek.model.*;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
+import org.codingweek.model.ImageHandler;
+import org.codingweek.model.filter.OfferType;
 
 public class MarketController extends Controller implements Observeur{
 
@@ -48,18 +49,18 @@ public class MarketController extends Controller implements Observeur{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, "LOAN", "Hebdomadaire", "Ugine", "ljhsdgljf"));
-        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, "LOAN", "Hebdomadaire", "Ugine", "ljhsdgljf"));
-        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, "LOAN", "Hebdomadaire", "Ugine", "ljhsdgljf"));
-        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, "SERVICE", "Hebdomadaire", "Ugine", "ljhsdgljf"));
-        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, "SERVICE", "Hebdomadaire", "Ugine", "ljhsdgljf"));
-        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, "SERVICE", "Hebdomadaire", "Ugine", "ljhsdgljf"));
-        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, "LOAN", "Hebdomadaire", "Ugine", "ljhsdgljf"));
-        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, "SERVICE", "Hebdomadaire", "Ugine", "ljhsdgljf"));
-        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, "LOAN", "Hebdomadaire", "Ugine", "ljhsdgljf"));
-        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, "SERVICE", "Hebdomadaire", "Ugine", "ljhsdgljf"));
-        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, "LOAN", "Hebdomadaire", "Ugine", "ljhsdgljf"));
-        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, "SERVICE", "Hebdomadaire", "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.LOAN, "Hebdomadaire", "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.LOAN, "Hebdomadaire", "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.LOAN, "Hebdomadaire", "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.SERVICE, "Hebdomadaire", "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.SERVICE, "Hebdomadaire", "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.SERVICE, "Hebdomadaire", "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.LOAN, "Hebdomadaire", "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.SERVICE, "Hebdomadaire", "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.LOAN, "Hebdomadaire", "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.SERVICE, "Hebdomadaire", "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.LOAN, "Hebdomadaire", "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, OfferType.SERVICE, "Hebdomadaire", "Ugine", "ljhsdgljf"));
 
         this.priceChoice.getItems().setAll("Tout type de prix", "Moins de 100 florains", "Entre 100 et 200 florains", "Entre 200 et 300 florains", "Entre 300 et 400 florains", "Entre 400 et 500 florains", "Plus de 500 florains");
         this.priceChoice.getSelectionModel().select(0);
@@ -105,7 +106,7 @@ public class MarketController extends Controller implements Observeur{
     void loanSelected(ActionEvent event) {
         this.offers.clear();
         for(Offer offer : listTest){
-            if(offer.getTypeOffer()==OfferType.LOAN){
+            if(offer.getTypeOffer()== OfferType.LOAN){
                 this.offers.add(offer);
             }
             else{

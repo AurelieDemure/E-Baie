@@ -1,6 +1,6 @@
 package org.codingweek.db.entity;
 
-import org.codingweek.model.OfferType;
+import org.codingweek.model.filter.OfferType;
 
 import javax.persistence.*;
 import java.util.List;
@@ -97,7 +97,7 @@ public class Offer {
     }
 
     public OfferType getTypeOffer() {
-        return OfferType.valueOf(type);
+        return OfferType.fromString(type);
     }
 
     public void setType(OfferType type) {

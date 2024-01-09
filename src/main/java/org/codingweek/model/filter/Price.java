@@ -19,4 +19,12 @@ public enum Price {
         return value;
     }
 
+    public static Price fromString(String value) {
+        for (Price enumVal: Price.values())
+            if (enumVal.value.equals(value))
+                return enumVal;
+
+        throw new IllegalArgumentException("No constant with the value: " + value);
+    }
+
 }

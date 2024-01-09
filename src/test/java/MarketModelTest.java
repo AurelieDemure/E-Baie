@@ -1,8 +1,9 @@
 import org.codingweek.db.DatabaseManager;
 import org.codingweek.db.entity.Offer;
 import org.codingweek.db.entity.User;
+import org.codingweek.model.DatabaseHandler;
 import org.codingweek.model.MarketModel;
-import org.codingweek.model.OfferType;
+import org.codingweek.model.filter.OfferType;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,7 @@ public class MarketModelTest {
     public void setUp() {
         this.dbManager = new DatabaseManager();
         dbManager.setupTest();
+        DatabaseHandler.setDatabaseTest();
 
         dbManager.deleteAll();
     }
@@ -36,10 +38,9 @@ public class MarketModelTest {
         dbManager.saveEntity(offer1);
         dbManager.saveEntity(offer2);
 
-        MarketModel model = new MarketModel();
-        assert model.getOffersAvailable("----").size() == 3;
-        assert model.getOffersAvailable(user1.getEmail()).isEmpty();
-        assert model.getOffersAvailableFiltered(user1.getEmail(), OfferType.LOAN).size() == 1;
+        assert MarketModel.getOffersAvailable("----").size() == 3;
+        assert MarketModel.getOffersAvailable(user1.getEmail()).isEmpty();
+        assert MarketModel.getOffersAvailableFiltered("----", OfferType.LOAN, null, null, null).size() == 1;
     }
 
 }

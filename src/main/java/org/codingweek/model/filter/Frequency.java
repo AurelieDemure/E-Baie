@@ -18,4 +18,12 @@ public enum Frequency {
         return value;
     }
 
+    public static Frequency fromString(String value) {
+        for (Frequency enumVal: Frequency.values())
+            if (enumVal.value.equals(value))
+                return enumVal;
+
+        throw new IllegalArgumentException("No constant with the value: " + value);
+    }
+
 }

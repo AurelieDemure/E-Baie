@@ -1,41 +1,35 @@
 package org.codingweek.model;
 
-import org.codingweek.db.DatabaseManager;
 import org.codingweek.db.entity.Offer;
+import org.codingweek.model.filter.Frequency;
+import org.codingweek.model.filter.OfferType;
+import org.codingweek.model.filter.Price;
+import org.codingweek.model.filter.SortOffer;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class MarketModel {
 
-    private List<Offer> offersAvailable;
 
-    public MarketModel() {
-        DatabaseManager dbHandler = DatabaseHandler.getInstance().getDbManager();
-        offersAvailable = dbHandler.getAllEntity(Offer.class);
-    }
-
-
-    /** Return all the offer on the database without the one of the user*/
-    public List<Offer> getOffersAvailable(String email) {
-        if (offersAvailable != null) {
-            return offersAvailable.stream()
-                    .filter(offer -> !offer.getOwner().getEmail().equals(email))
-                    .collect(Collectors.toList());
-        }
-        DatabaseManager dbHandler = DatabaseHandler.getInstance().getDbManager();
-        List<Offer> offers = dbHandler.getAllEntity(Offer.class);
-        offersAvailable = offers;
-        return offers.stream()
+    /** Return all the offer on the database without the one of the user
+     * Email is the value of the offer to be excluded */
+    public static List<Offer> getOffersAvailable(String email) {
+        List<Offer> offersAvailable = DatabaseHandler.getInstance().getDbManager().getAllEntity(Offer.class);
+        System.out.println(offersAvailable);
+        return offersAvailable.stream()
                 .filter(offer -> !offer.getOwner().getEmail().equals(email))
                 .collect(Collectors.toList());
     }
 
-    /** Return all the offer on the database with filtering*/
-    public List<Offer> getOffersAvailableFiltered(String email, OfferType type) {
+    /** Return all the offer on the database with filtering
+     * Email is the value of the offer to be excluded */
+    public static List<Offer> getOffersAvailableFiltered(String email, OfferType type, Frequency frequency, Price price, SortOffer sortOffer) {
         List<Offer> offers = getOffersAvailable(email);
         if (type != null)
-            offers.removeIf(offer -> !offer.getType().equals(type));
+            offers = offers.stream()
+                    .filter(offer -> offer.getTypeOffer().equals(type))
+                    .collect(Collectors.toList());
 
         return offers;
     }

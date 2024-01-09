@@ -3,14 +3,12 @@ import org.codingweek.db.entity.Notification;
 import org.codingweek.db.entity.Offer;
 import org.codingweek.db.entity.User;
 import org.codingweek.db.entity.Query;
-import org.codingweek.model.MarketModel;
-import org.codingweek.model.OfferType;
+import org.codingweek.model.filter.OfferType;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterEach;
 import org.codingweek.db.DatabaseManager;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -146,8 +144,6 @@ public class EntityTest {
         user1 = dbManager.getEntity(User.class, user1.getEmail());
 
         assert user1.getOffers().size() == 3;
-
-        assert new MarketModel().getOffersAvailable("----").size() == 3;
 
     }
 

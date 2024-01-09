@@ -12,8 +12,9 @@ public class ImageHandler {
     /** Load a static path image */
     public static Image getImage(String name) {
         try {
+            if (!new File(name).exists())
+                throw new Exception();
             return new Image(new File(name).toURI().toString());
-    
         } catch (Exception e) {
             return new Image(
                     Objects.requireNonNull(ApplicationContext.class

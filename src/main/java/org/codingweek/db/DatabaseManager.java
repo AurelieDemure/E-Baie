@@ -29,7 +29,6 @@ public class DatabaseManager {
                 .setProperty("hibernate.hbm2ddl.auto", "update")
                 .setProperty("hibernate.classLoader.application", "org.hibernate.boot.registry.classloading.internal.ClassLoaderServiceImpl");
 
-        database_name = "database.sqlite";
         factory = configuration.buildSessionFactory();
     }
 
