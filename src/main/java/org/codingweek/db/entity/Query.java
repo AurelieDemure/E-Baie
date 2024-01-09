@@ -1,6 +1,7 @@
 package org.codingweek.db.entity;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -20,8 +21,7 @@ public class Query {
     private User user;
 
     @Column(name = "date_query")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
+    private LocalDateTime date;
 
     @Column(name = "accepted")
     private boolean accepted;
@@ -29,7 +29,8 @@ public class Query {
     @Column(name = "notation")
     private int notation;
 
-    public Query(Offer offer, User user, Date date, boolean accepted, int notation) {
+    public Query(Offer offer, User user, boolean accepted, int notation) {
+        this.date = LocalDateTime.now();
         this.offer = offer;
         this.user = user;
         this.date = date;
@@ -63,11 +64,11 @@ public class Query {
         this.user = user;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
