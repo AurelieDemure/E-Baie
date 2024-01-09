@@ -13,6 +13,7 @@ public class ImageHandler {
     public static Image getImage(String name) {
         try {
             return new Image(new File(name).toURI().toString());
+    
         } catch (Exception e) {
             return new Image(
                     Objects.requireNonNull(ApplicationContext.class

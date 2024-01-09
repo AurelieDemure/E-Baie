@@ -17,9 +17,9 @@
       <TextField fx:id="reaserchField" layoutX="400.0" layoutY="187.0" prefHeight="25.0" prefWidth="400.0" promptText="Rechercher" />
       <ScrollPane layoutX="-1.0" layoutY="301.0" prefHeight="500.0" prefWidth="1200.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="1184.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="1184.0">
                <children>
-                  <VBox fx:id="scrollField" layoutX="-1.0" prefHeight="500.0" prefWidth="1184.0" />
+                  <VBox fx:id="scrollField" layoutX="-1.0" prefWidth="1184.0" />
                </children>
             </AnchorPane>
         </content>

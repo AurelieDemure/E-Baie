@@ -3,6 +3,7 @@ package org.codingweek.controller;
 import java.net.URL;
 import java.util.*;
 
+import org.codingweek.ApplicationContext;
 import org.codingweek.db.entity.*;
 import org.codingweek.model.*;
 
@@ -47,6 +48,18 @@ public class MarketController extends Controller implements Observeur{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, "LOAN", "Hebdomadaire", "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, "LOAN", "Hebdomadaire", "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, "LOAN", "Hebdomadaire", "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, "SERVICE", "Hebdomadaire", "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, "SERVICE", "Hebdomadaire", "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, "SERVICE", "Hebdomadaire", "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, "LOAN", "Hebdomadaire", "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, "SERVICE", "Hebdomadaire", "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, "LOAN", "Hebdomadaire", "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, "SERVICE", "Hebdomadaire", "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, "LOAN", "Hebdomadaire", "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, "SERVICE", "Hebdomadaire", "Ugine", "ljhsdgljf"));
 
         this.priceChoice.getItems().setAll("Tout type de prix", "Moins de 100 florains", "Entre 100 et 200 florains", "Entre 200 et 300 florains", "Entre 300 et 400 florains", "Entre 400 et 500 florains", "Plus de 500 florains");
         this.priceChoice.getSelectionModel().select(0);
@@ -54,6 +67,10 @@ public class MarketController extends Controller implements Observeur{
         this.frequencyChoice.getSelectionModel().select(0);
         this.sortChoice.getItems().setAll("Prix croissant", "Prix décroissant", "Titre A-Z", "Titre Z-A", "Auteur A-Z", "Auteur Z-A");
         this.sortChoice.getSelectionModel().select(0);
+        this.offers.clear();
+        for(Offer offer : listTest){
+            this.offers.add(offer);
+        }
         refresh();
     }
 
@@ -73,16 +90,10 @@ public class MarketController extends Controller implements Observeur{
         for(Offer offer : this.offers){
             pane = makePaneOffre(offer);
             hbox.getChildren().add(pane);
-            spacePane = new Pane();
-            spacePane.getStyleClass().add("space");
-            hbox.getChildren().add(spacePane);
             x++;
 
-            if(x == 3){
+            if(x == 2){
                 this.scrollField.getChildren().add(hbox);
-                spacePane = new Pane();
-                spacePane.getStyleClass().add("space");
-                this.scrollField.getChildren().add(spacePane);
                 hbox = new HBox();
                 x = 0;
             }
@@ -132,6 +143,7 @@ public class MarketController extends Controller implements Observeur{
         HBox hbox = new HBox();
         VBox vbox = new VBox();
         ImageView image = new ImageView();
+        image.setImage(ImageHandler.getImage(offer.getPath()));
         Label titleLabel = new Label(offer.getTitle());
         Label priceLabel = new Label(offer.getPrice() + " florains");
         String offerType;
