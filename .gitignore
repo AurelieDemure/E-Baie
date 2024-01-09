@@ -41,3 +41,5 @@ bin/
 ### Mac OS ###
 .DS_Store
 .idea
+src/main/resources/org/codingweek/db/database.sqlite
+src/main/resources/org/codingweek/db/database_test.sqlite
