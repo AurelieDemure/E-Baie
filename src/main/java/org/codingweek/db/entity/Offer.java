@@ -140,4 +140,6 @@ public class Offer {
     public List<Query> getQueries() {
         return queries;
     }
+
+
 }

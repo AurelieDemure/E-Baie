@@ -15,6 +15,7 @@ import org.codingweek.db.entity.User;
 import org.codingweek.model.DatabaseHandler;
 import org.codingweek.model.ImageHandler;
 import org.codingweek.model.Page;
+import org.codingweek.model.filter.Frequency;
 import org.codingweek.model.filter.OfferType;
 import org.codingweek.view.MarketView;
 import org.codingweek.view.MyOffersView;
@@ -69,8 +70,16 @@ public class OfferCreateController extends Controller implements Observeur {
                 String mail = owner.getText();
                 User user = db.getEntity(User.class, mail);
                 Double prices = Double.parseDouble(price.getText());
-                Offer offer = new Offer(title.getText(), description.getText(), user, prices, OfferType.fromString(type_offer.getText()), frequency.getText(), localization.getText(), path);
+                Offer offer = new Offer(title.getText(), description.getText(), user, prices, OfferType.fromString(type_offer.getText()), Frequency.fromString(frequency.getText()), localization.getText(), path);
+            System.out.printf(offer.toString());
                 db.saveEntity(offer);
+            System.out.println(offer.getId());
+            ApplicationContext.getInstance().setPageType(Page.OFFER);
+            try {
+                ApplicationSettings.getInstance().setCurrentScene(new MyOffersView().loadScene());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 

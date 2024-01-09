@@ -17,7 +17,7 @@ public class EntryPoint extends Application {
         ApplicationContext.getInstance().setPageType(Page.NONE);
         ApplicationContext.getInstance().setUser_authentified(null);
         stage.setTitle(Configuration.APP_TITLE);
-        stage.setScene(new OfferCreateView().loadScene());
+        stage.setScene(new ConnexionView().loadScene());
         stage.setResizable(false);
         stage.show();
         stage.setOnCloseRequest(e -> {
