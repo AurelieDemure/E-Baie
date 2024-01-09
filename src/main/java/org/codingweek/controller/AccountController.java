@@ -26,8 +26,6 @@ public class AccountController extends Controller implements Observeur{
     public TextField addressField;
     public TextField descriptionField;
     public Label credit;
-    @FXML
-    private Label welcomeText;
 
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.FRENCH);
     private LocalDate date;
@@ -57,14 +55,14 @@ public class AccountController extends Controller implements Observeur{
 
     @Override
     public void update() {
-        User user = ApplicationContext.getInstance().getUser_authentified();
+        /*User user = ApplicationContext.getInstance().getUser_authentified();
         firstnameField.setText(user.getFirstName());
         lastnameField.setText(user.getLastName());
         emailField.setText(user.getEmail());
         passwordField.setText(user.getPassword());
         phoneNumberField.setText(user.getPhone());
         addressField.setText(user.getAddress());
-        descriptionField.setText(user.getDescription());
+        descriptionField.setText(user.getDescription());*/
     }
 
     @Override

@@ -17,7 +17,7 @@ public class Notification {
     private String type;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_email", referencedColumnName = "email")
     private User user;
 
     @Column(name = "seen")

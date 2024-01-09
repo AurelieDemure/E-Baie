@@ -11,6 +11,9 @@ import javafx.scene.image.*;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 
+import static org.codingweek.model.OfferType.LOAN;
+import static org.codingweek.model.OfferType.SERVICE;
+
 public class MarketController extends Controller implements Observeur{
 
     private List<Offer> offers = new ArrayList<Offer>();
@@ -93,11 +96,16 @@ public class MarketController extends Controller implements Observeur{
     }
 
     public void searchOffers(){
-       for (Offer offer : listTest){
-            if(offer.getTypeOffer()==this.type.toString()){
-                offers.add(offer);
-            }
-       }
+        Offer offer1 = new Offer();
+        offer1.setType(OfferType.LOAN);
+        offer1.setTitle("Un truc");
+        offer1.setPrice(100);
+        Offer offer2 = new Offer();
+        offer2.setType(OfferType.SERVICE);
+        offer2.setTitle("Un autre truc");
+        offer2.setPrice(10);
+        offers.add(offer1);
+        offers.add(offer2);
     }
 
     public Pane makePaneOffre(Offer offer){
@@ -109,10 +117,10 @@ public class MarketController extends Controller implements Observeur{
         Label priceLabel = new Label(offer.getPrice() + " florains");
         String offerType;
         switch(offer.getTypeOffer()){
-            case "LOAN":
-                offerType = "Pret";
+            case LOAN:
+                offerType = "Prêt";
                 break;
-            case "SERVICE":
+            case SERVICE:
                 offerType = "Service";
                 break;
             default:

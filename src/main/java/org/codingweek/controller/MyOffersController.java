@@ -9,8 +9,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MyOffersController extends Controller implements Observeur {
-    @FXML
-    private Label welcomeText;
 
     @Override
     public void refresh() {
