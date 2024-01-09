@@ -7,7 +7,7 @@ plugins {
 }
 
 run {
-    jvmArgs '--add-opens', 'java.base/java.lang=ALL-UNNAMED'
+    jvmArgs '--add-opens', 'java.base/java.lang=ALL-UNNAMED',  '--illegal-access=permit'
 }
 
 repositories {
@@ -59,6 +59,9 @@ dependencies {
 
 test {
     useJUnitPlatform()
+
+    jvmArgs '--add-opens', 'java.base/java.lang=ALL-UNNAMED', '--illegal-access=permit'
+
 
     testLogging {
         events "passed", "skipped", "failed", "standardOut", "standardError"

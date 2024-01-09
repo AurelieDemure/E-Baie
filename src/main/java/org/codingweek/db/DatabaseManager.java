@@ -23,7 +23,9 @@ public class DatabaseManager {
                 .setProperty("hibernate.connection.url", "jdbc:sqlite:src/main/resources/org/codingweek/db/database.sqlite")
                 .setProperty("hibernate.dialect", "org.codingweek.db.SQLiteDialect")
                 .setProperty("hibernate.show_sql", "false")
-                .setProperty("hibernate.hbm2ddl.auto", "update");
+                .setProperty("hibernate.hbm2ddl.auto", "update")
+                .setProperty("hibernate.classLoader.application", "org.hibernate.boot.registry.classloading.internal.ClassLoaderServiceImpl");
+
 
         factory = configuration.buildSessionFactory();
     }
