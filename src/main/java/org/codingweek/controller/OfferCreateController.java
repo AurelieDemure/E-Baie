@@ -59,6 +59,7 @@ public class OfferCreateController extends Controller implements Observeur {
 
     @Override
     public void update() {
+
     }
 
     public void saveModifiedOffer(ActionEvent actionEvent) {
@@ -66,14 +67,13 @@ public class OfferCreateController extends Controller implements Observeur {
                 errorFillAll.setText("Veuillez remplir tous les champs");
                 toggleErrorFillAll(true);
         } else {
-                DatabaseManager db = DatabaseHandler.getInstance().getDbManager();
-                String mail = owner.getText();
-                User user = db.getEntity(User.class, mail);
-                Double prices = Double.parseDouble(price.getText());
-                Offer offer = new Offer(title.getText(), description.getText(), user, prices, OfferType.fromString(type_offer.getText()), Frequency.fromString(frequency.getText()), localization.getText(), path);
-            System.out.printf(offer.toString());
-                db.saveEntity(offer);
-            System.out.println(offer.getId());
+            DatabaseManager db = DatabaseHandler.getInstance().getDbManager();
+            User user = ApplicationContext.getInstance().getUser_authentified();
+            Double prices = Double.parseDouble(price.getText());
+            Offer offer = new Offer(title.getText(), description.getText(), user, prices, OfferType.fromString(type_offer.getText()), Frequency.fromString(frequency.getText()), localization.getText(), path);
+            db.saveEntity(offer);
+            assert db.getEntity(Offer.class, offer.getId()) != null;
+
             ApplicationContext.getInstance().setPageType(Page.OFFER);
             try {
                 ApplicationSettings.getInstance().setCurrentScene(new MyOffersView().loadScene());
