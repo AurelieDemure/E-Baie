@@ -90,4 +90,42 @@ public class DatabaseManager {
     public void tearDown() {
         factory.close();
     }
+
+    public void deleteAll() {
+        Session session = factory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.createQuery("delete from User").executeUpdate();
+            session.createQuery("delete from Offer").executeUpdate();
+            session.createQuery("delete from Chat").executeUpdate();
+            session.createQuery("delete from Notification").executeUpdate();
+            session.createQuery("delete from Query").executeUpdate();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    public void dump() {
+        Session session = factory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.createQuery("from User").list().forEach(System.out::println);
+            session.createQuery("from Offer").list().forEach(System.out::println);
+            session.createQuery("from Chat").list().forEach(System.out::println);
+            session.createQuery("from Notification").list().forEach(System.out::println);
+            session.createQuery("from Query").list().forEach(System.out::println);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
 }

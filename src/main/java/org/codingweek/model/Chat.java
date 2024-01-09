@@ -43,11 +43,11 @@ public class Chat {
         this.id = id;
     }
 
-    public User getUser() {
+    public User getUser1() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser1(User user) {
         this.user = user;
     }
 

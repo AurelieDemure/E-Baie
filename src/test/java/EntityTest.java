@@ -1,6 +1,8 @@
 import org.codingweek.model.Chat;
+import org.codingweek.model.Notification;
 import org.codingweek.model.Offer;
 import org.codingweek.model.User;
+import org.codingweek.model.Query;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterEach;
@@ -17,6 +19,8 @@ public class EntityTest {
     public void setUp() {
         this.dbManager = new DatabaseManager();
         dbManager.setup();
+
+        dbManager.deleteAll();
     }
 
     @AfterEach
@@ -26,12 +30,7 @@ public class EntityTest {
 
     @Test
     public void testSaveUser() {
-        User user = new User();
-        user.setFirstName("Test");
-        user.setLastName("User");
-        user.setEmail("testing@example.com");
-        user.setPassword("test123");
-        user.setBalance(100);
+        User user = new User("Test", "User", "test123", "test@gmail.com", 100);
 
         dbManager.saveEntity(user);
 
@@ -43,33 +42,40 @@ public class EntityTest {
 
     @Test
     public void testSaveOffer() {
-        Offer offer = new Offer();
+        Offer offer = new Offer("Test", "Test", null, 100, "Test", "Test", "Test", "Test");
         User user = new User("Test", "User", "test123", "test@gmail.com", 100);
         dbManager.saveEntity(user);
 
-        offer.setOwner(dbManager.getEntity(User.class, 1));
+        offer.setOwner(dbManager.getEntity(User.class, user.getId()));
 
         dbManager.saveEntity(offer);
 
         Offer loadOffer = dbManager.getEntity(Offer.class, offer.getId());
         assertNotNull(loadOffer);
+        assertNotNull(loadOffer.getOwner());
 
         dbManager.deleteEntity(offer);
-        dbManager.deleteEntity(offer);
+        dbManager.deleteEntity(user);
     }
 
     @Test
     public void testUpdateUser() {
-        /*Chat chat = new Chat();
-        chat.setMessage("Test");
-        chat.setDate(new Date());
 
-        chat.setUser(dbManager.getEntity(User.class, 1));
-        chat.setUser2(dbManager.getEntity(User.class, 2));
+        User user1 = new User("Test", "User", "test123", "test1@test.com", 100);
+        User user2 = new User("Test", "User", "test123", "test2@test.com", 100);
+
+        dbManager.saveEntity(user1);
+        dbManager.saveEntity(user2);
+
+        Chat chat = new Chat(user1, user2, "Test", new Date());
 
         dbManager.saveEntity(chat);
+
         Chat loadChat = dbManager.getEntity(Chat.class, chat.getId());
+
         assertNotNull(loadChat);
+        assertNotNull(loadChat.getUser1());
+        assertNotNull(loadChat.getUser2());
 
         loadChat.setMessage("Test2");
 
@@ -77,6 +83,49 @@ public class EntityTest {
 
         assertEquals("Test2", loadChat.getMessage());
 
-        dbManager.deleteEntity(chat);*/
+        dbManager.deleteEntity(chat);
+    }
+
+    @Test
+    public void testNotification() {
+        User user1 = new User("Test", "User", "test123", "test@test.com", 100);
+
+        dbManager.saveEntity(user1);
+
+        Notification notif = new Notification("Test", user1, false, "Test", new Date());
+
+        dbManager.saveEntity(notif);
+
+        Notification loadNotif = dbManager.getEntity(Notification.class, notif.getId());
+
+        assertNotNull(loadNotif);
+        assertNotNull(loadNotif.getUser());
+
+        dbManager.deleteEntity(notif);
+        dbManager.deleteEntity(user1);
+    }
+
+    @Test
+    public void testQuery() {
+        User user1 = new User("Test", "User", "test123", "test@test.com", 100);
+        dbManager.saveEntity(user1);
+
+        Offer offer = new Offer("Test", "Test", user1, 100, "Test", "Test", "Test", "Test");
+
+        dbManager.saveEntity(offer);
+
+        Query query = new Query(offer, user1, new Date(), false, 0);
+
+        dbManager.saveEntity(query);
+
+        Query loadQuery = dbManager.getEntity(Query.class, query.getId());
+
+        assertNotNull(loadQuery);
+        assertNotNull(loadQuery.getUser());
+        assertNotNull(loadQuery.getOffer());
+
+        dbManager.deleteEntity(query);
+        dbManager.deleteEntity(user1);
+        dbManager.deleteEntity(offer);
     }
 }

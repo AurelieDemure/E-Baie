@@ -24,7 +24,7 @@ CREATE TABLE Query (
                        id INTEGER PRIMARY KEY,
                        offer_id INTEGER NOT NULL,
                        user_id INTEGER NOT NULL,
-                       date_query TEXT NOT NULL,
+                       date_query date,
                        accepted BOOLEAN,
                        notation INTEGER NOT NULL,
                        FOREIGN KEY (offer_id) REFERENCES Offer(id),
@@ -36,7 +36,7 @@ CREATE TABLE Chat (
                       user_id1 INTEGER NOT NULL,
                       user_id2 INTEGER NOT NULL,
                       message TEXT NOT NULL,
-                      date_message TEXT NOT NULL,
+                      date_message date,
                       FOREIGN KEY (user_id1) REFERENCES User(id),
                       FOREIGN KEY (user_id2) REFERENCES User(id)
 );
@@ -47,6 +47,6 @@ CREATE TABLE Notification (
                               user_id INTEGER NOT NULL,
                               seen BOOLEAN NOT NULL,
                               frequency TEXT,
-                              date_notification TEXT NOT NULL,
+                              date_notification date,
                               FOREIGN KEY (user_id) REFERENCES User(id)
 );
