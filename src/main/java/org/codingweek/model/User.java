@@ -1,13 +1,30 @@
 package org.codingweek.model;
-public class User extends Observable {
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "User")
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(name = "firstName")
     private String firstName;
+
+    @Column(name = "lastName")
     private String lastName;
+
+    @Column(name = "password")
     private String password;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "balance")
     private int balance;
 
     public User(String firstName, String lastName, String password, String email, int balance) {
-        super();
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
@@ -15,12 +32,22 @@ public class User extends Observable {
         this.balance = balance;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
+    public User() {}
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
     }
 
     public String getLastName() {

@@ -2,7 +2,9 @@ package org.codingweek;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-
+import org.codingweek.db.DatabaseManager;
+import org.codingweek.model.Offer;
+import org.codingweek.model.User;
 import org.codingweek.model.Page;
 import org.codingweek.view.ConnexionView;
 import org.codingweek.view.MainView;
@@ -21,6 +23,10 @@ public class EntryPoint extends Application {
     }
 
     public static void main(String[] args) {
-            launch();
+
+        DatabaseManager dbManager = new DatabaseManager();
+        dbManager.setup();
+
+        launch();
         }
 }
