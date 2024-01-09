@@ -5,6 +5,7 @@ import org.codingweek.model.PasswordUtility;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "User")
@@ -37,6 +38,9 @@ public class User {
 
     @Column(name = "date_birth")
     private Date date_birth;
+
+ @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Offer> offers;
 
     public User(String email,String firstName, String lastName, String password, String phone, String address, String description, int balance, Date date_birth) {
         this.email = email;
@@ -114,6 +118,10 @@ public class User {
 
     public void setBalance(int balance) {
         this.balance = balance;
+    }
+
+    public List<Offer> getOffers() {
+        return offers;
     }
 
     public Date getDate_birth() {

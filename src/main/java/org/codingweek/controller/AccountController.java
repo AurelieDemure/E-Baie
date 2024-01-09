@@ -3,18 +3,25 @@ package org.codingweek.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.util.StringConverter;
+import javafx.util.converter.LocalDateStringConverter;
 import org.codingweek.ApplicationContext;
 import org.codingweek.ApplicationSettings;
+import org.codingweek.model.DatabaseHandler;
 import org.codingweek.model.Page;
 import org.codingweek.db.entity.User;
 import org.codingweek.view.ConnexionView;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.ResourceBundle;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 
 public class AccountController extends Controller implements Observeur{
     public TextField firstnameField;
@@ -45,6 +52,8 @@ public class AccountController extends Controller implements Observeur{
             if (response == javafx.scene.control.ButtonType.OK) {
                 ApplicationContext.getInstance().setPageType(Page.NONE);
                 try {
+                    User user = ApplicationContext.getInstance().getUser_authentified();
+                    DatabaseHandler.getInstance().getDbManager().deleteEntity(user);
                     ApplicationSettings.getInstance().setCurrentScene(new ConnexionView().loadScene());
                     ApplicationContext.getInstance().setUser_authentified(null);
                 } catch (IOException e) {
@@ -65,8 +74,19 @@ public class AccountController extends Controller implements Observeur{
         firstnameField.setText(user.getFirstName());
         lastnameField.setText(user.getLastName());
         emailField.setText(user.getEmail());
-        passwordField.setText(user.getPassword());
+        passwordField.setText("");
         if (user.getDate_birth() != null) birthDateField.setValue(LocalDate.parse(user.getDate_birth().toString(), formatter));
+
+        if (user.getDate_birth() != null) {
+            System.out.println(user.getDate_birth().toString());
+            /*
+            Instant instant = user.getDate_birth().toInstant();
+            ZoneId zoneId = ZoneId.systemDefault();
+            LocalDate localDate = instant.atZone(zoneId).toLocalDate();
+
+            birthDateField.setValue(localDate);*/
+        }
+
         phoneNumberField.setText(user.getPhone());
         addressField.setText(user.getAddress());
         descriptionField.setText(user.getDescription());
@@ -76,6 +96,9 @@ public class AccountController extends Controller implements Observeur{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ApplicationContext.getInstance().setPageType(Page.ACCOUNT);
+        StringConverter<LocalDate> converter = new LocalDateStringConverter(formatter, formatter);
+        birthDateField.setEditable(false);
+        birthDateField.setConverter(converter);
         update();
     }
 
@@ -95,10 +118,17 @@ public class AccountController extends Controller implements Observeur{
         user.setFirstName(firstnameField.getText());
         user.setLastName(lastnameField.getText());
         user.setEmail(emailField.getText());
-        user.setPassword(passwordField.getText());
+        if (!Objects.equals(passwordField.getText(), "")) {
+            user.setPassword(passwordField.getText());
+        }
+        if (birthDateField.getValue() != null) {
+           /**/
+        }
+
         user.setPhone(phoneNumberField.getText());
         user.setAddress(addressField.getText());
         user.setDescription(descriptionField.getText());
+        DatabaseHandler.getInstance().getDbManager().updateEntity(user);
         update();
     }
 }
