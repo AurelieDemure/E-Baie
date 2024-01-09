@@ -1,15 +1,14 @@
-package org.codingweek.db.entity;
-
-import org.codingweek.model.PasswordUtility;
+package org.codingweek.model;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "User")
 public class User {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "email", unique = true)
+    private String email;
 
     @Column(name = "firstName")
     private String firstName;
@@ -19,9 +18,6 @@ public class User {
 
     @Column(name = "password")
     private String password;
-
-    @Column(name = "email", unique = true)
-    private String email;
 
     @Column(name = "phone")
     private String phone;
@@ -35,11 +31,11 @@ public class User {
     @Column(name = "balance")
     private int balance;
 
-    public User(String firstName, String lastName, String password, String email, String phone, String address, String description, int balance) {
+    public User(String email,String firstName, String lastName, String password, String phone, String address, String description, int balance) {
+        this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.password = PasswordUtility.hashPassword(password);
-        this.email = email;
+        this.password = password;
         this.phone = phone;
         this.address = address;
         this.description = description;
@@ -50,14 +46,6 @@ public class User {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getFirstName() {
@@ -77,7 +65,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = PasswordUtility.hashPassword(password);
+        this.password = password;
     }
 
     public String getEmail() {

@@ -16,7 +16,7 @@ public class Query {
     private Offer offer;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_mail", referencedColumnName = "email")
     private User user;
 
     @Column(name = "date_query")

@@ -12,11 +12,11 @@ public class Chat {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "sender", referencedColumnName = "id")
+    @JoinColumn(name = "sender", referencedColumnName = "email")
     private User sender;
 
     @ManyToOne
-    @JoinColumn(name = "receiver", referencedColumnName = "id")
+    @JoinColumn(name = "receiver", referencedColumnName = "email")
     private User receiver;
 
     @Column(name = "message", length = 1024)
