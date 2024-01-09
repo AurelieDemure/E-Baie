@@ -42,7 +42,7 @@
         </VBox>
         <VBox layoutX="669.0" layoutY="232.0" prefHeight="400.0" prefWidth="465.0" spacing="20.0">
             <children>
-                <Label text="Type d'offre">
+                <Label text="Type d'offre (LOAN ou SERVICE)">
                     <font>
                         <Font size="19.0" />
                     </font>
@@ -65,6 +65,7 @@
                         <Font size="19.0" />
                     </font>
                 </Label>
+            <Button mnemonicParsing="false" onAction="#selectImage" styleClass="buttonSave" stylesheets="@../css/main.css" text="Choisir une image" />
             <ImageView fx:id="path_offer" fitHeight="107.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
             </children>
         </VBox>

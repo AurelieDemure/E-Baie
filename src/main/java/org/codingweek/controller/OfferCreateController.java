@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.codingweek.ApplicationContext;
 import org.codingweek.ApplicationSettings;
@@ -14,6 +15,7 @@ import org.codingweek.db.entity.User;
 import org.codingweek.model.DatabaseHandler;
 import org.codingweek.model.ImageHandler;
 import org.codingweek.model.Page;
+import org.codingweek.model.filter.OfferType;
 import org.codingweek.view.MarketView;
 import org.codingweek.view.MyOffersView;
 
@@ -32,7 +34,10 @@ public class OfferCreateController extends Controller implements Observeur {
     public TextField type_offer;
     public TextField frequency;
     public TextField localization;
+
+    public String path;
     public Label errorFillAll;
+    public ImageView path_offer;
 
     @Override
     public void refresh() {
@@ -56,16 +61,15 @@ public class OfferCreateController extends Controller implements Observeur {
     }
 
     public void saveModifiedOffer(ActionEvent actionEvent) {
-        if (title.getText() == null | description.getText() == null | owner.getText() == null | price.getText() == null | type_offer.getText() == null | frequency.getText() == null | localization.getText() == null) {
+        if (title.getText().isEmpty() || description.getText().isEmpty() || owner.getText().isEmpty() || price.getText().isEmpty() || type_offer.getText().isEmpty() || frequency.getText().isEmpty() || localization.getText().isEmpty()) {
                 errorFillAll.setText("Veuillez remplir tous les champs");
                 toggleErrorFillAll(true);
         } else {
                 DatabaseManager db = DatabaseHandler.getInstance().getDbManager();
-            ImageHandler
                 String mail = owner.getText();
                 User user = db.getEntity(User.class, mail);
                 Double prices = Double.parseDouble(price.getText());
-                Offer offer = new Offer(title.getText(), description.getText(), user, prices, type_offer.getText(), frequency.getText(), localization.getText(), path_offer.getAccessibleText());
+                Offer offer = new Offer(title.getText(), description.getText(), user, prices, OfferType.fromString(type_offer.getText()), frequency.getText(), localization.getText(), path);
                 db.saveEntity(offer);
         }
     }
@@ -88,4 +92,11 @@ public class OfferCreateController extends Controller implements Observeur {
         });
     }
 
+    public void selectImage(ActionEvent actionEvent) {
+        DatabaseManager db = DatabaseHandler.getInstance().getDbManager();
+        File file = ImageHandler.openModalFile();
+        String path = file.getAbsolutePath();
+        this.path = path;
+        path_offer.setImage(new Image(new File(path).toURI().toString()));
+    }
 }
