@@ -1,6 +1,11 @@
 package org.codingweek.db.entity;
 
+import org.codingweek.model.AuthHandler;
+import org.codingweek.model.PasswordUtility;
+import org.hibernate.Hibernate;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "User")
@@ -31,11 +36,14 @@ public class User {
     @Column(name = "balance")
     private int balance;
 
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Offer> offers;
+
     public User(String email,String firstName, String lastName, String password, String phone, String address, String description, int balance) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.password = password;
+        this.password = PasswordUtility.hashPassword(password);
         this.phone = phone;
         this.address = address;
         this.description = description;
@@ -65,7 +73,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = PasswordUtility.hashPassword(password);
     }
 
     public String getEmail() {
@@ -106,5 +114,9 @@ public class User {
 
     public void setBalance(int balance) {
         this.balance = balance;
+    }
+
+    public List<Offer> getOffers() {
+        return offers;
     }
 }
