@@ -11,7 +11,6 @@ public class AuthHandler {
     }
 
     public static boolean checkPassword(User user, String password) {
-        DatabaseManager db = DatabaseHandler.getInstance().getDbManager();
         return PasswordUtility.checkPassword(password, user.getPassword());
     }
 
