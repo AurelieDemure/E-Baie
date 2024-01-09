@@ -14,6 +14,8 @@ import org.codingweek.view.ConnexionView;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -75,9 +77,17 @@ public class AccountController extends Controller implements Observeur{
         lastnameField.setText(user.getLastName());
         emailField.setText(user.getEmail());
         passwordField.setText("");
-        if (user.getDate_birth() != null) birthDateField.setValue(LocalDate.parse(user.getDate_birth().toString(), formatter));
+        if (birthDateField.getValue() != null) {
+            try {
+                user.setDate_birth(new SimpleDateFormat("yyyy-MM-dd").parse(birthDateField.getValue().toString()));
 
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+
+        }
         if (user.getDate_birth() != null) {
+            System.out.println(birthDateField.getValue());
             System.out.println(user.getDate_birth().toString());
             /*
             Instant instant = user.getDate_birth().toInstant();
@@ -121,8 +131,15 @@ public class AccountController extends Controller implements Observeur{
         if (!Objects.equals(passwordField.getText(), "")) {
             user.setPassword(passwordField.getText());
         }
+
         if (birthDateField.getValue() != null) {
-           /**/
+            try {
+                user.setDate_birth(new SimpleDateFormat("yyyy-MM-dd").parse(birthDateField.getValue().toString()));
+
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+
         }
 
         user.setPhone(phoneNumberField.getText());
