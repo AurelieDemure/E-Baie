@@ -1,6 +1,5 @@
 package org.codingweek.db.entity;
 
-import org.codingweek.model.AuthHandler;
 import org.codingweek.model.PasswordUtility;
 
 import javax.persistence.*;
@@ -39,7 +38,7 @@ public class User {
     @Column(name = "date_birth")
     private Date date_birth;
 
- @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Offer> offers;
 
     public User(String email,String firstName, String lastName, String password, String phone, String address, String description, int balance, Date date_birth) {

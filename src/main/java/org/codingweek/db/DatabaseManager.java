@@ -6,10 +6,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import java.util.List;
 import java.util.logging.Level;
 
 public class DatabaseManager {
     private SessionFactory factory;
+
+    private String database_name = "database.sqlite";
 
     public void setup() {
         java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
@@ -20,14 +23,18 @@ public class DatabaseManager {
                 .addAnnotatedClass(Notification.class)
                 .addAnnotatedClass(Query.class)
                 .setProperty("hibernate.connection.driver_class", "org.sqlite.JDBC")
-                .setProperty("hibernate.connection.url", "jdbc:sqlite:src/main/resources/org/codingweek/db/database.sqlite")
+                .setProperty("hibernate.connection.url", "jdbc:sqlite:src/main/resources/org/codingweek/db/" + database_name)
                 .setProperty("hibernate.dialect", "org.codingweek.db.SQLiteDialect")
                 .setProperty("hibernate.show_sql", "false")
                 .setProperty("hibernate.hbm2ddl.auto", "update")
                 .setProperty("hibernate.classLoader.application", "org.hibernate.boot.registry.classloading.internal.ClassLoaderServiceImpl");
 
-
         factory = configuration.buildSessionFactory();
+    }
+
+    public void setupTest() {
+        database_name = "database_test.sqlite";
+        setup();
     }
 
     public <T> void saveEntity(T entity) {
@@ -91,6 +98,24 @@ public class DatabaseManager {
             return entity;
         }
     }
+
+    public <T> List<T> getAllEntity(Class<T> entityClass) {
+        Session session = factory.openSession();
+        Transaction tx = null;
+        List entity = null;
+        try {
+            tx = session.beginTransaction();
+            entity =  session.createQuery("FROM " + entityClass.getName()).list();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+            return entity;
+        }
+    }
+
 
     public <T> T getEntity(Class<T> entityClass, String email) {
         Session session = factory.openSession();

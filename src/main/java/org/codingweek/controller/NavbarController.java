@@ -1,17 +1,15 @@
 package org.codingweek.controller;
 
 import org.codingweek.*;
-import org.codingweek.model.Page;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
+import org.codingweek.model.*;
+import java.io.*;
+import java.net.*;
+import java.util.*;
+import javafx.event.*;
+import javafx.fxml.*;
+import javafx.scene.control.*;
+import javafx.scene.input.*;
+import javafx.scene.layout.*;
 import org.codingweek.view.*;
 
 public class NavbarController extends Controller implements Observeur{

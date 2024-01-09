@@ -5,6 +5,5 @@ public enum Page {
     MARKET,
     MESSAGE,
     OFFER,
-
     NONE
 }

@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,25 +11,25 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.control.PasswordField?>
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codingweek.controller.ConnexionController">
-   <Pane prefHeight="150.0" prefWidth="1200.0" styleClass="navbar">
-      <children>
-         <ImageView fitHeight="130.0" fitWidth="78.0" layoutX="26.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-               <Image url="@../img/logo.png" />
-            </image>
-         </ImageView>
-      </children>
-   </Pane>
+<?import javafx.scene.image.Image?>
+<AnchorPane prefHeight="700.0" prefWidth="1200.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codingweek.controller.ConnexionController">
+   <children>
+            <Pane fx:id="navbar" prefHeight="150.0" prefWidth="1200.0" styleClass="navbar">
+               <children>
+                  <ImageView fitHeight="130.0" fitWidth="78.0" layoutX="26.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" styleClass="buttonNavbar">
+                     <image>
+                        <Image url="@../img/logo.png" />
+                     </image>
+                  </ImageView>
+               </children></Pane>
+         </children>
    <children>
       <SplitPane dividerPositions="0.45" layoutY="149.0" prefHeight="651.0" prefWidth="1201.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="597.0" prefWidth="554.0">
                <children>
-                  <VBox layoutX="96.0" layoutY="137.0" prefHeight="236.0" prefWidth="345.0" spacing="20.0">
+                  <VBox layoutX="96.0" layoutY="79.0" prefHeight="236.0" prefWidth="345.0" spacing="20.0">
                      <children>
                         <Label text="Connexion" underline="true">
                            <font>
@@ -40,15 +41,15 @@
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="emailField" styleClass="text-fieldConnect" stylesheets="@../css/connexion.css" />
+                        <TextField fx:id="emailField" style="-fx-background-color: rgba(161, 232, 175, 0.25);" styleClass="text-fieldConnect" stylesheets="@../css/connexion.css" />
                         <Label text="Mot de passe" underline="true">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <PasswordField fx:id="passwordField" styleClass="text-fieldConnect" stylesheets="@../css/connexion.css" />
-                        <Label fx:id="errorSigninLabel" styleClass="large-label" textFill="RED"/>
-                        <Button mnemonicParsing="false" scaleX="1.5" scaleY="1.5" styleClass="buttonConnect" stylesheets="@../css/main.css" onAction="#signin" text="Se connecter">
+                        <PasswordField fx:id="passwordField" style="-fx-background-color: rgba(161, 232, 175, 0.25);" styleClass="text-fieldConnect" stylesheets="@../css/connexion.css" />
+                        <Label fx:id="errorSigninLabel" styleClass="large-label" textFill="RED" />
+                        <Button mnemonicParsing="false" onAction="#signin" scaleX="1.5" scaleY="1.5" styleClass="buttonConnect" stylesheets="@../css/main.css" text="Se connecter">
                            <VBox.margin>
                               <Insets left="120.0" top="30.0" />
                            </VBox.margin></Button>
@@ -58,7 +59,7 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <VBox layoutX="144.0" layoutY="99.0" prefHeight="329.0" prefWidth="368.0" spacing="20.0">
+                  <VBox layoutX="144.0" layoutY="40.0" prefHeight="329.0" prefWidth="368.0" spacing="20.0">
                      <children>
                         <Label text="Inscription" underline="true">
                            <font>
@@ -70,27 +71,27 @@
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="firstnameField" styleClass="text-fieldConnect" stylesheets="@../css/connexion.css" />
+                        <TextField fx:id="firstnameField" style="-fx-background-color: rgba(161, 232, 175, 0.25);" styleClass="text-fieldConnect" stylesheets="@../css/connexion.css" />
                         <Label text="Nom" underline="true">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="lastnameField" styleClass="text-fieldConnect" stylesheets="@../css/connexion.css" />
+                        <TextField fx:id="lastnameField" style="-fx-background-color: rgba(161, 232, 175, 0.25);" styleClass="text-fieldConnect" stylesheets="@../css/connexion.css" />
                         <Label text="Email" underline="true">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <TextField  fx:id="emailInscrField" styleClass="text-fieldConnect" stylesheets="@../css/connexion.css" />
+                        <TextField fx:id="emailInscrField" style="-fx-background-color: rgba(161, 232, 175, 0.25);" styleClass="text-fieldConnect" stylesheets="@../css/connexion.css" />
                         <Label text="Mot de passe" underline="true">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <PasswordField fx:id="passwordInscrField" styleClass="text-fieldConnect" stylesheets="@../css/connexion.css" />
+                        <PasswordField fx:id="passwordInscrField" style="-fx-background-color: rgba(161, 232, 175, 0.25);" styleClass="text-fieldConnect" stylesheets="@../css/connexion.css" />
                         <Label fx:id="errorSignupLabel" styleClass="large-label" textFill="RED" />
-                        <Button mnemonicParsing="false" scaleX="1.5" scaleY="1.5" styleClass="buttonConnect" stylesheets="@../css/main.css" onAction="#signup" text="   S'inscrire   ">
+                        <Button mnemonicParsing="false" onAction="#signup" scaleX="1.5" scaleY="1.5" styleClass="buttonConnect" stylesheets="@../css/main.css" text="   S'inscrire   ">
                            <VBox.margin>
                               <Insets left="155.0" top="30.0" />
                            </VBox.margin></Button>

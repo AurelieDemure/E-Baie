@@ -1,5 +1,6 @@
 *{
     -fx-light-green: #A1E8AF;
+    -fx-light-green-opa: rgba(161, 232, 175, 0.27);
     -fx-light-green-hand: #c8eace;
     -fx-dark-green: #94C595;
     -fx-grey: #747C92;
@@ -20,6 +21,7 @@
     -fx-logo-hand: #f3b5b8;
     -fx-black: #000000;
     -fx-transparent : rgba(0, 0, 0, 0);
+    -fx-light-green-opa: rgba(161, 232, 175, 0.27);
 }
 
 
@@ -38,8 +40,8 @@
 }
 
 .text-fieldConnect{
-    -fx-background-color: -fx-light-green;
-    -fx-opacity: 0.2;
+    -fx-background-color: rgba(161, 232, 175, 0.2);
+    -fx-text-fill: -fx-dark;
 }
 
 .text-fieldAccount {

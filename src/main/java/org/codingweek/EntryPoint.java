@@ -6,6 +6,7 @@ import org.codingweek.db.DatabaseManager;
 import org.codingweek.model.DatabaseHandler;
 import org.codingweek.model.Page;
 import org.codingweek.view.ConnexionView;
+import org.codingweek.view.OfferCreateView;
 
 import java.io.IOException;
 

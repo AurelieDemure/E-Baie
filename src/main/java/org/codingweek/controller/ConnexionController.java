@@ -64,9 +64,9 @@ public class ConnexionController extends Controller implements Observeur {
                 return;
             }
             if (!AuthHandler.checkPassword(user, passwordField.getText())) {
-                    errorSigninLabel.setText("Mot de passe incorrect");
-                    toggleErrorSigninLabel(true);
-                    return;
+                errorSigninLabel.setText("Mot de passe incorrect");
+                toggleErrorSigninLabel(true);
+                return;
             }
 
             ApplicationContext.getInstance().setUser_authentified(user);

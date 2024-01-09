@@ -7,23 +7,22 @@ import javafx.util.StringConverter;
 import javafx.util.converter.LocalDateStringConverter;
 import org.codingweek.ApplicationContext;
 import org.codingweek.ApplicationSettings;
+import org.codingweek.db.entity.User;
 import org.codingweek.model.DatabaseHandler;
 import org.codingweek.model.Page;
-import org.codingweek.db.entity.User;
 import org.codingweek.view.ConnexionView;
 
 import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.*;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 
 public class AccountController extends Controller implements Observeur{
     public TextField firstnameField;
@@ -145,4 +144,3 @@ public class AccountController extends Controller implements Observeur{
         update();
     }
 }
-

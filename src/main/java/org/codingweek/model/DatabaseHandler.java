@@ -20,6 +20,11 @@ public class DatabaseHandler {
         return instance;
     }
 
+    /** Need to call this function when doing test */
+    public static void setDatabaseTest() {
+        DatabaseHandler.getInstance().dbManager.setupTest();
+    }
+
     public DatabaseManager getDbManager() {
         return dbManager;
     }

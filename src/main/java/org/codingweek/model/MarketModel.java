@@ -14,10 +14,13 @@ import java.util.stream.Stream;
 public class MarketModel {
 
 
+    private static List<Offer> offersAvailable;
+
     /** Return all the offer on the database without the one of the user
      * Email is the value of the offer to be excluded */
     public static List<Offer> getOffersAvailable(String email) {
-        List<Offer> offersAvailable = DatabaseHandler.getInstance().getDbManager().getAllEntity(Offer.class);
+        if (offersAvailable == null)
+            offersAvailable = DatabaseHandler.getInstance().getDbManager().getAllEntity(Offer.class);
         return offersAvailable.stream()
                 .filter(offer -> !offer.getOwner().getEmail().equals(email))
                 .collect(Collectors.toList());
@@ -39,15 +42,15 @@ public class MarketModel {
         if (price != null) {
             offers = offers.stream()
                     .filter(offer -> switch (price) {
-                        case ALLPRICE -> true;
-                        case LESS100 -> offer.getPrice() < 100;
+                                case ALLPRICE -> true;
+                                case LESS100 -> offer.getPrice() < 100;
 
-                        case FROM100TO200 -> offer.getPrice() >= 100 && offer.getPrice() < 200;
-                        case FROM200TO300 -> offer.getPrice() >= 200 && offer.getPrice() < 300;
-                        case FROM300TO400 -> offer.getPrice() >= 300 && offer.getPrice() < 400;
-                        case FROM400TO500 -> offer.getPrice() >= 400 && offer.getPrice() < 500;
-                        case MORE500 -> offer.getPrice() >= 500;
-                    }
+                                case FROM100TO200 -> offer.getPrice() >= 100 && offer.getPrice() < 200;
+                                case FROM200TO300 -> offer.getPrice() >= 200 && offer.getPrice() < 300;
+                                case FROM300TO400 -> offer.getPrice() >= 300 && offer.getPrice() < 400;
+                                case FROM400TO500 -> offer.getPrice() >= 400 && offer.getPrice() < 500;
+                                case MORE500 -> offer.getPrice() >= 500;
+                            }
                     ).collect(Collectors.toList());
         }
         if (sortOffer != null) {

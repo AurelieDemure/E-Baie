@@ -6,7 +6,6 @@ CREATE TABLE User (
                         phone TEXT,
                         address TEXT,
                         description TEXT,
-                        date_birth date,
                       balance INTEGER DEFAULT 100
 );
 

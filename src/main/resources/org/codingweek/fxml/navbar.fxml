@@ -50,22 +50,22 @@
             </ImageView>
             <Button fx:id="accountButton" layoutX="1050.0" layoutY="50.0" mnemonicParsing="false" onAction="#clickAccount" prefHeight="50.0" prefWidth="128.0" styleClass="buttonNavbar" text="Compte">
                <font>
-                  <Font name="DejaVu Sans Bold" size="20.0" />
+                  <Font name="Arial Black" size="20.0" />
                </font>
             </Button>
             <Button fx:id="messageButton" layoutX="850.0" layoutY="50.0" mnemonicParsing="false" onAction="#clickMessage" prefHeight="50.0" prefWidth="158.0" styleClass="buttonNavbar" text="Messagerie">
                <font>
-                  <Font name="DejaVu Sans Bold" size="20.0" />
+                  <Font name="Arial Black" size="20.0" />
                </font>
             </Button>
             <Button fx:id="offerButton" layoutX="650.0" layoutY="50.0" mnemonicParsing="false" onAction="#clickOffer" prefHeight="50.0" prefWidth="158.0" styleClass="buttonNavbar" text="Mes offres">
                <font>
-                  <Font name="DejaVu Sans Bold" size="20.0" />
+                  <Font name="Arial Black" size="20.0" />
                </font>
             </Button>
             <Button fx:id="marketButton" layoutX="450.0" layoutY="50.0" mnemonicParsing="false" onAction="#clickMarket" prefHeight="50.0" prefWidth="120.0" styleClass="buttonNavbar" text="Marché">
                <font>
-                  <Font name="DejaVu Sans Bold" size="20.0" />
+                  <Font name="Arial Black" size="20.0" />
                </font>
             </Button>
          </children></Pane>

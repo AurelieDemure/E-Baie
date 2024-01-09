@@ -10,6 +10,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Date;
+
 public class MarketModelTest {
 
     private DatabaseManager dbManager;
@@ -30,7 +32,7 @@ public class MarketModelTest {
 
     @Test
     public void testOffers() {
-        User user1 = new User("test@test.com", "Test", "User", "test123", "0601528495", "Nancy", "description", 100);
+        User user1 = new User("test@test.com", "Test", "User", "test123", "0601528495", "Nancy", "description", 100, new Date());
         dbManager.saveEntity(user1);
         Offer offer = new Offer("Test", "Test", user1, 410, OfferType.LOAN, Frequency.WEEKLY, "Test", "Test");
         Offer offer1 = new Offer("Test", "Test", user1, 10, OfferType.SERVICE, Frequency.DAYLY, "Test", "Test");

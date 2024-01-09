@@ -1,11 +1,14 @@
 package org.codingweek.controller;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import org.codingweek.ApplicationContext;
 import org.codingweek.ApplicationSettings;
 import org.codingweek.db.DatabaseManager;
@@ -32,8 +35,8 @@ public class OfferCreateController extends Controller implements Observeur {
     public TextField description;
     public TextField owner;
     public TextField price;
-    public TextField type_offer;
-    public TextField frequency;
+    public ChoiceBox type_offer;
+    public ChoiceBox frequency;
     public TextField localization;
 
     public String path;
@@ -55,6 +58,8 @@ public class OfferCreateController extends Controller implements Observeur {
     public void initialize(URL location, ResourceBundle resources) {
         ApplicationContext.getInstance().setPageType(Page.OFFER);
         toggleErrorFillAll(false);
+        type_offer.getItems().addAll("Pret", "Service");
+        frequency.getItems().addAll("Tout type de frequence", "Unique", "Journalier", "Hebdomadaire", "Mensuelle", "Annuelle");
     }
 
     @Override
@@ -63,14 +68,14 @@ public class OfferCreateController extends Controller implements Observeur {
     }
 
     public void saveModifiedOffer(ActionEvent actionEvent) {
-        if (title.getText().isEmpty() || description.getText().isEmpty() || owner.getText().isEmpty() || price.getText().isEmpty() || type_offer.getText().isEmpty() || frequency.getText().isEmpty() || localization.getText().isEmpty()) {
+        if (title.getText().isEmpty() || description.getText().isEmpty() || price.getText().isEmpty() || type_offer.getValue() == null || frequency.getValue() == null || localization.getText().isEmpty()) {
                 errorFillAll.setText("Veuillez remplir tous les champs");
                 toggleErrorFillAll(true);
         } else {
             DatabaseManager db = DatabaseHandler.getInstance().getDbManager();
             User user = ApplicationContext.getInstance().getUser_authentified();
             Double prices = Double.parseDouble(price.getText());
-            Offer offer = new Offer(title.getText(), description.getText(), user, prices, OfferType.fromString(type_offer.getText()), Frequency.fromString(frequency.getText()), localization.getText(), path);
+            Offer offer = new Offer(title.getText(), description.getText(), user, prices, OfferType.fromString(type_offer.getValue().toString()), Frequency.fromString(frequency.getValue().toString()), localization.getText(), path);
             db.saveEntity(offer);
             assert db.getEntity(Offer.class, offer.getId()) != null;
 
@@ -108,4 +113,18 @@ public class OfferCreateController extends Controller implements Observeur {
         this.path = path;
         path_offer.setImage(new Image(new File(path).toURI().toString()));
     }
+/*
+    public void showTypes(MouseEvent mouseEvent) {
+        type_offer.setItems(FXCollections.observableArrayList(
+                "Pret", "Service")
+        );
+    }
+
+    public void showFrequency(MouseEvent mouseEvent) {
+        frequency.setItems(FXCollections.observableArrayList(
+                "Tout type de frequence", "Unique", "Journalier", "Hebdomadaire", "Mensuelle", "Annuelle"
+        ));
+    }
+
+ */
 }
