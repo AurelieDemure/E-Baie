@@ -6,6 +6,10 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
+run {
+    jvmArgs '--add-opens', 'java.base/java.lang=ALL-UNNAMED'
+}
+
 repositories {
     mavenCentral()
 }
@@ -41,9 +45,17 @@ javafx {
 }
 
 dependencies {
-    testImplementation(platform('org.junit:junit-bom:5.10.1'))
-    testImplementation('org.junit.jupiter:junit-jupiter')
+    implementation 'org.hibernate:hibernate-core:4.3.11.Final'
+    implementation 'org.hibernate:hibernate-envers:4.3.11.Final'
+    implementation 'org.hibernate:hibernate-entitymanager:4.3.11.Final'
+    implementation 'org.hibernate:hibernate-jpamodelgen:4.3.11.Final'
+    implementation 'org.xerial:sqlite-jdbc:3.21.0.1'
+
+    testImplementation platform('org.junit:junit-bom:5.10.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.testng:testng:7.7.0'
 }
+
 
 test {
     useJUnitPlatform()

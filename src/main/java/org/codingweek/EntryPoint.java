@@ -2,7 +2,9 @@ package org.codingweek;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-
+import org.codingweek.db.DatabaseManager;
+import org.codingweek.model.Offer;
+import org.codingweek.model.User;
 import org.codingweek.model.Page;
 import org.codingweek.view.*;
 
@@ -13,6 +15,7 @@ public class EntryPoint extends Application {
     public void start(Stage stage) throws IOException {
         ApplicationSettings.getInstance().setPrimaryStage(stage);
         ApplicationContext.getInstance().setPageType(Page.NONE);
+        ApplicationContext.getInstance().setUser_authentified(null);
         stage.setTitle(Configuration.APP_TITLE);
         stage.setScene(new AccountView().loadScene());
         stage.setResizable(false);
@@ -20,6 +23,10 @@ public class EntryPoint extends Application {
     }
 
     public static void main(String[] args) {
-            launch();
+
+        DatabaseManager dbManager = new DatabaseManager();
+        dbManager.setup();
+
+        launch();
         }
 }

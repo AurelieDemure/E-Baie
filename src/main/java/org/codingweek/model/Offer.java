@@ -1,13 +1,61 @@
 package org.codingweek.model;
 
+import javax.persistence.*;
+import java.util.Set;
+
+@Entity
+@Table(name = "Offer")
 public class Offer {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(name = "title")
     private String title;
+
+    @Column(name = "description", length = 1024)
     private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "owner_id", referencedColumnName = "id")
     private User owner;
-    private float price;
-    private OfferType offerType;
+
+    @Column(name = "price")
+    private double price;
+
+    @Column(name = "type_offer")
+    private String type;
+
+    @Column(name = "frequency")
     private String frequency;
-    private String localisation;
+
+    @Column(name = "localization")
+    private String localization;
+
+    @Column(name = "path_offer")
+    private String path;
+
+    public Offer(String title, String description, User owner, double price, String type, String frequency, String localization, String path) {
+        this.title = title;
+        this.description = description;
+        this.owner = owner;
+        this.price = price;
+        this.type = type;
+        this.frequency = frequency;
+        this.localization = localization;
+        this.path = path;
+    }
+
+    public Offer() {}
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;
@@ -33,20 +81,20 @@ public class Offer {
         this.owner = owner;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
-    public OfferType getOfferType() {
-        return offerType;
+    public String getType() {
+        return type;
     }
 
-    public void setOfferType(OfferType offerType) {
-        this.offerType = offerType;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getFrequency() {
@@ -57,16 +105,19 @@ public class Offer {
         this.frequency = frequency;
     }
 
-    public String getLocalisation() {
-        return localisation;
+    public String getLocalization() {
+        return localization;
     }
 
-    public void setLocalisation(String localisation) {
-        this.localisation = localisation;
+    public void setLocalization(String localization) {
+        this.localization = localization;
     }
 
-    public void addOffer() {
+    public String getPath() {
+        return path;
+    }
 
+    public void setPath(String path) {
+        this.path = path;
     }
 }
-
