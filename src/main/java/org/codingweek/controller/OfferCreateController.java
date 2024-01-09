@@ -12,10 +12,12 @@ import org.codingweek.db.entity.Offer;
 import org.codingweek.db.entity.Query;
 import org.codingweek.db.entity.User;
 import org.codingweek.model.DatabaseHandler;
+import org.codingweek.model.ImageHandler;
 import org.codingweek.model.Page;
 import org.codingweek.view.MarketView;
 import org.codingweek.view.MyOffersView;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -30,7 +32,6 @@ public class OfferCreateController extends Controller implements Observeur {
     public TextField type_offer;
     public TextField frequency;
     public TextField localization;
-    public ImageView path_offer;
     public Label errorFillAll;
 
     @Override
@@ -55,11 +56,12 @@ public class OfferCreateController extends Controller implements Observeur {
     }
 
     public void saveModifiedOffer(ActionEvent actionEvent) {
-        if (title.getText() == null | description.getText() == null | owner.getText() == null | price.getText() == null | type_offer.getText() == null | frequency.getText() == null | localization.getText() == null | path_offer.getImage() == null) {
+        if (title.getText() == null | description.getText() == null | owner.getText() == null | price.getText() == null | type_offer.getText() == null | frequency.getText() == null | localization.getText() == null) {
                 errorFillAll.setText("Veuillez remplir tous les champs");
                 toggleErrorFillAll(true);
         } else {
                 DatabaseManager db = DatabaseHandler.getInstance().getDbManager();
+            ImageHandler
                 String mail = owner.getText();
                 User user = db.getEntity(User.class, mail);
                 Double prices = Double.parseDouble(price.getText());
