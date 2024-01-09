@@ -1,4 +1,4 @@
-package org.codingweek.model;
+package org.codingweek.db.entity;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -12,12 +12,12 @@ public class Chat {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id1", referencedColumnName = "id")
-    private User user;
+    @JoinColumn(name = "sender", referencedColumnName = "id")
+    private User sender;
 
     @ManyToOne
-    @JoinColumn(name = "user_id2", referencedColumnName = "id")
-    private User user2;
+    @JoinColumn(name = "receiver", referencedColumnName = "id")
+    private User receiver;
 
     @Column(name = "message", length = 1024)
     private String message;
@@ -26,9 +26,9 @@ public class Chat {
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
-    public Chat(User user, User user2, String message, Date date) {
-        this.user = user;
-        this.user2 = user2;
+    public Chat(User sender, User receiver, String message, Date date) {
+        this.sender = sender;
+        this.receiver = receiver;
         this.message = message;
         this.date = date;
     }
@@ -43,20 +43,20 @@ public class Chat {
         this.id = id;
     }
 
-    public User getUser1() {
-        return user;
+    public User getSender() {
+        return sender;
     }
 
-    public void setUser1(User user) {
-        this.user = user;
+    public void setSender(User sender) {
+        this.sender = sender;
     }
 
-    public User getUser2() {
-        return user2;
+    public User getReceiver() {
+        return receiver;
     }
 
-    public void setUser2(User user2) {
-        this.user2 = user2;
+    public void setReceiver(User receiver) {
+        this.receiver = receiver;
     }
 
     public String getMessage() {

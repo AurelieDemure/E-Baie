@@ -1,6 +1,6 @@
 package org.codingweek.db;
 
-import org.codingweek.model.*;
+import org.codingweek.db.entity.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

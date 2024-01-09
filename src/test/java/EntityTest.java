@@ -1,8 +1,8 @@
-import org.codingweek.model.Chat;
-import org.codingweek.model.Notification;
-import org.codingweek.model.Offer;
-import org.codingweek.model.User;
-import org.codingweek.model.Query;
+import org.codingweek.db.entity.Chat;
+import org.codingweek.db.entity.Notification;
+import org.codingweek.db.entity.Offer;
+import org.codingweek.db.entity.User;
+import org.codingweek.db.entity.Query;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterEach;
@@ -30,7 +30,7 @@ public class EntityTest {
 
     @Test
     public void testSaveUser() {
-        User user = new User("Test", "User", "test123", "test@gmail.com", 100);
+        User user = new User("Test", "User", "test123", "test@gmail.com", "0601528495", "Nancy", "description", 100);
 
         dbManager.saveEntity(user);
 
@@ -43,7 +43,7 @@ public class EntityTest {
     @Test
     public void testSaveOffer() {
         Offer offer = new Offer("Test", "Test", null, 100, "Test", "Test", "Test", "Test");
-        User user = new User("Test", "User", "test123", "test@gmail.com", 100);
+        User user = new User("Test", "User", "test123", "test@gmail.com", "0601528495", "Nancy", "description", 100);
         dbManager.saveEntity(user);
 
         offer.setOwner(dbManager.getEntity(User.class, user.getId()));
@@ -61,8 +61,8 @@ public class EntityTest {
     @Test
     public void testUpdateUser() {
 
-        User user1 = new User("Test", "User", "test123", "test1@test.com", 100);
-        User user2 = new User("Test", "User", "test123", "test2@test.com", 100);
+        User user1 = new User("Test", "User", "test123", "test1@test.com", "0601528495", "Nancy", "description", 100);
+        User user2 = new User("Test", "User", "test123", "test2@test.com", "0601528495", "Nancy", "description", 100);
 
         dbManager.saveEntity(user1);
         dbManager.saveEntity(user2);
@@ -74,8 +74,8 @@ public class EntityTest {
         Chat loadChat = dbManager.getEntity(Chat.class, chat.getId());
 
         assertNotNull(loadChat);
-        assertNotNull(loadChat.getUser1());
-        assertNotNull(loadChat.getUser2());
+        assertNotNull(loadChat.getSender());
+        assertNotNull(loadChat.getReceiver());
 
         loadChat.setMessage("Test2");
 
@@ -88,7 +88,7 @@ public class EntityTest {
 
     @Test
     public void testNotification() {
-        User user1 = new User("Test", "User", "test123", "test@test.com", 100);
+        User user1 = new User("Test", "User", "test123", "test@test.com", "0601528495", "Nancy", "description", 100);
 
         dbManager.saveEntity(user1);
 
@@ -107,7 +107,7 @@ public class EntityTest {
 
     @Test
     public void testQuery() {
-        User user1 = new User("Test", "User", "test123", "test@test.com", 100);
+        User user1 = new User("Test", "User", "test123", "test@test.com", "0601528495", "Nancy", "description", 100);
         dbManager.saveEntity(user1);
 
         Offer offer = new Offer("Test", "Test", user1, 100, "Test", "Test", "Test", "Test");

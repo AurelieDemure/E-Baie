@@ -1,7 +1,7 @@
 package org.codingweek;
 
 import org.codingweek.model.Page;
-import org.codingweek.model.User;
+import org.codingweek.db.entity.User;
 
 /** singleton class to store application context
  * in link with javaFX implementation */

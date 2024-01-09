@@ -5,6 +5,8 @@ import java.util.*;
 
 import org.codingweek.model.Offer;
 import org.codingweek.model.User;
+import org.codingweek.db.entity.Offer;
+import org.codingweek.model.OfferType;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;

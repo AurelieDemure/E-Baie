@@ -3,12 +3,10 @@ package org.codingweek.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.util.StringConverter;
-import javafx.util.converter.LocalDateStringConverter;
 import org.codingweek.ApplicationContext;
 import org.codingweek.ApplicationSettings;
 import org.codingweek.model.Page;
-import org.codingweek.model.User;
+import org.codingweek.db.entity.User;
 import org.codingweek.view.ConnexionView;
 
 import java.io.IOException;
@@ -64,9 +62,9 @@ public class AccountController extends Controller implements Observeur{
         lastnameField.setText(user.getLastName());
         emailField.setText(user.getEmail());
         passwordField.setText(user.getPassword());
-        /*phoneNumberField.setText(user.getPhone());
-        addressField.setText(user.getAddressField());
-        descriptionField.setText(user.getDescriptionField());*/
+        phoneNumberField.setText(user.getPhone());
+        addressField.setText(user.getAddress());
+        descriptionField.setText(user.getDescription());
     }
 
     @Override
