@@ -1,8 +1,6 @@
 package org.codingweek.db.entity;
 
-import org.codingweek.model.AuthHandler;
 import org.codingweek.model.PasswordUtility;
-import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.util.List;
