@@ -47,6 +47,7 @@
                            </font>
                         </Label>
                         <PasswordField fx:id="passwordField" styleClass="text-fieldConnect" stylesheets="@../css/connexion.css" />
+                        <Label fx:id="errorSigninLabel" styleClass="large-label" textFill="RED"/>
                         <Button mnemonicParsing="false" scaleX="1.5" scaleY="1.5" styleClass="buttonConnect" stylesheets="@../css/main.css" onAction="#signin" text="Se connecter">
                            <VBox.margin>
                               <Insets left="120.0" top="30.0" />
@@ -88,6 +89,7 @@
                            </font>
                         </Label>
                         <PasswordField fx:id="passwordInscrField" styleClass="text-fieldConnect" stylesheets="@../css/connexion.css" />
+                        <Label fx:id="errorSignupLabel" styleClass="large-label" textFill="RED" />
                         <Button mnemonicParsing="false" scaleX="1.5" scaleY="1.5" styleClass="buttonConnect" stylesheets="@../css/main.css" onAction="#signup" text="   S'inscrire   ">
                            <VBox.margin>
                               <Insets left="155.0" top="30.0" />

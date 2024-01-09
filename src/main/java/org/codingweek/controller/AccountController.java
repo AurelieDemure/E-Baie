@@ -8,6 +8,7 @@ import javafx.util.converter.LocalDateStringConverter;
 import org.codingweek.ApplicationContext;
 import org.codingweek.ApplicationSettings;
 import org.codingweek.model.Page;
+import org.codingweek.model.User;
 import org.codingweek.view.ConnexionView;
 
 import java.io.IOException;
@@ -26,8 +27,7 @@ public class AccountController extends Controller implements Observeur{
     public TextField phoneNumberField;
     public TextField addressField;
     public TextField descriptionField;
-    @FXML
-    private Label welcomeText;
+
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.FRENCH);
     private LocalDate date;
 
@@ -56,25 +56,27 @@ public class AccountController extends Controller implements Observeur{
 
     @Override
     public void update() {
-
+        User user = ApplicationContext.getInstance().getUser_authentified();
+        firstnameField.setText(user.getFirstName());
+        lastnameField.setText(user.getLastName());
+        emailField.setText(user.getEmail());
+        passwordField.setText(user.getPassword());
+        phoneNumberField.setText(user.getPhoneNumber());
+        addressField.setText(user.getAddressField());
+        descriptionField.setText(user.getDescriptionField());
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ApplicationContext.getInstance().setPageType(Page.ACCOUNT);
-        firstnameField.setText("a");
-        lastnameField.setText("d");
-        emailField.setText("ad@tn.net");
-        passwordField.setText("");
-        phoneNumberField.setText("");
-        addressField.setText("");
-        descriptionField.setText("");
+        update();
     }
 
     public void disconnect(ActionEvent actionEvent) {
         ApplicationContext.getInstance().setPageType(Page.NONE);
         try {
             ApplicationSettings.getInstance().setCurrentScene(new ConnexionView().loadScene());
+            ApplicationContext.getInstance().setUser_authentified(null);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

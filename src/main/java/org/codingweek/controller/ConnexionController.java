@@ -21,9 +21,8 @@ public class ConnexionController extends Controller implements Observeur {
     public TextField lastnameField;
     public TextField emailInscrField;
     public PasswordField passwordInscrField;
-
-    @FXML
-    private Label welcomeText;
+    public Label errorSigninLabel;
+    public Label errorSignupLabel;
 
     @Override
     public void refresh() {
@@ -38,15 +37,16 @@ public class ConnexionController extends Controller implements Observeur {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ApplicationContext.getInstance().setPageType(Page.ACCOUNT);
-        emailField.setText("ad@tn.net");
-        firstnameField.setText("a");
-        lastnameField.setText("d");
-        emailInscrField.setText("ad@tn.eu");
+        errorSigninLabel.setVisible(false);
+        errorSignupLabel.setVisible(false);
+        errorSignupLabel.setManaged(false);
+        errorSigninLabel.setManaged(false);
     }
 
     public void signin(ActionEvent actionEvent) {
         ApplicationContext.getInstance().setPageType(Page.MARKET);
         try {
+            ApplicationContext.getInstance().setUser_authentified(null);
             ApplicationSettings.getInstance().setCurrentScene(new MarketView().loadScene());
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -56,6 +56,7 @@ public class ConnexionController extends Controller implements Observeur {
     public void signup(ActionEvent actionEvent) {
         ApplicationContext.getInstance().setPageType(Page.MARKET);
         try {
+            ApplicationContext.getInstance().setUser_authentified(null);
             ApplicationSettings.getInstance().setCurrentScene(new MarketView().loadScene());
         } catch (IOException e) {
             throw new RuntimeException(e);

@@ -73,3 +73,7 @@
 .buttonDisconnect:hover {
     -fx-background-color: -fx-dark-blue;
 }
+
+.large-label {
+    -fx-font-size: 20px;
+}
