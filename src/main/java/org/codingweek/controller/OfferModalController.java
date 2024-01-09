@@ -26,7 +26,7 @@ public class OfferModalController extends Controller implements Observeur{
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText("Etes vous sur ?");
-        alert.setContentText("Voulez vous vraiment supprimer cette offre ?");
+        alert.setContentText("Voulez vous vraiment modifier cette offre ?");
 
         alert.showAndWait().ifPresent(response -> {
             if (response == javafx.scene.control.ButtonType.OK) {

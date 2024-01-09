@@ -42,7 +42,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Button layoutX="1044.0" layoutY="742.0" mnemonicParsing="false" onAction="#showConfirmationAddDialog" scaleX="1.5" scaleY="1.5" styleClass="buttonConnect" stylesheets="@../css/main.css" text="Supprimer l'offre" />
+      <Button layoutX="1044.0" layoutY="742.0" mnemonicParsing="false" onAction="#showConfirmationAddDialog" scaleX="1.5" scaleY="1.5" styleClass="buttonConnect" stylesheets="@../css/main.css" text="Modifier l'offre" />
       <Label layoutX="138.0" layoutY="186.0" text="Mon offre" underline="true">
          <font>
             <Font name="System Bold" size="24.0" />

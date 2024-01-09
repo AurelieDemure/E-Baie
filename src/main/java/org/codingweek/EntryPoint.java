@@ -6,6 +6,7 @@ import org.codingweek.db.DatabaseManager;
 import org.codingweek.model.DatabaseHandler;
 import org.codingweek.model.Page;
 import org.codingweek.view.ConnexionView;
+import org.codingweek.view.OfferCreateView;
 
 import java.io.IOException;
 
@@ -16,7 +17,7 @@ public class EntryPoint extends Application {
         ApplicationContext.getInstance().setPageType(Page.NONE);
         ApplicationContext.getInstance().setUser_authentified(null);
         stage.setTitle(Configuration.APP_TITLE);
-        stage.setScene(new ConnexionView().loadScene());
+        stage.setScene(new OfferCreateView().loadScene());
         stage.setResizable(false);
         stage.show();
         stage.setOnCloseRequest(e -> {
