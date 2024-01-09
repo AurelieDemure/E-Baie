@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterEach;
 import org.codingweek.db.DatabaseManager;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -114,7 +115,7 @@ public class EntityTest {
 
         dbManager.saveEntity(offer);
 
-        Query query = new Query(offer, user1, new Date(), false, 0);
+        Query query = new Query(offer, user1,false, 0);
 
         dbManager.saveEntity(query);
 
@@ -128,4 +129,22 @@ public class EntityTest {
         dbManager.deleteEntity(user1);
         dbManager.deleteEntity(offer);
     }
+
+    @Test
+    public void testMapping() {
+        User user1 = new User("test@test.com", "Test", "User", "test123", "0601528495", "Nancy", "description", 100);
+        dbManager.saveEntity(user1);
+        Offer offer = new Offer("Test", "Test", user1, 100, "Test", "Test", "Test", "Test");
+        Offer offer1 = new Offer("Test", "Test", user1, 100, "Test", "Test", "Test", "Test");
+        Offer offer2 = new Offer("Test", "Test", user1, 100, "Test", "Test", "Test", "Test");
+
+        dbManager.saveEntity(offer);
+        dbManager.saveEntity(offer1);
+        dbManager.saveEntity(offer2);
+        user1 = dbManager.getEntity(User.class, user1.getEmail());
+
+        assert user1.getOffers().size() == 3;
+
+    }
+
 }
