@@ -48,14 +48,24 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <ScrollPane hbarPolicy="NEVER" layoutX="777.0" layoutY="250.0" prefHeight="447.0" prefWidth="319.0">
+      <ScrollPane hbarPolicy="NEVER" layoutX="778.0" layoutY="199.0" prefHeight="447.0" prefWidth="319.0">
          <content>
-            <VBox prefHeight="723.0" prefWidth="329.0">
+            <VBox prefHeight="508.0" prefWidth="329.0">
                <children>
                   <Label fx:id="OfferBook" text="Date de prise, date de rendu, utilisateur" />
                </children>
             </VBox>
          </content>
       </ScrollPane>
+      <Label layoutX="778.0" layoutY="742.0" text="Notation : ">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label id="notation" layoutX="881.0" layoutY="741.0" text="4/5">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

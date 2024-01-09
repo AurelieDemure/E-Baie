@@ -3,6 +3,7 @@ package org.codingweek;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.codingweek.db.DatabaseManager;
+import org.codingweek.model.DatabaseHandler;
 import org.codingweek.model.Page;
 import org.codingweek.view.ConnexionView;
 
@@ -18,6 +19,11 @@ public class EntryPoint extends Application {
         stage.setScene(new ConnexionView().loadScene());
         stage.setResizable(false);
         stage.show();
+        stage.setOnCloseRequest(e -> {
+            System.out.println("Fermeture de l'application");
+            DatabaseHandler.getInstance().getDbManager().tearDown();
+            System.exit(0);
+        });
     }
 
     public static void main(String[] args) {

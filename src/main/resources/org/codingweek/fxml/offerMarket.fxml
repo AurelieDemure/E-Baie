@@ -58,7 +58,7 @@
                 </VBox>
          </content>
         </ScrollPane>
-      <Label fx:id="offerAuthor" layoutX="407.0" layoutY="191.0" text="Auteur">
+      <Label fx:id="offerAuthor" layoutX="414.0" layoutY="193.0" text="Auteur">
          <font>
             <Font size="16.0" />
          </font>
@@ -75,5 +75,6 @@
          </font>
       </Label>
       <DatePicker fx:id="dateEnd" layoutX="813.0" layoutY="745.0" styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
+      <Button layoutX="508.0" layoutY="194.0" mnemonicParsing="false" text="Contacter l'auteur" />
     </children>
 </AnchorPane>

@@ -6,10 +6,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import java.util.logging.Level;
+
 public class DatabaseManager {
     private SessionFactory factory;
 
     public void setup() {
+        java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
         Configuration configuration = new Configuration()
                 .addAnnotatedClass(User.class)
                 .addAnnotatedClass(Offer.class)
@@ -19,7 +22,7 @@ public class DatabaseManager {
                 .setProperty("hibernate.connection.driver_class", "org.sqlite.JDBC")
                 .setProperty("hibernate.connection.url", "jdbc:sqlite:src/main/resources/org/codingweek/db/database.sqlite")
                 .setProperty("hibernate.dialect", "org.codingweek.db.SQLiteDialect")
-                .setProperty("hibernate.show_sql", "true")
+                .setProperty("hibernate.show_sql", "false")
                 .setProperty("hibernate.hbm2ddl.auto", "update");
 
         factory = configuration.buildSessionFactory();
