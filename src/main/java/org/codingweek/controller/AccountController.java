@@ -61,9 +61,9 @@ public class AccountController extends Controller implements Observeur{
         lastnameField.setText(user.getLastName());
         emailField.setText(user.getEmail());
         passwordField.setText(user.getPassword());
-        phoneNumberField.setText(user.getPhoneNumber());
+        /*phoneNumberField.setText(user.getPhone());
         addressField.setText(user.getAddressField());
-        descriptionField.setText(user.getDescriptionField());
+        descriptionField.setText(user.getDescriptionField());*/
     }
 
     @Override
