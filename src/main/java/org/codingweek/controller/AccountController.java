@@ -26,6 +26,7 @@ public class AccountController extends Controller implements Observeur{
     public TextField phoneNumberField;
     public TextField addressField;
     public TextField descriptionField;
+    public Label credit;
     @FXML
     private Label welcomeText;
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.FRENCH);
@@ -69,6 +70,7 @@ public class AccountController extends Controller implements Observeur{
         phoneNumberField.setText("");
         addressField.setText("");
         descriptionField.setText("");
+        credit.setText("100 florains");
     }
 
     public void disconnect(ActionEvent actionEvent) {
@@ -78,6 +80,9 @@ public class AccountController extends Controller implements Observeur{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void saveModifiedAccount(ActionEvent actionEvent) {
     }
 }
 

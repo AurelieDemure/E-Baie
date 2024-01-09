@@ -4,8 +4,8 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 import org.codingweek.model.Page;
-import org.codingweek.view.ConnexionView;
-import org.codingweek.view.MainView;
+import org.codingweek.view.*;
+
 import java.io.IOException;
 
 public class EntryPoint extends Application {
@@ -14,7 +14,7 @@ public class EntryPoint extends Application {
         ApplicationSettings.getInstance().setPrimaryStage(stage);
         ApplicationContext.getInstance().setPageType(Page.NONE);
         stage.setTitle(Configuration.APP_TITLE);
-        stage.setScene(new ConnexionView().loadScene());
+        stage.setScene(new AccountView().loadScene());
         stage.setResizable(false);
         stage.show();
     }
