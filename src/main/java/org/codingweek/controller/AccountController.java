@@ -87,14 +87,11 @@ public class AccountController extends Controller implements Observeur{
 
         }
         if (user.getDate_birth() != null) {
-            System.out.println(birthDateField.getValue());
-            System.out.println(user.getDate_birth().toString());
-            /*
             Instant instant = user.getDate_birth().toInstant();
             ZoneId zoneId = ZoneId.systemDefault();
             LocalDate localDate = instant.atZone(zoneId).toLocalDate();
 
-            birthDateField.setValue(localDate);*/
+            birthDateField.setValue(localDate);
         }
 
         phoneNumberField.setText(user.getPhone());
@@ -127,7 +124,6 @@ public class AccountController extends Controller implements Observeur{
         User user = ApplicationContext.getInstance().getUser_authentified();
         user.setFirstName(firstnameField.getText());
         user.setLastName(lastnameField.getText());
-        user.setEmail(emailField.getText());
         if (!Objects.equals(passwordField.getText(), "")) {
             user.setPassword(passwordField.getText());
         }
