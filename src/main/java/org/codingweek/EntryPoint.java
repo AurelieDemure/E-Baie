@@ -3,11 +3,9 @@ package org.codingweek;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.codingweek.db.DatabaseManager;
-import org.codingweek.model.Offer;
-import org.codingweek.model.User;
 import org.codingweek.model.Page;
 import org.codingweek.view.ConnexionView;
-import org.codingweek.view.MainView;
+
 import java.io.IOException;
 
 public class EntryPoint extends Application {

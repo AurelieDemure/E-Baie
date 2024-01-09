@@ -1,4 +1,6 @@
-package org.codingweek.model;
+package org.codingweek.db.entity;
+
+import org.codingweek.model.PasswordUtility;
 
 import javax.persistence.*;
 
@@ -27,7 +29,7 @@ public class User {
     public User(String firstName, String lastName, String password, String email, int balance) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.password = password;
+        this.password = PasswordUtility.hashPassword(password);
         this.email = email;
         this.balance = balance;
     }
@@ -63,7 +65,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = PasswordUtility.hashPassword(password);
     }
 
     public String getEmail() {

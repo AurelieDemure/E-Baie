@@ -1,8 +1,8 @@
-import org.codingweek.model.Chat;
-import org.codingweek.model.Notification;
-import org.codingweek.model.Offer;
-import org.codingweek.model.User;
-import org.codingweek.model.Query;
+import org.codingweek.db.entity.Chat;
+import org.codingweek.db.entity.Notification;
+import org.codingweek.db.entity.Offer;
+import org.codingweek.db.entity.User;
+import org.codingweek.db.entity.Query;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterEach;
