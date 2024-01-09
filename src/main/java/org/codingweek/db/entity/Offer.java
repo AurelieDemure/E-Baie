@@ -88,12 +88,20 @@ public class Offer {
         this.price = price;
     }
 
-    public String getType() {
-        return type;
+    public OfferType getTypeOffer() {
+        if (type.equals("LOAN")) {
+            return OfferType.LOAN;
+        } else {
+            return OfferType.SERVICE;
+        }
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setType(OfferType type) {
+        if (type.equals(OfferType.LOAN)) {
+            this.type = "LOAN";
+        } else {
+            this.type = "SERVICE";
+        }
     }
 
     public String getFrequency() {
