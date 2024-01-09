@@ -3,12 +3,12 @@ import org.codingweek.db.entity.Notification;
 import org.codingweek.db.entity.Offer;
 import org.codingweek.db.entity.User;
 import org.codingweek.db.entity.Query;
+import org.codingweek.model.filter.OfferType;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterEach;
 import org.codingweek.db.DatabaseManager;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -19,7 +19,7 @@ public class EntityTest {
     @BeforeEach
     public void setUp() {
         this.dbManager = new DatabaseManager();
-        dbManager.setup();
+        dbManager.setupTest();
 
         dbManager.deleteAll();
     }
@@ -43,7 +43,7 @@ public class EntityTest {
 
     @Test
     public void testSaveOffer() {
-        Offer offer = new Offer("Test", "Test", null, 100, "Test", "Test", "Test", "Test");
+        Offer offer = new Offer("Test", "Test", null, 100, OfferType.LOAN, "Test", "Test", "Test");
         User user = new User("test@gmail.com", "Test", "User", "test123", "0601528495", "Nancy", "description", 100);
         dbManager.saveEntity(user);
 
@@ -111,7 +111,7 @@ public class EntityTest {
         User user1 = new User("test@test.com", "Test", "User", "test123", "0601528495", "Nancy", "description", 100);
         dbManager.saveEntity(user1);
 
-        Offer offer = new Offer("Test", "Test", user1, 100, "Test", "Test", "Test", "Test");
+        Offer offer = new Offer("Test", "Test", user1, 100, OfferType.LOAN, "Test", "Test", "Test");
 
         dbManager.saveEntity(offer);
 
@@ -134,9 +134,9 @@ public class EntityTest {
     public void testMapping() {
         User user1 = new User("test@test.com", "Test", "User", "test123", "0601528495", "Nancy", "description", 100);
         dbManager.saveEntity(user1);
-        Offer offer = new Offer("Test", "Test", user1, 100, "Test", "Test", "Test", "Test");
-        Offer offer1 = new Offer("Test", "Test", user1, 100, "Test", "Test", "Test", "Test");
-        Offer offer2 = new Offer("Test", "Test", user1, 100, "Test", "Test", "Test", "Test");
+        Offer offer = new Offer("Test", "Test", user1, 100, OfferType.LOAN, "Test", "Test", "Test");
+        Offer offer1 = new Offer("Test", "Test", user1, 100, OfferType.LOAN, "Test", "Test", "Test");
+        Offer offer2 = new Offer("Test", "Test", user1, 100, OfferType.LOAN, "Test", "Test", "Test");
 
         dbManager.saveEntity(offer);
         dbManager.saveEntity(offer1);
