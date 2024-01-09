@@ -18,17 +18,29 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
+
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "address")
+    private String address;
+
+    @Column(name = "description")
+    private String description;
 
     @Column(name = "balance")
     private int balance;
 
-    public User(String firstName, String lastName, String password, String email, int balance) {
+    public User(String firstName, String lastName, String password, String email, String phone, String address, String description, int balance) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.description = description;
         this.balance = balance;
     }
 
@@ -76,6 +88,30 @@ public class User {
 
     public int getBalance() {
         return balance;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setBalance(int balance) {

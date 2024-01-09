@@ -76,11 +76,11 @@ public class MarketController extends Controller implements Observeur{
 
     public void searchOffers(){
         Offer offer1 = new Offer();
-        offer1.setOfferType(OfferType.LOAN);
+        offer1.setType(OfferType.LOAN);
         offer1.setTitle("Un truc");
         offer1.setPrice(100);
         Offer offer2 = new Offer();
-        offer2.setOfferType(OfferType.SERVICE);
+        offer2.setType(OfferType.SERVICE);
         offer2.setTitle("Un autre truc");
         offer2.setPrice(10);
         offers.add(offer1);
@@ -95,7 +95,7 @@ public class MarketController extends Controller implements Observeur{
         Label titleLabel = new Label(offer.getTitle());
         Label priceLabel = new Label(offer.getPrice() + " florains");
         String offerType;
-        switch(offer.getOfferType()){
+        switch(offer.getTypeOffer()){
             case LOAN:
                 offerType = "Prêt";
                 break;
