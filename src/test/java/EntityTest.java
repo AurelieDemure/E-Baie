@@ -30,7 +30,7 @@ public class EntityTest {
 
     @Test
     public void testSaveUser() {
-        User user = new User("test@gmail.com","Test", "User", "test123", "0601528495", "Nancy", "description", 100);
+        User user = new User("test@gmail.com","Test", "User", "test123", "0601528495", "Nancy", "description", 100, "01/01/2000");
 
         dbManager.saveEntity(user);
 
@@ -61,8 +61,8 @@ public class EntityTest {
     @Test
     public void testUpdateUser() {
 
-        User user1 = new User("test1@test.com", "Test", "User", "test123", "0601528495", "Nancy", "description", 100);
-        User user2 = new User("test2@test.com","Test", "User", "test123",  "0601528495", "Nancy", "description", 100);
+        User user1 = new User("test1@test.com", "Test", "User", "test123", "0601528495", "Nancy", "description", 100, new Date());
+        User user2 = new User("test2@test.com","Test", "User", "test123",  "0601528495", "Nancy", "description", 100, new Date());
 
         dbManager.saveEntity(user1);
         dbManager.saveEntity(user2);
@@ -88,7 +88,7 @@ public class EntityTest {
 
     @Test
     public void testNotification() {
-        User user1 = new User("test@test.com","Test", "User", "test123","0601528495", "Nancy", "description", 100);
+        User user1 = new User("test@test.com","Test", "User", "test123","0601528495", "Nancy", "description", 100, new Date());
 
         dbManager.saveEntity(user1);
 

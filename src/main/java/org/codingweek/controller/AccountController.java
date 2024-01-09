@@ -43,7 +43,13 @@ public class AccountController extends Controller implements Observeur{
 
         alert.showAndWait().ifPresent(response -> {
             if (response == javafx.scene.control.ButtonType.OK) {
-                // CODE WHEN OK
+                ApplicationContext.getInstance().setPageType(Page.NONE);
+                try {
+                    ApplicationSettings.getInstance().setCurrentScene(new ConnexionView().loadScene());
+                    ApplicationContext.getInstance().setUser_authentified(null);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
     }
@@ -55,14 +61,16 @@ public class AccountController extends Controller implements Observeur{
 
     @Override
     public void update() {
-        /*User user = ApplicationContext.getInstance().getUser_authentified();
+        User user = ApplicationContext.getInstance().getUser_authentified();
         firstnameField.setText(user.getFirstName());
         lastnameField.setText(user.getLastName());
         emailField.setText(user.getEmail());
         passwordField.setText(user.getPassword());
+        if (user.getDate_birth() != null) birthDateField.setValue(LocalDate.parse(user.getDate_birth().toString(), formatter));
         phoneNumberField.setText(user.getPhone());
         addressField.setText(user.getAddress());
-        descriptionField.setText(user.getDescription());*/
+        descriptionField.setText(user.getDescription());
+        credit.setText(String.valueOf(user.getBalance()));
     }
 
     @Override
@@ -81,7 +89,17 @@ public class AccountController extends Controller implements Observeur{
         }
     }
 
+    @FXML
     public void saveModifiedAccount(ActionEvent actionEvent) {
+        User user = ApplicationContext.getInstance().getUser_authentified();
+        user.setFirstName(firstnameField.getText());
+        user.setLastName(lastnameField.getText());
+        user.setEmail(emailField.getText());
+        user.setPassword(passwordField.getText());
+        user.setPhone(phoneNumberField.getText());
+        user.setAddress(addressField.getText());
+        user.setDescription(descriptionField.getText());
+        update();
     }
 }
 

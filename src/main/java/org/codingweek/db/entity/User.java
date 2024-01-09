@@ -1,6 +1,7 @@
 package org.codingweek.db.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "User")
@@ -31,7 +32,10 @@ public class User {
     @Column(name = "balance")
     private int balance;
 
-    public User(String email,String firstName, String lastName, String password, String phone, String address, String description, int balance) {
+    @Column(name = "date_birth")
+    private Date date_birth;
+
+    public User(String email,String firstName, String lastName, String password, String phone, String address, String description, int balance, Date date_birth) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -40,6 +44,7 @@ public class User {
         this.address = address;
         this.description = description;
         this.balance = balance;
+        this.date_birth = date_birth;
     }
 
     public User() {}
@@ -106,5 +111,13 @@ public class User {
 
     public void setBalance(int balance) {
         this.balance = balance;
+    }
+
+    public Date getDate_birth() {
+        return date_birth;
+    }
+
+    public void setDate_birth(Date date_birth) {
+        this.date_birth = date_birth;
     }
 }

@@ -98,7 +98,7 @@ public class ConnexionController extends Controller implements Observeur {
 
             DatabaseHandler.getInstance().getDbManager().saveEntity(user);
 
-            ApplicationContext.getInstance().setUser_authentified(null);
+            ApplicationContext.getInstance().setUser_authentified(user);
             ApplicationSettings.getInstance().setCurrentScene(new MarketView().loadScene());
         } catch (IOException e) {
             throw new RuntimeException(e);
