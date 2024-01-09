@@ -1,13 +1,11 @@
 package org.codingweek.controller;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import org.codingweek.ApplicationContext;
 import org.codingweek.ApplicationSettings;
-import org.codingweek.db.DatabaseManager;
 import org.codingweek.db.entity.User;
 import org.codingweek.model.AuthHandler;
 import org.codingweek.model.DatabaseHandler;
