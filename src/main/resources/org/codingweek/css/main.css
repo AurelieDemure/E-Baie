@@ -12,12 +12,14 @@
 }
 
 .root{
+    -fx-dark: #000000;
     -fx-font-family: "Arial";
     -fx-logo: #ef939d;
     -fx-logo-hand: #f3b5b8;
     -fx-black: #000000;
     -fx-transparent : rgba(0, 0, 0, 0);
 }
+
 
 .navbar{
     -fx-background-color: -fx-dark-green;
