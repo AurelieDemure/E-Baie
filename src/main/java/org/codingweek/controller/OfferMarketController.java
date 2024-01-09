@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import org.codingweek.ApplicationContext;
 import org.codingweek.db.DatabaseManager;
 import org.codingweek.db.entity.Offer;
+import org.codingweek.db.entity.User;
 import org.codingweek.model.DatabaseHandler;
 import org.codingweek.model.Page;
 
@@ -41,7 +42,7 @@ public class OfferMarketController extends Controller implements Observeur{
         alert.showAndWait().ifPresent(response -> {
             if (response == javafx.scene.control.ButtonType.OK) {
                 DatabaseManager db = DatabaseHandler.getInstance().getDbManager();
-                //db.get
+                //db.getEntity(User.class, this.offerAuthor.getEm)
             }
         });
     }

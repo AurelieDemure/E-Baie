@@ -40,8 +40,7 @@
 }
 
 .text-fieldConnect{
-    -fx-background-color: -fx-light-green;
-    background: rgba(161, 232, 175, 0.2);
+    -fx-background-color: rgba(161, 232, 175, 0.2);
     -fx-text-fill: -fx-dark;
 }
 
