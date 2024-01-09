@@ -141,5 +141,19 @@ public class Offer {
         return queries;
     }
 
-
+    @Override
+    public String toString() {
+        return "Offer{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", owner=" + owner +
+                ", price=" + price +
+                ", type='" + type + '\'' +
+                ", frequency='" + frequency + '\'' +
+                ", localization='" + localization + '\'' +
+                ", path='" + path + '\'' +
+                ", queries=" + queries +
+                '}';
+    }
 }
