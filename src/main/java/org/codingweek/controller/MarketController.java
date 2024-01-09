@@ -3,21 +3,13 @@ package org.codingweek.controller;
 import java.net.URL;
 import java.util.*;
 
-import org.codingweek.model.Offer;
-import org.codingweek.model.User;
-import org.codingweek.db.entity.Offer;
-import org.codingweek.model.OfferType;
-
-import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import org.codingweek.db.entity.*;
+import org.codingweek.model.*;
+import javafx.fxml.*;
+import javafx.scene.control.*;
+import javafx.scene.image.*;
+import javafx.scene.input.*;
+import javafx.scene.layout.*;
 
 public class MarketController extends Controller implements Observeur{
 
@@ -80,12 +72,12 @@ public class MarketController extends Controller implements Observeur{
         }
         this.scrollField.getChildren().add(hbox);
 
-        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", 4), 100, "LOAN", "Hebdomadaire", "Ugine", "ljhsdgljf"));
-        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", 4), 100, "LOAN", "Hebdomadaire", "Ugine", "ljhsdgljf"));
-        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", 4), 100, "LOAN", "Hebdomadaire", "Ugine", "ljhsdgljf"));
-        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", 4), 100, "LOAN", "Hebdomadaire", "Ugine", "ljhsdgljf"));
-        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", 4), 100, "LOAN", "Hebdomadaire", "Ugine", "ljhsdgljf"));
-        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", 4), 100, "LOAN", "Hebdomadaire", "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, "LOAN", "Hebdomadaire", "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, "LOAN", "Hebdomadaire", "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, "LOAN", "Hebdomadaire", "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, "LOAN", "Hebdomadaire", "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, "LOAN", "Hebdomadaire", "Ugine", "ljhsdgljf"));
+        listTest.add(new Offer("Un truc", "blablabla", new User("Un", "gens", "blupblup", "hgkvhg", "khgsvdk", "kjhsvdfkjv", "ljhsdf", 4), 100, "LOAN", "Hebdomadaire", "Ugine", "ljhsdgljf"));
     }
 
     @Override
@@ -102,7 +94,7 @@ public class MarketController extends Controller implements Observeur{
 
     public void searchOffers(){
        for (Offer offer : listTest){
-            if(offer.getType()==this.type.toString()){
+            if(offer.getTypeOffer()==this.type.toString()){
                 offers.add(offer);
             }
        }
@@ -116,7 +108,7 @@ public class MarketController extends Controller implements Observeur{
         Label titleLabel = new Label(offer.getTitle());
         Label priceLabel = new Label(offer.getPrice() + " florains");
         String offerType;
-        switch(offer.getType()){
+        switch(offer.getTypeOffer()){
             case "LOAN":
                 offerType = "Pret";
                 break;
