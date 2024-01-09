@@ -71,9 +71,6 @@ public class MarketController extends Controller implements Observeur{
 
     @Override
     public void refresh() {
-        for(Offer offer : listTest){
-            this.offers.add(offer);
-        }
         this.scrollField.getChildren().clear();
         Pane pane;
         Pane spacePane;
@@ -101,6 +98,7 @@ public class MarketController extends Controller implements Observeur{
 
     @FXML
     void loanSelected(ActionEvent event) {
+        this.offers.clear();
         for(Offer offer : listTest){
             if(offer.getTypeOffer()==OfferType.LOAN){
                 this.offers.add(offer);
@@ -114,6 +112,7 @@ public class MarketController extends Controller implements Observeur{
 
     @FXML
     void serviceLoanSelected(ActionEvent event) {
+        this.offers.clear();
         for(Offer offer : listTest){
             this.offers.add(offer);
         }
@@ -122,6 +121,7 @@ public class MarketController extends Controller implements Observeur{
 
     @FXML
     void serviceSelected(ActionEvent event) {
+        this.offers.clear();
         for(Offer offer : listTest){
             if(offer.getTypeOffer()==OfferType.SERVICE){
                 this.offers.add(offer);
