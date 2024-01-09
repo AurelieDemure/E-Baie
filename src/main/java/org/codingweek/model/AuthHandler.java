@@ -15,6 +15,4 @@ public class AuthHandler {
         return PasswordUtility.checkPassword(password, user.getPassword());
     }
 
-
-
 }

@@ -6,8 +6,7 @@ public class DatabaseHandler {
 
     private static DatabaseHandler instance = null;
 
-    private DatabaseManager dbManager;
-
+    private final DatabaseManager dbManager;
 
     private DatabaseHandler() {
         this.dbManager = new DatabaseManager();

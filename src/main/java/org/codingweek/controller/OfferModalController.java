@@ -20,8 +20,6 @@ public class OfferModalController extends Controller implements Observeur{
     public Label OfferFrequency;
     public Label OfferLoc;
     public Label OfferBook;
-    @FXML
-    private Label welcomeText;
 
     @FXML
     private void showConfirmationAddDialog() {

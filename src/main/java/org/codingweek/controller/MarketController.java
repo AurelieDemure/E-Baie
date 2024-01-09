@@ -17,6 +17,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
+import static org.codingweek.model.OfferType.LOAN;
+import static org.codingweek.model.OfferType.SERVICE;
+
 public class MarketController extends Controller implements Observeur{
 
     private List<Offer> offers = new ArrayList<Offer>();
@@ -74,11 +77,11 @@ public class MarketController extends Controller implements Observeur{
 
     public void searchOffers(){
         Offer offer1 = new Offer();
-        offer1.setType(OfferType.LOAN);
+        offer1.setType(LOAN);
         offer1.setTitle("Un truc");
         offer1.setPrice(100);
         Offer offer2 = new Offer();
-        offer2.setType(OfferType.SERVICE);
+        offer2.setType(SERVICE);
         offer2.setTitle("Un autre truc");
         offer2.setPrice(10);
         offers.add(offer1);

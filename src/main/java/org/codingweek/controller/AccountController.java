@@ -26,8 +26,6 @@ public class AccountController extends Controller implements Observeur{
     public TextField addressField;
     public TextField descriptionField;
     public Label credit;
-    @FXML
-    private Label welcomeText;
 
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.FRENCH);
     private LocalDate date;
