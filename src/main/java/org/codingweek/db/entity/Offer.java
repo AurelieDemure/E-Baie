@@ -3,6 +3,7 @@ package org.codingweek.db.entity;
 import org.codingweek.model.OfferType;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Offer")
@@ -36,6 +37,11 @@ public class Offer {
 
     @Column(name = "path_offer")
     private String path;
+
+    @OneToMany(mappedBy = "offer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Query> queries;
+
+
 
     public Offer(String title, String description, User owner, double price, String type, String frequency, String localization, String path) {
         this.title = title;
@@ -126,7 +132,19 @@ public class Offer {
         return path;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public List<Query> getQueries() {
+        return queries;
     }
 }

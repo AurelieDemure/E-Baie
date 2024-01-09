@@ -31,7 +31,7 @@
                   <Font size="19.0" />
                </font>
             </Label>
-            <TextField fx:id="emailField" styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
+            <TextField fx:id="emailField" editable="false" styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
             <Label text="Mot de passe">
                <font>
                   <Font size="19.0" />

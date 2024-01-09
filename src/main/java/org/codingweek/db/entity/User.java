@@ -1,6 +1,11 @@
 package org.codingweek.db.entity;
 
+import org.codingweek.model.AuthHandler;
+import org.codingweek.model.PasswordUtility;
+
 import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "User")
@@ -31,15 +36,22 @@ public class User {
     @Column(name = "balance")
     private int balance;
 
-    public User(String email,String firstName, String lastName, String password, String phone, String address, String description, int balance) {
+    @Column(name = "date_birth")
+    private Date date_birth;
+
+ @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Offer> offers;
+
+    public User(String email,String firstName, String lastName, String password, String phone, String address, String description, int balance, Date date_birth) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.password = password;
+        this.password = PasswordUtility.hashPassword(password);
         this.phone = phone;
         this.address = address;
         this.description = description;
         this.balance = balance;
+        this.date_birth = date_birth;
     }
 
     public User() {}
@@ -65,7 +77,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = PasswordUtility.hashPassword(password);
     }
 
     public String getEmail() {
@@ -106,5 +118,17 @@ public class User {
 
     public void setBalance(int balance) {
         this.balance = balance;
+    }
+
+    public List<Offer> getOffers() {
+        return offers;
+    }
+
+    public Date getDate_birth() {
+        return date_birth;
+    }
+
+    public void setDate_birth(Date date_birth) {
+        this.date_birth = date_birth;
     }
 }
