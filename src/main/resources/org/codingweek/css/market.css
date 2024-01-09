@@ -1,5 +1,25 @@
 .offer{
-    -fx-width: 890px;
-    -fx-height: 200px;
     -fx-background-color: -fx-light-green;
+    -fx-padding: 20px;
+    -fx-width: 300px;
+    -fx-height: 300px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
 }   
+
+HBox, VBox {
+    -fx-alignment: center ;
+    -fx-padding: 10 ;
+}
+
+.space{
+
+}
+
+.title{
+    -fx-font-size: 10px;
+}
+
+.price{
+    -fx-font-size: 20px;
+}
