@@ -9,7 +9,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codingweek.controller.AccountController">
+<?import javafx.scene.control.TextArea?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codingweek.controller.AccountController">
     <children>
         <fx:include fx:id="navbar" source="navbar.fxml" />
       <VBox layoutX="63.0" layoutY="269.0" prefHeight="341.0" prefWidth="465.0" spacing="15.0">
@@ -31,7 +32,7 @@
                   <Font size="19.0" />
                </font>
             </Label>
-            <TextField fx:id="emailField" styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
+            <TextField fx:id="emailField" styleClass="text-fieldAccount" style="-fx-cursor: default" stylesheets="@../css/main.css" />
             <Label text="Mot de passe">
                <font>
                   <Font size="19.0" />
@@ -65,7 +66,7 @@
                   <Font size="19.0" />
                </font>
             </Label>
-            <TextField fx:id="descriptionField" styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
+            <TextArea fx:id="descriptionField" styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
          </children>
       </VBox>
       <Label layoutX="35.0" layoutY="178.0" text="Mon compte" underline="true">
@@ -80,6 +81,7 @@
             <Font size="19.0" />
          </font>
       </Label>
+        <Label fx:id="errordisplay" layoutX="371.0" layoutY="166.0" prefHeight="25.0" prefWidth="513.0" styleClass="large-label" textFill="RED" />
       <Label fx:id="credit" layoutX="210.0" layoutY="637.0" text="                                 " underline="true">
          <font>
             <Font size="19.0" />

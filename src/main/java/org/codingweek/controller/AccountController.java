@@ -9,6 +9,8 @@ import org.codingweek.ApplicationContext;
 import org.codingweek.ApplicationSettings;
 import org.codingweek.db.entity.User;
 import org.codingweek.model.DatabaseHandler;
+import org.codingweek.model.InputFieldValidator;
+import org.codingweek.model.ModalHelper;
 import org.codingweek.model.Page;
 import org.codingweek.view.ConnexionView;
 
@@ -32,15 +34,17 @@ public class AccountController extends Controller implements Observeur{
     public DatePicker birthDateField;
     public TextField phoneNumberField;
     public TextField addressField;
-    public TextField descriptionField;
+    public TextArea descriptionField;
     public Label credit;
 
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.FRENCH);
-    private LocalDate date;
+    public Label errordisplay;
 
-    public void DateConvert(LocalDate date) {
-
+    private void toggleErro(boolean visible) {
+        errordisplay.setVisible(visible);
+        errordisplay.setManaged(visible);
     }
+
 
     @FXML
     private void showConfirmationAddDialog() {
@@ -105,6 +109,9 @@ public class AccountController extends Controller implements Observeur{
         StringConverter<LocalDate> converter = new LocalDateStringConverter(formatter, formatter);
         birthDateField.setEditable(false);
         birthDateField.setConverter(converter);
+        emailField.setEditable(false);
+        toggleErro(false);
+        birthDateField.setDayCellFactory(InputFieldValidator.getPastDayCellFactory());
         update();
     }
 
@@ -120,6 +127,21 @@ public class AccountController extends Controller implements Observeur{
 
     @FXML
     public void saveModifiedAccount(ActionEvent actionEvent) {
+
+        if (!passwordField.getText().isEmpty() && passwordField != null) {
+            if (!InputFieldValidator.isValidPassword(passwordField.getText())) {
+                errordisplay.setText("Mot de passe invalide");
+                toggleErro(true);
+                return;
+            }
+        }
+        if (!InputFieldValidator.isValidPhone(phoneNumberField.getText()) && phoneNumberField.getText() != null) {
+            errordisplay.setText("Numéro de téléphone invalide");
+            toggleErro(true);
+            return;
+        }
+        toggleErro(false);
+
         User user = ApplicationContext.getInstance().getUser_authentified();
         user.setFirstName(firstnameField.getText());
         user.setLastName(lastnameField.getText());
@@ -142,5 +164,6 @@ public class AccountController extends Controller implements Observeur{
         user.setDescription(descriptionField.getText());
         DatabaseHandler.getInstance().getDbManager().updateEntity(user);
         update();
+        ModalHelper.showInformationModal("Sauvegarde", "Vos modifications ont bien été sauvegardées");
     }
 }

@@ -116,7 +116,7 @@ public class EntityTest {
 
         dbManager.saveEntity(offer);
 
-        Query query = new Query(offer, user1,false, 0);
+        Query query = new Query(offer, user1,false, 0, new Date(), new Date());
 
         dbManager.saveEntity(query);
 
