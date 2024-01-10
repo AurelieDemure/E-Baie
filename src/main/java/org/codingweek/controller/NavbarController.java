@@ -30,6 +30,9 @@ public class NavbarController extends Controller implements Observeur{
     private Button offerButton;
 
     @FXML
+    private Label notifLabel;
+
+    @FXML
     void clickLogo(MouseEvent event) {
         ApplicationContext.getInstance().setPageType(Page.MARKET);
         try {
@@ -87,6 +90,7 @@ public class NavbarController extends Controller implements Observeur{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        setNotifs();
         switch(ApplicationContext.getInstance().getPageType()){
             case ACCOUNT:
                 this.accountButton.setStyle("-fx-text-fill: -fx-white");
@@ -112,6 +116,7 @@ public class NavbarController extends Controller implements Observeur{
 
     @Override
     public void refresh() {
+        setNotifs();
         this.accountButton.setStyle("-fx-text-fill: -fx-dark");
         this.marketButton.setStyle("-fx-text-fill: -fx-dark");
         this.messageButton.setStyle("-fx-text-fill: -fx-dark");
@@ -132,6 +137,11 @@ public class NavbarController extends Controller implements Observeur{
             default:
         }
     }
+
+    public void setNotifs(){
+        this.notifLabel.setText("");
+    }
+
 
 }
 

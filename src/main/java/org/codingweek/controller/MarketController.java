@@ -8,7 +8,6 @@ import org.codingweek.db.entity.*;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
