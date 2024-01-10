@@ -6,8 +6,16 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.codingweek.ApplicationContext;
+import org.codingweek.ApplicationSettings;
+import org.codingweek.db.entity.Offer;
+import org.codingweek.model.ImageHandler;
+import org.codingweek.model.OfferModalModel;
+import org.codingweek.model.OfferModifModel;
 import org.codingweek.model.Page;
+import org.codingweek.view.OfferModifView;
 
+import java.io.IOError;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -30,7 +38,12 @@ public class OfferModalController extends Controller implements Observeur{
 
         alert.showAndWait().ifPresent(response -> {
             if (response == javafx.scene.control.ButtonType.OK) {
-                // CODE WHEN OK
+                ApplicationContext.getInstance().setPageType(Page.OFFER);
+                try {
+                    ApplicationSettings.getInstance().setCurrentScene(new OfferModifView().loadScene());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
     }
@@ -47,15 +60,16 @@ public class OfferModalController extends Controller implements Observeur{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ApplicationContext.getInstance().setPageType(Page.ACCOUNT);
-        //OfferImage.setImage(Image i.png);
-        OffreTitle.setText("Titre");
-        OfferPrice.setText("Prix");
-        OfferFrequency.setText("Frequency");
-        OfferDescription.setText("Description");
-        OfferLoc.setText("Localisation");
-        OfferFrequency.setText("Frequence");
-        OfferBook.setText("date prise, date rendu, utilisateur");
+        ApplicationContext.getInstance().setPageType(Page.OFFER);
+        Offer offer = OfferModalModel.getMyOfferToModify(ApplicationContext.getInstance().getOfferId());
+        OffreTitle.setText(offer.getTitle());
+        OfferPrice.setText(String.valueOf(offer.getPrice()));
+        OfferFrequency.setText(offer.getFrequency().getValue());
+        OfferDescription.setText(offer.getDescription());
+        OfferLoc.setText(offer.getLocalization());
+        OfferTypeServ.setText(offer.getTypeOffer().getValue());
+        OfferImage.setImage(ImageHandler.getImage(offer.getPath()));
+        ApplicationContext.getInstance().setOfferId(null);
     }
 
 }

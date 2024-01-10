@@ -15,10 +15,7 @@ import org.codingweek.ApplicationSettings;
 import org.codingweek.db.DatabaseManager;
 import org.codingweek.db.entity.Offer;
 import org.codingweek.db.entity.User;
-import org.codingweek.model.DatabaseHandler;
-import org.codingweek.model.ImageHandler;
-import org.codingweek.model.MyOffersModel;
-import org.codingweek.model.Page;
+import org.codingweek.model.*;
 import org.codingweek.view.MyOffersView;
 import org.codingweek.view.OfferCreateView;
 import org.codingweek.view.OfferModalView;
@@ -35,7 +32,7 @@ public class MyOffersController extends Controller implements Observeur {
 
     private List<Offer> myOffers = new ArrayList<>();
 
-    private int indexModify = -1;
+    private Integer indexModify = -1;
 
     @FXML
     public VBox scrollField;
@@ -133,8 +130,7 @@ public class MyOffersController extends Controller implements Observeur {
         Button supprimer = new Button("Supprimer");
         supprimer.getStyleClass().add("buttonSupOffer");
         supprimer.setOnAction(e -> {
-            this.indexModify = offer.getId();
-            showConfirmationAddDialog(e);
+            showConfirmationAddDialog(e, offer);
         });
 
         VBox vbox = new VBox();
@@ -163,22 +159,15 @@ public class MyOffersController extends Controller implements Observeur {
     private void showOfferModal(ActionEvent event) {
         ApplicationContext.getInstance().setPageType(Page.OFFER);
         try {
+            ApplicationContext.getInstance().setOfferId(this.indexModify);
             ApplicationSettings.getInstance().setCurrentScene(new OfferModalView().loadScene());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private void modifyOffer(ActionEvent event) {
-        ApplicationContext.getInstance().setPageType(Page.OFFER);
-        try {
-            ApplicationSettings.getInstance().setCurrentScene(new OfferModifView().loadScene());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
-    public void showConfirmationAddDialog(ActionEvent actionEvent) {
+    public void showConfirmationAddDialog(ActionEvent actionEvent, Offer offer) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText("Etes vous sur ?");
@@ -186,9 +175,9 @@ public class MyOffersController extends Controller implements Observeur {
 
         alert.showAndWait().ifPresent(response -> {
             if (response == javafx.scene.control.ButtonType.OK) {
-                DatabaseManager db = DatabaseHandler.getInstance().getDbManager();
-                //db.deleteEntity(this.myOffers);
                 ApplicationContext.getInstance().setPageType(Page.OFFER);
+                DatabaseManager db = DatabaseHandler.getInstance().getDbManager();
+                db.deleteEntity(offer);
                 try {
                     ApplicationSettings.getInstance().setCurrentScene(new MyOffersView().loadScene());
                 } catch (IOException e) {

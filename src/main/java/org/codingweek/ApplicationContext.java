@@ -17,7 +17,7 @@ public class ApplicationContext {
 
     private Page pageType;
 
-    private int offerId;
+    private Integer offerId;
 
     private ApplicationContext() {
 
@@ -46,11 +46,11 @@ public class ApplicationContext {
         this.user_authentified = user_authentified;
     }
 
-    public int getOfferId() {
+    public Integer getOfferId() {
         return offerId;
     }
 
-    public void setOfferId(int offerId) {
+    public void setOfferId(Integer offerId) {
         this.offerId = offerId;
     }
 }
