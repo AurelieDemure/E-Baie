@@ -59,4 +59,33 @@ public class InputFieldValidator {
         };
     }
 
+    public static Callback<DatePicker, DateCell> getDateBeginCellFactory(){
+        return datePicker -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+
+                // Disable future dates
+                if (item.isAfter(LocalDate.now())) {
+                    setDisable(true);
+                    setStyle("-fx-background-color: #ffc0cb;"); // Optional: Highlight disabled dates
+                }
+            }
+        };
+    }
+
+    public static Callback<DatePicker, DateCell> getDateEndCellFactory(){
+        return datePicker -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+
+                // Disable future dates
+                if (item.isAfter(LocalDate.now())) {
+                    setDisable(true);
+                    setStyle("-fx-background-color: #ffc0cb;"); // Optional: Highlight disabled dates
+                }
+            }
+        };
+    }
 }

@@ -10,6 +10,7 @@ import org.codingweek.db.entity.*;
 import org.codingweek.model.*;
 import java.net.*;
 import java.util.*;
+import java.time.format.*;
 
 public class OfferMarketController extends Controller implements Observeur{
 
@@ -23,10 +24,11 @@ public class OfferMarketController extends Controller implements Observeur{
     public Label OfferTypeServ;
     public Label OfferFrequency;
     public Label OfferLoc;
-    public Label OfferBook;
+    @FXML
     public DatePicker dateBegin;
     public DatePicker dateEnd;
     public Label offerAuthor;
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.FRENCH);
     
     private List<Query> queries;
 
@@ -47,7 +49,8 @@ public class OfferMarketController extends Controller implements Observeur{
 
     @Override
     public void refresh() {
-
+        this.dateBegin.setDayCellFactory(InputFieldValidator.getDateBeginCellFactory());
+        this.dateEnd.setDayCellFactory(InputFieldValidator.getDateBeginCellFactory());
     }
 
     @Override
@@ -61,16 +64,15 @@ public class OfferMarketController extends Controller implements Observeur{
         this.offer = OfferMarketModel.getOffer(ApplicationContext.getInstance().getIndex());
         this.noteLabel.setText("5/5");
         this.OfferImage.setImage(ImageHandler.getImage(this.offer.getPath())); 
-        this.offerAuthor.setText("by : " + this.offer.getOwner().getFirstName() + " " + this.offer.getOwner().getLastName());
+        this.offerAuthor.setText(this.offer.getOwner().getFirstName() + " " + this.offer.getOwner().getLastName());
         this.OffreTitle.setText(this.offer.getTitle());
         this.OfferPrice.setText(this.offer.getPrice() + " florains");
         this.OfferTypeServ.setText(this.offer.getType());
         this.OfferFrequency.setText(this.offer.getFrequency().getValue());
         this.OfferDescription.setText(this.offer.getDescription());
         this.OfferLoc.setText(this.offer.getLocalization());
-
         this.queries = offer.getQueries();
-        this.OfferBook.setText("date prise, date rendu, utilisateur");
+        refresh();
     }
 
     public void contactAuthor(ActionEvent actionEvent) {
