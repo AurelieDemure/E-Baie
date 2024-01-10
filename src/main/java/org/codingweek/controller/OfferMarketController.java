@@ -57,15 +57,15 @@ public class OfferMarketController extends Controller implements Observeur{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ApplicationContext.getInstance().setPageType(Page.ACCOUNT);
-        this.offer = OfferMarketModel.getOffersAvailable(ApplicationContext.getInstance().getIndex());
-        //OfferImage.setImage(Image i.png);
-        OffreTitle.setText(this.offer.getTitle());
-        OfferPrice.setText("Prix");
-        OfferFrequency.setText("Frequency");
-        OfferDescription.setText("Description");
-        OfferLoc.setText("Localisation");
-        OfferFrequency.setText("Frequence");
-        OfferBook.setText("date prise, date rendu, utilisateur");
+        this.offer = OfferMarketModel.getOffer(ApplicationContext.getInstance().getIndex());
+        this.OfferImage.setImage(ImageHandler.getImage(this.offer.getPath())); 
+        this.offerAuthor.setText("by : " + this.offer.getOwner().getFirstName() + " " + this.offer.getOwner().getLastName());
+        this.OffreTitle.setText(this.offer.getTitle());
+        this.OfferPrice.setText(this.offer.getPrice() + " florains");
+        this.OfferFrequency.setText(this.offer.getFrequency().getValue());
+        this.OfferDescription.setText(this.offer.getDescription());
+        this.OfferLoc.setText(this.offer.getLocalization());
+        this.OfferBook.setText("date prise, date rendu, utilisateur");
     }
 
     public void contactAuthor(ActionEvent actionEvent) {
