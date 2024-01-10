@@ -44,9 +44,9 @@ public class MarketModelTest {
 
         assert MarketModel.getOffersAvailable("----").size() == 3;
         assert MarketModel.getOffersAvailable(user1.getEmail()).isEmpty();
-        assert MarketModel.getOffersAvailableFiltered("----", OfferType.LOAN, null, null, null).size() == 1;
-        assert MarketModel.getOffersAvailableFiltered("----", null, null, Price.LESS100, null).size() == 1;
-        assert MarketModel.getOffersAvailableFiltered("----", null, null, Price.FROM400TO500, null).size() == 1;
+        assert MarketModel.getOffersAvailableFiltered("----", "", OfferType.LOAN, null, null, null).size() == 1;
+        assert MarketModel.getOffersAvailableFiltered("----", "", null, null, Price.LESS100, null).size() == 1;
+        assert MarketModel.getOffersAvailableFiltered("----", "", null, null, Price.FROM400TO500, null).size() == 1;
     }
 
 }

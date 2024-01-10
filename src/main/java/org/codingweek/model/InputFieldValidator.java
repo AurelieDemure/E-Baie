@@ -1,12 +1,12 @@
 package org.codingweek.model;
 
-import javafx.scene.control.DateCell;
-import javafx.scene.control.DatePicker;
-import javafx.util.Callback;
-
-import java.time.LocalDate;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import javafx.scene.control.*;
+import javafx.util.*;
+import java.util.*;
+import java.time.*;
+import java.util.regex.*;
+import java.text.*;
+import org.codingweek.db.entity.*;
 
 public class InputFieldValidator {
 
@@ -50,7 +50,7 @@ public class InputFieldValidator {
             public void updateItem(LocalDate item, boolean empty) {
                 super.updateItem(item, empty);
 
-                // Disable future dates
+                // Disable past dates
                 if (item.isAfter(LocalDate.now())) {
                     setDisable(true);
                     setStyle("-fx-background-color: #ffc0cb;"); // Optional: Highlight disabled dates
@@ -59,4 +59,62 @@ public class InputFieldValidator {
         };
     }
 
+    public static Callback<DatePicker, DateCell> getDateBeginCellFactory(LocalDate dateEnd, List<Query> queries){
+        return datePicker -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+
+                // Disable past dates
+                if (item.isBefore(LocalDate.now())) {
+                    setDisable(true);
+                    setStyle("-fx-background-color: #ffc0cb;"); // Optional: Highlight disabled dates
+                }
+                //Disable dates after the end of the offer if selected
+                if (dateEnd != null && item.isAfter(dateEnd)) {
+                    setDisable(true);
+                    setStyle("-fx-background-color: #ffc0cb;"); // Optional: Highlight disabled dates
+                }
+
+                //Disable dates that are already reserved
+                for(Query query : queries){
+                    LocalDate localDateBegin = query.getDateBegin().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    LocalDate localDateEnd = query.getDateEnd().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    if(item.isBefore(localDateEnd) && item.isAfter(localDateBegin)){
+                        setDisable(true);
+                        setStyle("-fx-background-color: #ffc0cb;"); // Optional: Highlight disabled dates
+                    }
+                }
+            }
+        };
+    }
+
+    public static Callback<DatePicker, DateCell> getDateEndCellFactory(LocalDate dateBegin, List<Query> queries){
+        return datePicker -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+
+                // Disable future dates
+                if (item.isBefore(LocalDate.now())) {
+                    setDisable(true);
+                    setStyle("-fx-background-color: #ffc0cb;"); // Optional: Highlight disabled dates
+                }
+                //Disable dates before the beginning of the offer if selected
+                if (dateBegin != null && item.isBefore(dateBegin)) {
+                    setDisable(true);
+                    setStyle("-fx-background-color: #ffc0cb;"); // Optional: Highlight disabled dates
+                }
+                //Disable dates that are already reserved
+                for(Query query : queries){
+                    LocalDate localDateBegin = query.getDateBegin().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    LocalDate localDateEnd = query.getDateEnd().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    if(item.isBefore(localDateEnd) && item.isAfter(localDateBegin)){
+                        setDisable(true);
+                        setStyle("-fx-background-color: #ffc0cb;"); // Optional: Highlight disabled dates
+                    }
+                }
+            }
+        };
+    }
 }

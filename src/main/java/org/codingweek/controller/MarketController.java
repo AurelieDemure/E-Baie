@@ -1,21 +1,27 @@
 package org.codingweek.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
 import org.codingweek.ApplicationContext;
+import org.codingweek.ApplicationSettings;
 import org.codingweek.db.entity.*;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import org.codingweek.model.*;
 import org.codingweek.model.filter.*;
+import org.codingweek.view.OfferMarketView;
+import org.codingweek.view.TchatView;
 
 public class MarketController extends Controller implements Observeur{
+
+    private int offerId = -1;
 
     private List<Offer> offers = new ArrayList<Offer>();
 
@@ -35,30 +41,31 @@ public class MarketController extends Controller implements Observeur{
     private VBox scrollField;
 
     @FXML
-    private ToggleGroup type;
-
-    @FXML
     private RadioButton serviceButton;
 
     @FXML
-    private RadioButton serviceLoanButton;
-
-    @FXML
     private RadioButton loanButton;
-
-    @FXML
-    private Button researchButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.priceChoice.getItems().setAll("Tout type de prix", "Moins de 100 florains", "Entre 100 et 200 florains", "Entre 200 et 300 florains", "Entre 300 et 400 florains", "Entre 400 et 500 florains", "Plus de 500 florains");
         this.priceChoice.getSelectionModel().select(0);
+        this.priceChoice.setOnAction( (event -> {
+            search();
+        }));
         this.frequencyChoice.getItems().setAll("Tout type de frequence", "Unique", "Journalier", "Hebdomadaire", "Mensuelle", "Annuelle");
         this.frequencyChoice.getSelectionModel().select(0);
+        this.frequencyChoice.setOnAction( (event -> {
+            search();
+        }));
         this.sortChoice.getItems().setAll("Prix croissant", "Prix décroissant", "Titre A-Z", "Titre Z-A");
         this.sortChoice.getSelectionModel().select(0);
+        this.sortChoice.setOnAction( (event -> {
+            search();
+        }));
         this.offers.clear();
         this.offers = MarketModel.getOffersAvailable(ApplicationContext.getInstance().getUser_authentified().getEmail());
+        
         refresh();
     }
 
@@ -88,8 +95,14 @@ public class MarketController extends Controller implements Observeur{
         this.scrollField.getChildren().add(hbox);
     }
 
-    @FXML
-    void clickSearch(ActionEvent event) {
+    void search() {
+        String email = ApplicationContext.getInstance().getUser_authentified().getEmail();
+
+        String text = this.reaserchField.getText();
+        if(text==""){
+            text = null;
+        }
+
         OfferType offerType = null;
         if(this.loanButton.isSelected()){
             offerType = OfferType.LOAN;
@@ -97,8 +110,50 @@ public class MarketController extends Controller implements Observeur{
         else if(this.serviceButton.isSelected()){
             offerType = OfferType.SERVICE;
         }
-        this.offers = MarketModel.getOffersAvailableFiltered(ApplicationContext.getInstance().getUser_authentified().getEmail(), offerType, Frequency.fromString(this.frequencyChoice.getValue()), Price.fromString(this.priceChoice.getValue()), SortOffer.fromString(this.sortChoice.getValue()));
+        
+        Frequency frequency = Frequency.fromString(this.frequencyChoice.getValue());
+        if(frequency == Frequency.ALLFREQUENCY){
+            frequency = null;
+        }
+
+        Price price = Price.fromString(this.priceChoice.getValue());
+        if(price == Price.ALLPRICE){
+            price = null;
+        }
+
+        SortOffer sortOffer = SortOffer.fromString(this.sortChoice.getValue());
+
+        this.offers = MarketModel.getOffersAvailableFiltered(email, text, offerType, frequency, price, sortOffer);
         refresh();
+    }
+
+    @FXML
+    void clickLoan(ActionEvent event) {
+        search();
+    }
+
+    @FXML
+    void clickService(ActionEvent event) {
+        search();
+    }
+
+    @FXML
+    void clickServiceLoan(ActionEvent event) {
+        search();
+    }
+
+    @FXML
+    void textTyped(KeyEvent event) {
+        search();
+    }
+
+    public void goToOffer(Offer offer){
+        try {
+            ApplicationContext.getInstance().setIndex(this.offerId);
+            ApplicationSettings.getInstance().setCurrentScene(new OfferMarketView().loadScene());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public Pane makePaneOffre(Offer offer){
@@ -144,6 +199,10 @@ public class MarketController extends Controller implements Observeur{
         pane.getStyleClass().add("offer");
         pane.setMinSize(100, 100);
         pane.getChildren().add(hbox);
+        pane.setOnMouseClicked( (event -> {
+            this.offerId = offer.getId();
+            goToOffer(offer);
+        }));
         return pane;
     }
 }

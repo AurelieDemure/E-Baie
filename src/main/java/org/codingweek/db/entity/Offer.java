@@ -140,4 +140,16 @@ public class Offer {
     public List<Query> getQueries() {
         return queries;
     }
+
+    public List<Query> getAllAcceptedQueries() {
+        return queries.stream()
+                .filter(Query::isAccepted)
+                .toList();
+    }
+
+    public List<Query> getAllPendingQueries() {
+            return queries.stream()
+                .filter(query -> !query.isAccepted())
+                .toList();
+    }
 }

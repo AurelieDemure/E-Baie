@@ -1,23 +1,22 @@
 package org.codingweek.controller;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import org.codingweek.ApplicationContext;
-import org.codingweek.db.DatabaseManager;
-import org.codingweek.db.entity.Offer;
-import org.codingweek.db.entity.User;
-import org.codingweek.model.DatabaseHandler;
-import org.codingweek.model.Page;
-
-import java.net.URL;
-import java.util.ResourceBundle;
+import javafx.event.*;
+import javafx.fxml.*;
+import javafx.scene.control.*;
+import javafx.scene.image.*;
+import org.codingweek.*;
+import org.codingweek.db.*;
+import org.codingweek.db.entity.*;
+import org.codingweek.model.*;
+import java.net.*;
+import java.util.*;
+import java.time.format.*;
 
 public class OfferMarketController extends Controller implements Observeur{
+
+    public Offer offer;
+    @FXML
+    private Label noteLabel;
     public ImageView OfferImage;
     public Label OffreTitle;
     public Label OfferDescription;
@@ -25,12 +24,13 @@ public class OfferMarketController extends Controller implements Observeur{
     public Label OfferTypeServ;
     public Label OfferFrequency;
     public Label OfferLoc;
-    public Label OfferBook;
+    @FXML
     public DatePicker dateBegin;
     public DatePicker dateEnd;
     public Label offerAuthor;
-    @FXML
-    private Label welcomeText;
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.FRENCH);
+    
+    private List<Query> queries;
 
     @FXML
     private void showConfirmationAddDialog() {
@@ -50,6 +50,7 @@ public class OfferMarketController extends Controller implements Observeur{
     @Override
     public void refresh() {
 
+        
     }
 
     @Override
@@ -60,14 +61,31 @@ public class OfferMarketController extends Controller implements Observeur{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ApplicationContext.getInstance().setPageType(Page.ACCOUNT);
-        //OfferImage.setImage(Image i.png);
-        OffreTitle.setText("Titre");
-        OfferPrice.setText("Prix");
-        OfferFrequency.setText("Frequency");
-        OfferDescription.setText("Description");
-        OfferLoc.setText("Localisation");
-        OfferFrequency.setText("Frequence");
-        OfferBook.setText("date prise, date rendu, utilisateur");
+        this.offer = OfferMarketModel.getOffer(ApplicationContext.getInstance().getIndex());
+        ApplicationContext.getInstance().setIndex(null);
+        this.noteLabel.setText("5/5");
+        this.OfferImage.setImage(ImageHandler.getImage(this.offer.getPath())); 
+        this.offerAuthor.setText(this.offer.getOwner().getFirstName() + " " + this.offer.getOwner().getLastName());
+        this.OffreTitle.setText(this.offer.getTitle());
+        this.OfferPrice.setText(this.offer.getPrice() + " florains");
+        this.OfferTypeServ.setText(this.offer.getType());
+        this.OfferFrequency.setText(this.offer.getFrequency().getValue());
+        this.OfferDescription.setText(this.offer.getDescription());
+        this.OfferLoc.setText(this.offer.getLocalization());
+        this.queries = offer.getQueries();
+        this.dateBegin.setDayCellFactory(InputFieldValidator.getDateBeginCellFactory(this.dateEnd.getValue(), this.queries));
+        this.dateEnd.setDayCellFactory(InputFieldValidator.getDateBeginCellFactory(this.dateBegin.getValue(), this.queries));
+    }
+
+    @FXML
+    void selectDateBegin(ActionEvent event) {
+        this.dateEnd.setDayCellFactory(InputFieldValidator.getDateEndCellFactory(this.dateBegin.getValue(), this.queries));
+    }
+
+    @FXML
+    void selectDateEnd(ActionEvent event) {
+        this.dateBegin.setDayCellFactory(InputFieldValidator.getDateBeginCellFactory(this.dateEnd.getValue(), this.queries));
+
     }
 
     public void contactAuthor(ActionEvent actionEvent) {
@@ -76,5 +94,9 @@ public class OfferMarketController extends Controller implements Observeur{
     public void deleteOffer(Offer offer) {
         DatabaseManager db = DatabaseHandler.getInstance().getDbManager();
         db.deleteEntity(offer);
+    }
+
+    public void setOffer(Offer offer){
+        this.offer = offer;
     }
 }
