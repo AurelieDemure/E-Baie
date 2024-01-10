@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import org.codingweek.model.*;
 import org.codingweek.model.filter.*;
@@ -95,6 +96,11 @@ public class MarketController extends Controller implements Observeur{
     void search() {
         String email = ApplicationContext.getInstance().getUser_authentified().getEmail();
 
+        String text = this.reaserchField.getText();
+        if(text==""){
+            text = null;
+        }
+
         OfferType offerType = null;
         if(this.loanButton.isSelected()){
             offerType = OfferType.LOAN;
@@ -115,7 +121,7 @@ public class MarketController extends Controller implements Observeur{
 
         SortOffer sortOffer = SortOffer.fromString(this.sortChoice.getValue());
 
-        this.offers = MarketModel.getOffersAvailableFiltered(email, offerType, frequency, price, sortOffer);
+        this.offers = MarketModel.getOffersAvailableFiltered(email, text, offerType, frequency, price, sortOffer);
         refresh();
     }
 
@@ -131,6 +137,11 @@ public class MarketController extends Controller implements Observeur{
 
     @FXML
     void clickServiceLoan(ActionEvent event) {
+        search();
+    }
+
+    @FXML
+    void textTyped(KeyEvent event) {
         search();
     }
 

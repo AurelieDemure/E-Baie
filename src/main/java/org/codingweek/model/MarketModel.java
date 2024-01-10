@@ -1,15 +1,16 @@
 package org.codingweek.model;
 
+import java.util.Comparator;
+import java.util.List;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import org.codingweek.db.entity.Offer;
 import org.codingweek.model.filter.Frequency;
 import org.codingweek.model.filter.OfferType;
 import org.codingweek.model.filter.Price;
 import org.codingweek.model.filter.SortOffer;
-
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class MarketModel {
 
@@ -28,8 +29,12 @@ public class MarketModel {
 
     /** Return all the offer on the database with filtering
      * Email is the value of the offer to be excluded */
-    public static List<Offer> getOffersAvailableFiltered(String email, OfferType type, Frequency frequency, Price price, SortOffer sortOffer) {
+    public static List<Offer> getOffersAvailableFiltered(String email, String research, OfferType type, Frequency frequency, Price price, SortOffer sortOffer) {
         List<Offer> offers = getOffersAvailable(email);
+        if (research != null)
+            offers = offers.stream()
+                    .filter(offer -> compareTitle2(offer.getTitle(), research))
+                    .collect(Collectors.toList());   
         if (type != null)
             offers = offers.stream()
                     .filter(offer -> offer.getTypeOffer().equals(type))
@@ -78,7 +83,20 @@ public class MarketModel {
         return offers;
     }
 
+    public static boolean compareTitle2(String title, String research) {
+        Pattern pattern = Pattern.compile(research, Pattern.CASE_INSENSITIVE);
+        return pattern.matcher(title).find();
+    }
 
+    public static Boolean compareTitle(String title, String research){
+        Boolean bool = true;
+        for(int i=0; i < research.length(); i++){
+            if (title.charAt(i) != research.charAt(i)){
+                bool = false;
+            }
+        }
+        return bool;
+    }
 
 
 
