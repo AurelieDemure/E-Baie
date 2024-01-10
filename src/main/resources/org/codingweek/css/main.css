@@ -5,12 +5,15 @@
     -fx-dark-green: #94C595;
     -fx-grey: #747C92;
     -fx-purple: #372772;
+    -fx-lila: #b18cda;
+    -fx-lila-light: #d9b5f6;
     -fx-dark-purple: #3A2449;
     -fx-white: #f1f1f1;
     -fx-dark: #000000;
     -fx-light-blue: #9FB4C7;
     -fx-dark-blue: #778c9d;
     -fx-logo: #ef939d;
+    -fx-logo-dark: #b9515b;
     -fx-logo-hand: #f3b5b8;
 }
 
@@ -36,6 +39,16 @@
 }
 
 .buttonNavbar:hover{
+    -fx-underline: true;
+}
+
+.buttonDisco{
+    -fx-background-color: -fxdark-green;
+    -fx-text-fill: -fx-logo-dark;
+    -fx-cursor: hand;
+}
+
+.buttonDisco:hover {
     -fx-underline: true;
 }
 

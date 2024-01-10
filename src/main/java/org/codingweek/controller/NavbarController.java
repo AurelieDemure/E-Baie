@@ -1,6 +1,8 @@
 package org.codingweek.controller;
 
+import javafx.scene.image.Image;
 import org.codingweek.*;
+import org.codingweek.db.entity.User;
 import org.codingweek.model.*;
 import java.io.*;
 import java.net.*;
@@ -11,9 +13,15 @@ import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import org.codingweek.view.*;
+import javafx.scene.image.ImageView;
+
+
+
+//import javax.swing.text.html.ImageView;
 
 public class NavbarController extends Controller implements Observeur{
 
+    public Button deconnexion;
     @FXML
     private Button accountButton;
 
@@ -87,6 +95,13 @@ public class NavbarController extends Controller implements Observeur{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        ImageView deco = new ImageView(new Image(
+                Objects.requireNonNull(ApplicationContext.class
+                        .getResourceAsStream("/org/codingweek/img/doorDisconnect.png"))
+        ));
+        deco.setFitWidth(40);
+        deco.setFitHeight(40);
+        deconnexion.setGraphic(deco);
         switch(ApplicationContext.getInstance().getPageType()){
             case ACCOUNT:
                 this.accountButton.setStyle("-fx-text-fill: -fx-white");
@@ -133,5 +148,14 @@ public class NavbarController extends Controller implements Observeur{
         }
     }
 
+    public void Disconnect(ActionEvent event) {
+        ApplicationContext.getInstance().setPageType(Page.NONE);
+        try {
+            ApplicationSettings.getInstance().setCurrentScene(new ConnexionView().loadScene());
+            ApplicationContext.getInstance().setUser_authentified(null);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 

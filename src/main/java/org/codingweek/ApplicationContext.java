@@ -21,6 +21,8 @@ public class ApplicationContext {
 
     private User contactUser;
 
+    private Integer offerId;
+
     private ApplicationContext() {
 
     }
@@ -54,6 +56,14 @@ public class ApplicationContext {
 
     public void setUser_authentified(User user_authentified) {
         this.user_authentified = user_authentified;
+    }
+
+    public Integer getOfferId() {
+        return offerId;
+    }
+
+    public void setOfferId(Integer offerId) {
+        this.offerId = offerId;
     }
 
     public Integer getIndex(){
