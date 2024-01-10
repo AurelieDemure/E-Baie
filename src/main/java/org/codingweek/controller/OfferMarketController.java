@@ -49,8 +49,8 @@ public class OfferMarketController extends Controller implements Observeur{
 
     @Override
     public void refresh() {
-        this.dateBegin.setDayCellFactory(InputFieldValidator.getDateBeginCellFactory());
-        this.dateEnd.setDayCellFactory(InputFieldValidator.getDateBeginCellFactory());
+
+        
     }
 
     @Override
@@ -62,6 +62,7 @@ public class OfferMarketController extends Controller implements Observeur{
     public void initialize(URL location, ResourceBundle resources) {
         ApplicationContext.getInstance().setPageType(Page.ACCOUNT);
         this.offer = OfferMarketModel.getOffer(ApplicationContext.getInstance().getIndex());
+        ApplicationContext.getInstance().setIndex(null);
         this.noteLabel.setText("5/5");
         this.OfferImage.setImage(ImageHandler.getImage(this.offer.getPath())); 
         this.offerAuthor.setText(this.offer.getOwner().getFirstName() + " " + this.offer.getOwner().getLastName());
@@ -72,7 +73,19 @@ public class OfferMarketController extends Controller implements Observeur{
         this.OfferDescription.setText(this.offer.getDescription());
         this.OfferLoc.setText(this.offer.getLocalization());
         this.queries = offer.getQueries();
-        refresh();
+        this.dateBegin.setDayCellFactory(InputFieldValidator.getDateBeginCellFactory(this.dateEnd.getValue(), this.queries));
+        this.dateEnd.setDayCellFactory(InputFieldValidator.getDateBeginCellFactory(this.dateBegin.getValue(), this.queries));
+    }
+
+    @FXML
+    void selectDateBegin(ActionEvent event) {
+        this.dateEnd.setDayCellFactory(InputFieldValidator.getDateEndCellFactory(this.dateBegin.getValue(), this.queries));
+    }
+
+    @FXML
+    void selectDateEnd(ActionEvent event) {
+        this.dateBegin.setDayCellFactory(InputFieldValidator.getDateBeginCellFactory(this.dateEnd.getValue(), this.queries));
+
     }
 
     public void contactAuthor(ActionEvent actionEvent) {
