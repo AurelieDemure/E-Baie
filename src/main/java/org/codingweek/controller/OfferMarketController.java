@@ -4,11 +4,14 @@ import javafx.event.*;
 import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
+import javafx.util.StringConverter;
+import javafx.util.converter.LocalDateStringConverter;
 import org.codingweek.*;
 import org.codingweek.db.*;
 import org.codingweek.db.entity.*;
 import org.codingweek.model.*;
 import java.net.*;
+import java.time.LocalDate;
 import java.util.*;
 import java.time.format.*;
 
@@ -61,6 +64,11 @@ public class OfferMarketController extends Controller implements Observeur{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ApplicationContext.getInstance().setPageType(Page.ACCOUNT);
+        StringConverter<LocalDate> converter = new LocalDateStringConverter(formatter, formatter);
+        dateBegin.setEditable(false);
+        dateEnd.setEditable(false);
+        dateEnd.setConverter(converter);
+        dateBegin.setConverter(converter);
         this.offer = OfferMarketModel.getOffer(ApplicationContext.getInstance().getIndex());
         ApplicationContext.getInstance().setIndex(null);
         this.noteLabel.setText("5/5");
