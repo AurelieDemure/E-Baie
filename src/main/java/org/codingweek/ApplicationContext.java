@@ -19,6 +19,8 @@ public class ApplicationContext {
 
     private Page pageType;
 
+    private User contactUser;
+
     private ApplicationContext() {
 
     }
@@ -28,6 +30,14 @@ public class ApplicationContext {
             instance = new ApplicationContext();
         }
         return instance;
+    }
+
+    public void setContactUser(User contactUser){
+        this.contactUser = contactUser;
+    }
+
+    public User getContactUser(){
+        return this.contactUser;
     }
 
     public void setPageType(Page pageType){

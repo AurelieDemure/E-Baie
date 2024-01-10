@@ -10,6 +10,11 @@ import org.codingweek.*;
 import org.codingweek.db.*;
 import org.codingweek.db.entity.*;
 import org.codingweek.model.*;
+import org.codingweek.view.MarketView;
+import org.codingweek.view.MyOffersView;
+import org.codingweek.view.TchatView;
+
+import java.io.IOException;
 import java.net.*;
 import java.time.LocalDate;
 import java.util.*;
@@ -37,17 +42,31 @@ public class OfferMarketController extends Controller implements Observeur{
 
     @FXML
     private void showConfirmationAddDialog() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation");
-        alert.setHeaderText("Etes vous sur ?");
-        alert.setContentText("Voulez vous vraiment réserver cette offre ?");
 
-        alert.showAndWait().ifPresent(response -> {
-            if (response == javafx.scene.control.ButtonType.OK) {
-                DatabaseManager db = DatabaseHandler.getInstance().getDbManager();
-                //db.getEntity(User.class, this.offerAuthor.getEm)
-            }
-        });
+        if (this.dateBegin.getValue() != null && this.dateEnd.getValue() != null) {
+            Date dateBegin = Date.from(this.dateBegin.getValue().atStartOfDay().atZone(java.time.ZoneId.systemDefault()).toInstant());
+            Date dateEnd = Date.from(this.dateEnd.getValue().atStartOfDay().atZone(java.time.ZoneId.systemDefault()).toInstant());
+            Query query = new Query(this.offer, ApplicationContext.getInstance().getUser_authentified(), false, 0, dateBegin, dateEnd);
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation");
+            alert.setHeaderText("Etes vous sur ?");
+            alert.setContentText("Voulez vous vraiment réserver cette offre ?");
+
+            alert.showAndWait().ifPresent(response -> {
+                if (response == javafx.scene.control.ButtonType.OK) {
+                    DatabaseManager db = DatabaseHandler.getInstance().getDbManager();
+                    db.saveEntity(query);
+
+                    ApplicationContext.getInstance().setPageType(Page.MARKET);
+                    try {
+                        ApplicationSettings.getInstance().setCurrentScene(new MarketView().loadScene());
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
+        }
     }
 
     @Override
@@ -93,10 +112,16 @@ public class OfferMarketController extends Controller implements Observeur{
     @FXML
     void selectDateEnd(ActionEvent event) {
         this.dateBegin.setDayCellFactory(InputFieldValidator.getDateBeginCellFactory(this.dateEnd.getValue(), this.queries));
-
     }
 
     public void contactAuthor(ActionEvent actionEvent) {
+        ApplicationContext.getInstance().setContactUser(offer.getOwner());
+        ApplicationContext.getInstance().setPageType(Page.MESSAGE);
+        try {
+            ApplicationSettings.getInstance().setCurrentScene(new TchatView().loadScene());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void deleteOffer(Offer offer) {
