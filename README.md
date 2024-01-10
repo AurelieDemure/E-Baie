@@ -23,3 +23,9 @@ gradlew.bat test
 #Windows
 gradlew.bat shadowJar
 ```
+
+### Lancement jar
+```bash
+export JAVAFX_HOME=
+java --module-path ${JAVAFX_HOME}/lib --add-modules=javafx.base,javafx.controls,javafx.fxml -jar codingweek-1.0-all.jar
+```
