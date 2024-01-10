@@ -41,6 +41,11 @@ public class User {
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Offer> offers;
 
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Notification> notifications;
+
+
     public User(String email,String firstName, String lastName, String password, String phone, String address, String description, int balance, Date date_birth) {
         this.email = email;
         this.firstName = firstName;
