@@ -135,4 +135,12 @@ public class User {
     public void setDate_birth(Date date_birth) {
         this.date_birth = date_birth;
     }
+
+    public List<Notification> getNotifications() {
+        return this.notifications;
+    }
+
+    public void setNotifications(List<Notification> notifications) {
+        this.notifications = notifications;
+    }
 }

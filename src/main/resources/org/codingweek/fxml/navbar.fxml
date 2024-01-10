@@ -51,22 +51,22 @@
             </ImageView>
             <Button fx:id="accountButton" layoutX="1011.0" layoutY="50.0" mnemonicParsing="false" onAction="#clickAccount" prefHeight="50.0" prefWidth="128.0" styleClass="buttonNavbar" text="Compte">
                <font>
-                  <Font name="Arial Bold" size="20.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Button>
             <Button fx:id="messageButton" layoutX="811.0" layoutY="50.0" mnemonicParsing="false" onAction="#clickMessage" prefHeight="50.0" prefWidth="158.0" styleClass="buttonNavbar" text="Messagerie">
                <font>
-                  <Font name="Arial Bold" size="20.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Button>
             <Button fx:id="offerButton" layoutX="611.0" layoutY="50.0" mnemonicParsing="false" onAction="#clickOffer" prefHeight="50.0" prefWidth="158.0" styleClass="buttonNavbar" text="Mes offres">
                <font>
-                  <Font name="Arial Bold" size="20.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Button>
             <Button fx:id="marketButton" layoutX="411.0" layoutY="50.0" mnemonicParsing="false" onAction="#clickMarket" prefHeight="50.0" prefWidth="120.0" styleClass="buttonNavbar" text="Marché">
                <font>
-                  <Font name="Arial Bold" size="20.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Button>
             <ImageView fitHeight="34.0" fitWidth="38.0" layoutX="1122.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">

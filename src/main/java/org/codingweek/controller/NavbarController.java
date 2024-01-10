@@ -1,6 +1,7 @@
 package org.codingweek.controller;
 
 import org.codingweek.*;
+import org.codingweek.db.entity.Notification;
 import org.codingweek.model.*;
 import java.io.*;
 import java.net.*;
@@ -139,7 +140,22 @@ public class NavbarController extends Controller implements Observeur{
     }
 
     public void setNotifs(){
-        this.notifLabel.setText("");
+        List<Notification> notifications = ApplicationContext.getInstance().getUser_authentified().getNotifications();
+        int count = 0;
+        this.notifLabel.setVisible(true);
+        for(Notification notif : notifications) {
+            if (!notif.getSeen()) {
+                count++;
+            }
+        }
+        if (count > 99) {
+            this.notifLabel.setText("99+");
+        } else if (count == 0) {
+            this.notifLabel.setVisible(false);
+        } else {
+            this.notifLabel.setText("" + count);
+        }
+        
     }
 
 
