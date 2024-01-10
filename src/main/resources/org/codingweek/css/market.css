@@ -5,6 +5,11 @@
     -fx-background-insets: 20px;
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
+    -fx-cursor: hand;
+}
+
+.offer:hover{
+    -fx-background-color: -fx-dark-green;
 }
 
 .margin{
@@ -28,6 +33,9 @@ HBox, VBox, ImageView{
 
 .price{
     -fx-font-size: 20px;
+    -fx-padding: 10px;
+    -fx-border-insets: 10px;
+    -fx-background-insets: 10px;
     -fx-padding: 10px;
     -fx-border-insets: 10px;
     -fx-background-insets: 10px;

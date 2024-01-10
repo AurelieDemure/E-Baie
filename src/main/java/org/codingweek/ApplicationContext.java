@@ -15,6 +15,8 @@ public class ApplicationContext {
      */
     private User user_authentified;
 
+    private Integer index;
+
     private Page pageType;
 
     private Integer offerId;
@@ -52,5 +54,13 @@ public class ApplicationContext {
 
     public void setOfferId(Integer offerId) {
         this.offerId = offerId;
+    }
+
+    public Integer getIndex(){
+        return this.index;
+    }
+
+    public void setIndex(Integer index){
+        this.index = index;
     }
 }

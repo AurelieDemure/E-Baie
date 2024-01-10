@@ -9,6 +9,7 @@ import org.codingweek.ApplicationSettings;
 import org.codingweek.db.entity.User;
 import org.codingweek.model.AuthHandler;
 import org.codingweek.model.DatabaseHandler;
+import org.codingweek.model.InputFieldValidator;
 import org.codingweek.model.Page;
 import org.codingweek.view.MarketView;
 
@@ -51,11 +52,26 @@ public class ConnexionController extends Controller implements Observeur {
         ApplicationContext.getInstance().setPageType(Page.ACCOUNT);
         toggleErrorSigninLabel(false);
         toggleErrorSignupLabel(false);
+        passwordField.setOnKeyPressed(event -> {
+            if (event.getCode().toString().equals("ENTER")) {
+                signin(null);
+            }
+        });
+        passwordInscrField.setOnKeyPressed(event -> {
+            if (event.getCode().toString().equals("ENTER")) {
+                signup(null);
+            }
+        });
     }
 
     public void signin(ActionEvent actionEvent) {
         ApplicationContext.getInstance().setPageType(Page.MARKET);
         toggleErrorSignupLabel(false);
+        if (!InputFieldValidator.isValidEmail(emailField.getText())) {
+            errorSigninLabel.setText("Email invalide");
+            toggleErrorSigninLabel(true);
+            return;
+        }
         try {
             User user = AuthHandler.getUser(emailField.getText());
             if (user == null) {
@@ -85,6 +101,16 @@ public class ConnexionController extends Controller implements Observeur {
                 toggleErrorSignupLabel(true);
                 return;
             }
+            if (!InputFieldValidator.isValidEmail(emailInscrField.getText())) {
+                errorSignupLabel.setText("Email invalide");
+                toggleErrorSignupLabel(true);
+                return;
+            }
+            if (!InputFieldValidator.isValidPassword(passwordInscrField.getText())) {
+                errorSignupLabel.setText("Mot de passe trop court");
+                toggleErrorSignupLabel(true);
+                return;
+            }
             if (AuthHandler.getUser(emailInscrField.getText()) != null) {
                 errorSignupLabel.setText("Utilisateur déjà existant");
                 toggleErrorSignupLabel(true);
@@ -95,6 +121,7 @@ public class ConnexionController extends Controller implements Observeur {
             user.setLastName(lastnameField.getText());
             user.setEmail(emailInscrField.getText());
             user.setPassword(passwordInscrField.getText());
+            user.setBalance(200);
 
             DatabaseHandler.getInstance().getDbManager().saveEntity(user);
 
