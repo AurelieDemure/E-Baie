@@ -1,5 +1,7 @@
 package org.codingweek.db.entity;
 
+import org.codingweek.model.DatabaseHandler;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -86,5 +88,18 @@ public class Query {
 
     public void setNotation(int notation) {
         this.notation = notation;
+    }
+
+    /** Refuse the query and send a notification to the user */
+    public void refuseQuery() {
+        DatabaseHandler.getInstance().getDbManager().deleteEntity(this);
+        DatabaseHandler.getInstance().getDbManager().saveEntity(new Notification("Votre offre pour " + offer.getTitle() + " a été refusé", offer.getOwner(), false, "once", new Date()));
+    }
+
+    /** Accept the query and send a notification to the user */
+    public void acceptQuery() {
+        accepted = true;
+        DatabaseHandler.getInstance().getDbManager().saveEntity(this);
+        DatabaseHandler.getInstance().getDbManager().saveEntity(new Notification("Votre offre pour " + offer.getTitle() + " a été accepté", offer.getOwner(), false, "once", new Date()));
     }
 }
