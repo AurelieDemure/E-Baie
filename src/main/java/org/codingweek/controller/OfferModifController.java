@@ -38,6 +38,8 @@ public class OfferModifController extends Controller implements Observeur {
     public ImageView path_offer;
     public String path;
 
+    private Offer offer;
+
     @Override
     public void refresh() {
 
@@ -65,7 +67,7 @@ public class OfferModifController extends Controller implements Observeur {
 
     @Override
     public void update() {
-        Offer offer = OfferModifModel.getMyOfferToModify(ApplicationContext.getInstance().getOfferId());
+        offer = OfferModifModel.getMyOfferToModify(ApplicationContext.getInstance().getOfferId());
         toggleErrorFillAll(false);
         toggleErrorNotDouble(false);
         title.setText(offer.getTitle());
@@ -103,7 +105,6 @@ public class OfferModifController extends Controller implements Observeur {
                 toggleErrorNotDouble(true);
                 return;
             }
-            Offer offer = OfferModifModel.getMyOfferToModify(ApplicationContext.getInstance().getOfferId());
                 offer.setTitle(title.getText());
                 offer.setDescription(description.getText());
                 offer.setPrice(prices);
