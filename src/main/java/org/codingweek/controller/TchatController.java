@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -28,20 +29,13 @@ public class TchatController extends Controller implements Observeur {
     @FXML
     public VBox contact_list;
     @FXML
-    public VBox receiver_messages;
-    @FXML
-    public VBox sender_messages;
-    @FXML
-    public TextField message;
+    public VBox conversation;
 
     @FXML
-    public Label sender;
+    public TextArea message;
 
     @FXML
     public Label receiver;
-
-    @FXML
-    public Label destinataire;
 
     public List<User> contacts = new ArrayList<User>();
 
@@ -55,7 +49,7 @@ public class TchatController extends Controller implements Observeur {
         this.contacts.clear();
         this.chats.clear();
         this.current_user = ApplicationContext.getInstance().getUser_authentified().getEmail();
-        this.current_receiver = DatabaseHandler.getInstance().getDbManager().getEntity(User.class, "example@example.com").getEmail();
+        this.current_receiver = ChatModel.getContacts(current_user).get(0).getEmail();
 
         refresh();
     }
@@ -108,22 +102,30 @@ public class TchatController extends Controller implements Observeur {
         this.chats = ChatModel.getChats(current_user, current_receiver);
 
         this.contact_list.getChildren().clear();
-        this.receiver_messages.getChildren().clear();
-        this.sender_messages.getChildren().clear();
+        this.conversation.getChildren().clear();
         this.message.setText("");
+
+        if(current_receiver != null){
+            User user = DatabaseHandler.getInstance().getDbManager().getEntity(User.class, current_receiver);
+            this.receiver.setText(user.getFirstName() + " " + user.getLastName());
+        } else {
+            this.receiver.setText("No receiver selected");
+        }
 
         for(User user : this.contacts){
             Button button = makeContactButton(user);
+            button.getStyleClass().add("contact-button");
             this.contact_list.getChildren().add(button);
         }
 
         for(Chat chat: this.chats){
             Pane pane = makeMessagePane(chat);
             if(chat.getSender().getEmail().equals(current_user)){
-                this.receiver_messages.getChildren().add(new Pane());
+                pane.getStyleClass().add("message-sent");
             } else {
-                this.receiver_messages.getChildren().add(pane);
+                pane.getStyleClass().add("message-received");
             }
+            this.conversation.getChildren().add(pane);
         }
     }
 
