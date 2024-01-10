@@ -62,7 +62,7 @@ public class MarketModel {
                                 ( ((Offer)o1).getPrice() == ((Offer)o2).getPrice() ) ? 0: -1
                                 : 1;
                 case PRICEDESC -> comparator = (o1, o2) ->
-                        (((Offer)o1).getPrice() >= ((Offer)o2).getPrice()) ?
+                        (((Offer)o1).getPrice() <= ((Offer)o2).getPrice()) ?
                                 ( ((Offer)o1).getPrice() == ((Offer)o2).getPrice() ) ? 0: 1
                                 : -1;
 
