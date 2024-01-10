@@ -21,6 +21,8 @@ import org.codingweek.view.TchatView;
 
 public class MarketController extends Controller implements Observeur{
 
+    private int offerId = -1;
+
     private List<Offer> offers = new ArrayList<Offer>();
 
     @FXML
@@ -147,6 +149,7 @@ public class MarketController extends Controller implements Observeur{
 
     public void goToOffer(Offer offer){
         try {
+            ApplicationContext.getInstance().setIndex(this.offerId);
             ApplicationSettings.getInstance().setCurrentScene(new OfferMarketView().loadScene());
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -197,6 +200,7 @@ public class MarketController extends Controller implements Observeur{
         pane.setMinSize(100, 100);
         pane.getChildren().add(hbox);
         pane.setOnMouseClicked( (event -> {
+            this.offerId = offer.getId();
             goToOffer(offer);
         }));
         return pane;

@@ -1,23 +1,20 @@
 package org.codingweek.controller;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import org.codingweek.ApplicationContext;
-import org.codingweek.db.DatabaseManager;
-import org.codingweek.db.entity.Offer;
-import org.codingweek.db.entity.User;
-import org.codingweek.model.DatabaseHandler;
-import org.codingweek.model.Page;
-
-import java.net.URL;
-import java.util.ResourceBundle;
+import javafx.event.*;
+import javafx.fxml.*;
+import javafx.scene.control.*;
+import javafx.scene.image.*;
+import org.codingweek.*;
+import org.codingweek.db.*;
+import org.codingweek.db.entity.*;
+import org.codingweek.model.*;
+import java.net.*;
+import java.util.*;
 
 public class OfferMarketController extends Controller implements Observeur{
+
+    public Offer offer;
+
     public ImageView OfferImage;
     public Label OffreTitle;
     public Label OfferDescription;
@@ -60,8 +57,9 @@ public class OfferMarketController extends Controller implements Observeur{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ApplicationContext.getInstance().setPageType(Page.ACCOUNT);
+        this.offer = OfferMarketModel.getOffersAvailable(ApplicationContext.getInstance().getIndex());
         //OfferImage.setImage(Image i.png);
-        OffreTitle.setText("Titre");
+        OffreTitle.setText(this.offer.getTitle());
         OfferPrice.setText("Prix");
         OfferFrequency.setText("Frequency");
         OfferDescription.setText("Description");
@@ -76,5 +74,9 @@ public class OfferMarketController extends Controller implements Observeur{
     public void deleteOffer(Offer offer) {
         DatabaseManager db = DatabaseHandler.getInstance().getDbManager();
         db.deleteEntity(offer);
+    }
+
+    public void setOffer(Offer offer){
+        this.offer = offer;
     }
 }

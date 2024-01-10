@@ -15,6 +15,8 @@ public class ApplicationContext {
      */
     private User user_authentified;
 
+    private int index;
+
     private Page pageType;
 
     private ApplicationContext() {
@@ -42,5 +44,13 @@ public class ApplicationContext {
 
     public void setUser_authentified(User user_authentified) {
         this.user_authentified = user_authentified;
+    }
+
+    public int getIndex(){
+        return this.index;
+    }
+
+    public void setIndex(int index){
+        this.index = index;
     }
 }
