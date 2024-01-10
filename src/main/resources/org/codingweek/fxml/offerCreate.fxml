@@ -27,6 +27,7 @@
                     </font>
                 </Label>
                 <TextField fx:id="description" styleClass="text-fieldAccount" />
+                <Label fx:id="errorNotDouble" styleClass="large-label" textFill="RED" />
                 <Label text="Prix">
                     <font>
                         <Font size="19.0" />

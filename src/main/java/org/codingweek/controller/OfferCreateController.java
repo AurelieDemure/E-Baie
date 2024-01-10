@@ -33,7 +33,7 @@ public class OfferCreateController extends Controller implements Observeur {
 
     public TextField title;
     public TextField description;
-    public TextField owner;
+    public Label errorNotDouble;
     public TextField price;
     public ChoiceBox type_offer;
     public ChoiceBox frequency;
@@ -54,10 +54,16 @@ public class OfferCreateController extends Controller implements Observeur {
         errorFillAll.setManaged(visible);
     }
 
+    private void toggleErrorNotDouble(boolean visible) {
+        errorNotDouble.setVisible(visible);
+        errorNotDouble.setManaged(visible);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ApplicationContext.getInstance().setPageType(Page.OFFER);
         toggleErrorFillAll(false);
+        toggleErrorNotDouble(false);
         type_offer.getItems().addAll("Pret", "Service");
         frequency.getItems().addAll("Tout type de frequence", "Unique", "Journalier", "Hebdomadaire", "Mensuelle", "Annuelle");
     }
@@ -72,9 +78,15 @@ public class OfferCreateController extends Controller implements Observeur {
                 errorFillAll.setText("Veuillez remplir tous les champs");
                 toggleErrorFillAll(true);
         } else {
+            Double prices;
+            try {
+                prices = Double.parseDouble(price.getText());
+            } catch (Exception e) {
+                toggleErrorNotDouble(true);
+                return;
+            }
             DatabaseManager db = DatabaseHandler.getInstance().getDbManager();
             User user = ApplicationContext.getInstance().getUser_authentified();
-            Double prices = Double.parseDouble(price.getText());
             Offer offer = new Offer(title.getText(), description.getText(), user, prices, OfferType.fromString(type_offer.getValue().toString()), Frequency.fromString(frequency.getValue().toString()), localization.getText(), path);
             db.saveEntity(offer);
             assert db.getEntity(Offer.class, offer.getId()) != null;

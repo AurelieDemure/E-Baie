@@ -118,18 +118,24 @@ public class MyOffersController extends Controller implements Observeur {
 
         Button consulter = new Button("Consulter");
         consulter.getStyleClass().add("buttonConsult");
-        consulter.setOnAction(e -> showOfferModal(e));
+        consulter.setOnAction(e -> {
+            this.indexModify = offer.getId();
+            showOfferModal(e);
+        });
 
         Button modifier = new Button("Modifier");
         modifier.getStyleClass().add("buttonModOffer");
         modifier.setOnAction(e -> {
-            indexModify = offer.getId();
-            modifyOffer(e);
+            this.indexModify = offer.getId();
+            showOfferModif(e);
         });
 
         Button supprimer = new Button("Supprimer");
         supprimer.getStyleClass().add("buttonSupOffer");
-        supprimer.setOnAction(e -> showConfirmationAddDialog(e));
+        supprimer.setOnAction(e -> {
+            this.indexModify = offer.getId();
+            showConfirmationAddDialog(e);
+        });
 
         VBox vbox = new VBox();
         vbox.getChildren().addAll(titleLabel, priceLabel, offerTypeLabel, frequencyLabel, consulter, modifier, supprimer);
@@ -143,6 +149,15 @@ public class MyOffersController extends Controller implements Observeur {
         pane.setMinSize(100, 100);
         pane.getChildren().add(hbox);
         return pane;
+    }
+
+    private void showOfferModif(ActionEvent event) {
+        try {
+            ApplicationContext.getInstance().setOfferId(this.indexModify);
+            ApplicationSettings.getInstance().setCurrentScene(new OfferModifView().loadScene());
+        } catch (IOException e){
+            throw new RuntimeException(e);
+        }
     }
 
     private void showOfferModal(ActionEvent event) {
