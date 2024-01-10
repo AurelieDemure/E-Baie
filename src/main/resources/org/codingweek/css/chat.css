@@ -1,0 +1,59 @@
+HBox, VBox {
+    -fx-padding: 10 ;
+}
+
+.message-sent {
+    -fx-background-color: #DCF8C6;
+    -fx-text-fill: #000;
+    -fx-border-radius: 10px;
+}
+
+.message-received {
+    -fx-background-color: #E8E8E8;
+    -fx-text-fill: #000;
+    -fx-border-radius: 10px;
+}
+
+.contact-button {
+    -fx-background-color: #E8E8E8;
+    -fx-text-fill: #000;
+    -fx-border-radius: 10px;
+}
+
+.text-areaMessage {
+    -fx-background-color: #E8E8E8;
+    -fx-text-fill: #000;
+    -fx-border-radius: 10px;
+    -fx-font-size: 14px;
+    -fx-border-color: #CCC;
+    -fx-border-width: 1px;
+    -fx-font-family: "Arial";
+}
+
+.buttonSend {
+    -fx-background-color: -fx-logo;
+    transition-duration: 0.4s;
+    -fx-cursor: hand;
+}
+
+.contact-button-selected {
+    -fx-background-color: #DCF8C6;
+}
+
+.user-message {
+    -fx-background-color: #007AFF;
+    -fx-background-radius: 10px;
+    -fx-padding: 8px;
+    -fx-text-fill: white;
+    -fx-alignment: center-right;
+    -fx-margin: 5px;
+}
+
+.other-message {
+    -fx-background-color: #E5E5EA;
+    -fx-background-radius: 10px;
+    -fx-padding: 8px;
+    -fx-text-fill: black;
+    -fx-alignment: center-left;
+    -fx-margin: 5px;
+}
