@@ -55,4 +55,13 @@ public class ChatModel {
         return receivers_messages;
     }
 
+    public static List<Chat> getChats(String currentUser, String currentReceiver) {
+        List<Chat> chats = DatabaseHandler.getInstance().getDbManager().getAllEntity(Chat.class);
+
+        return chats.stream()
+                .filter(chat -> chat.getReceiver().getEmail().equals(currentReceiver) && chat.getSender().getEmail().equals(currentUser) ||
+                        chat.getReceiver().getEmail().equals(currentUser) && chat.getSender().getEmail().equals(currentReceiver))
+                .sorted(Comparator.comparing(Chat::getDate))
+                .collect(Collectors.toList());
+    }
 }

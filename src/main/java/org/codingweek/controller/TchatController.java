@@ -45,27 +45,20 @@ public class TchatController extends Controller implements Observeur {
 
     public List<User> contacts = new ArrayList<User>();
 
-    public List<String> senderMessages = new ArrayList<String>();
-    public List<String> receiverMessages = new ArrayList<String>();
+    public List<Chat> chats = new ArrayList<Chat>();
+
+    public String current_user;
+    public String current_receiver;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.receiver.setText("example@example.com");
-
         this.contacts.clear();
-        this.senderMessages.clear();
-        this.receiverMessages.clear();
-
-        String current_user = ApplicationContext.getInstance().getUser_authentified().getEmail();
-
-        this.contacts = ChatModel.getContacts(current_user);
-
-        this.senderMessages = ChatModel.getSenderMessages(current_user, this.receiver.getText());
-        this.receiverMessages = ChatModel.getReceiverMessages(current_user, this.receiver.getText());
+        this.chats.clear();
+        this.current_user = ApplicationContext.getInstance().getUser_authentified().getEmail();
+        this.current_receiver = DatabaseHandler.getInstance().getDbManager().getEntity(User.class, "example@example.com").getEmail();
 
         refresh();
     }
-
 
     public Date createDate(int hour, int minute) {
         Calendar calendar = Calendar.getInstance();
@@ -111,31 +104,29 @@ public class TchatController extends Controller implements Observeur {
 
     @Override
     public void refresh() {
+        this.contacts = ChatModel.getContacts(current_user);
+        this.chats = ChatModel.getChats(current_user, current_receiver);
+
         this.contact_list.getChildren().clear();
         this.receiver_messages.getChildren().clear();
         this.sender_messages.getChildren().clear();
+        this.message.setText("");
 
         for(User user : this.contacts){
             Button button = makeContactButton(user);
             this.contact_list.getChildren().add(button);
         }
 
-        for(String message : this.senderMessages){
-            Pane pane = makeSenderMessagePane(message);
-            this.sender_messages.getChildren().add(pane);
-        }
-
-        for(String message : this.receiverMessages){
-            Pane pane = makeReceiverMessagePane(message);
-            this.receiver_messages.getChildren().add(pane);
+        for(Chat chat: this.chats){
+            Pane pane = makeMessagePane(chat);
+            if(chat.getSender().getEmail().equals(current_user)){
+                this.receiver_messages.getChildren().add(new Pane());
+            } else {
+                this.receiver_messages.getChildren().add(pane);
+            }
         }
     }
 
-    /** ces containers sont des bouttons qui change la conversation affichée en fonction du contact cliqué
-     *
-     * @param user
-     * @return
-     */
     public Button makeContactButton(User user){
         Button button = new Button();
         button.getStyleClass().add("contact-button");
@@ -143,53 +134,35 @@ public class TchatController extends Controller implements Observeur {
         button.setPrefHeight(50);
         button.setText(user.getEmail());
         button.setOnAction((event) -> {
-            this.receiver.setText(user.getEmail());
-            this.senderMessages = ChatModel.getSenderMessages(ApplicationContext.getInstance().getUser_authentified().getEmail(), this.receiver.getText());
-            this.receiverMessages = ChatModel.getReceiverMessages(ApplicationContext.getInstance().getUser_authentified().getEmail(), this.receiver.getText());
+            this.current_receiver = user.getEmail();
             refresh();
         });
         return button;
     }
 
-    public Pane makeSenderMessagePane(String message){
-        Label messageLabel = new Label(message);
-        messageLabel.getStyleClass().add("message");
-        messageLabel.setMaxWidth(150);
+    public HBox makeMessagePane(Chat conversation){
+        Label messageLabel = new Label(conversation.getMessage());
+        Label dateLabel = new Label(conversation.getDate().toString());
 
-        Pane pane = new Pane();
-        pane.getChildren().add(messageLabel);
-        return pane;
-    }
-
-    public Pane makeReceiverMessagePane(String message){
-        Label messageLabel = new Label(message);
-        messageLabel.getStyleClass().add("message");
-        messageLabel.setMaxWidth(150);
-
-        Pane pane = new Pane();
-        pane.getChildren().add(messageLabel);
-        return pane;
+        HBox hbox = new HBox();
+        hbox.getChildren().add(messageLabel);
+        hbox.getChildren().add(dateLabel);
+        return hbox;
     }
 
     @Override
-    public void update() {
-
-    }
+    public void update() {}
 
     @FXML
     public void sendMessage(ActionEvent actionEvent) {
-        String current_user = ApplicationContext.getInstance().getUser_authentified().getEmail();
         String message = this.message.getText();
-        String receiver = this.receiver.getText();
 
         User sender = DatabaseHandler.getInstance().getDbManager().getEntity(User.class, current_user);
-        User receiver_user = DatabaseHandler.getInstance().getDbManager().getEntity(User.class, receiver);
+        User receiver_user = DatabaseHandler.getInstance().getDbManager().getEntity(User.class, current_receiver);
 
-        Chat chat = new Chat(sender, receiver_user, message, new Date());
+        Chat chat = new Chat(sender, receiver_user, message, createDate(Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE)));
         DatabaseHandler.getInstance().getDbManager().saveEntity(chat);
 
-        this.senderMessages = ChatModel.getSenderMessages(current_user, this.receiver.getText());
-        this.receiverMessages = ChatModel.getReceiverMessages(current_user, this.receiver.getText());
         refresh();
     }
 }
