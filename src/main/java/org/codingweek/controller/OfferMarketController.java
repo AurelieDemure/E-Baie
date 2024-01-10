@@ -14,7 +14,8 @@ import java.util.*;
 public class OfferMarketController extends Controller implements Observeur{
 
     public Offer offer;
-
+    @FXML
+    private Label noteLabel;
     public ImageView OfferImage;
     public Label OffreTitle;
     public Label OfferDescription;
@@ -26,8 +27,8 @@ public class OfferMarketController extends Controller implements Observeur{
     public DatePicker dateBegin;
     public DatePicker dateEnd;
     public Label offerAuthor;
-    @FXML
-    private Label welcomeText;
+    
+    private List<Query> queries;
 
     @FXML
     private void showConfirmationAddDialog() {
@@ -58,13 +59,17 @@ public class OfferMarketController extends Controller implements Observeur{
     public void initialize(URL location, ResourceBundle resources) {
         ApplicationContext.getInstance().setPageType(Page.ACCOUNT);
         this.offer = OfferMarketModel.getOffer(ApplicationContext.getInstance().getIndex());
+        this.noteLabel.setText("5/5");
         this.OfferImage.setImage(ImageHandler.getImage(this.offer.getPath())); 
         this.offerAuthor.setText("by : " + this.offer.getOwner().getFirstName() + " " + this.offer.getOwner().getLastName());
         this.OffreTitle.setText(this.offer.getTitle());
         this.OfferPrice.setText(this.offer.getPrice() + " florains");
+        this.OfferTypeServ.setText(this.offer.getType());
         this.OfferFrequency.setText(this.offer.getFrequency().getValue());
         this.OfferDescription.setText(this.offer.getDescription());
         this.OfferLoc.setText(this.offer.getLocalization());
+
+        this.queries = offer.getQueries();
         this.OfferBook.setText("date prise, date rendu, utilisateur");
     }
 

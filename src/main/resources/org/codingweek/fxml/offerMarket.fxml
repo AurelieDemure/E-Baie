@@ -15,7 +15,7 @@
         <ImageView fx:id="OfferImage" fitHeight="152.0" fitWidth="232.0" layoutX="138.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true" />
         <Label fx:id="OffreTitle" layoutX="415.0" layoutY="250.0" text="Titre">
             <font>
-                <Font size="16.0" />
+                <Font name="System Bold" size="25.0" />
             </font>
         </Label>
         <Label fx:id="OfferDescription" layoutX="138.0" layoutY="432.0" text="Description">
@@ -25,7 +25,7 @@
         </Label>
         <Label fx:id="OfferPrice" layoutX="415.0" layoutY="308.0" text="Prix">
             <font>
-                <Font size="16.0" />
+                <Font size="20.0" />
             </font>
         </Label>
         <Label fx:id="OfferTypeServ" layoutX="415.0" layoutY="362.0" text="Type de service">
@@ -41,11 +41,7 @@
         </Label>
         <ScrollPane hbarPolicy="NEVER" layoutX="781.0" layoutY="191.0" prefHeight="247.0" prefWidth="319.0">
          <content>
-                <VBox prefWidth="330.0">
-                    <children>
-                        <Label fx:id="OfferBook" text="Date de prise, date de rendu, utilisateur" />
-                    </children>
-                </VBox>
+                <VBox fx:id="vboxQueries" prefWidth="330.0" />
          </content>
         </ScrollPane>
       <Label fx:id="offerAuthor" layoutX="414.0" layoutY="193.0" text="Auteur">
@@ -66,7 +62,7 @@
       </Label>
       <DatePicker fx:id="dateEnd" layoutX="813.0" layoutY="669.0" styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
       <Button layoutX="577.0" layoutY="194.0" mnemonicParsing="false" onAction="#contactAuthor" scaleX="1.5" scaleY="1.5" styleClass="buttonConnect" stylesheets="@../css/main.css" text="Contacter l'auteur" />
-      <Label layoutX="47.0" layoutY="186.0" text="Note">
+      <Label fx:id="noteLabel" layoutX="47.0" layoutY="186.0" text="Note">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
