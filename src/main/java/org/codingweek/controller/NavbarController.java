@@ -12,6 +12,10 @@ import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
+import javafx.util.StringConverter;
+import javafx.util.converter.LocalDateStringConverter;
+import java.time.format.*;
+import java.time.*;
 import org.codingweek.view.*;
 
 
@@ -49,7 +53,12 @@ public class NavbarController extends Controller implements Observeur{
     private Pane notifFond;
 
     private List<Notification> notifications;
+
     private int count = 0;
+
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.FRENCH);
+
+    private final StringConverter<LocalDate> converter = new LocalDateStringConverter(formatter, formatter);
 
     @FXML
     void clickLogo(MouseEvent event) {
@@ -236,7 +245,8 @@ public class NavbarController extends Controller implements Observeur{
         Label typeLabel = new Label(notif.getType());
         typeLabel.getStyleClass().add("title");
 
-        Label dateLabel = new Label(notif.getDate().toString());
+        LocalDate date = notif.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        Label dateLabel = new Label(date.toString());
 
         VBox vbox = new VBox();
         vbox.getChildren().addAll(typeLabel, dateLabel);
@@ -252,7 +262,7 @@ public class NavbarController extends Controller implements Observeur{
     @FXML
     void clickNotif(MouseEvent event, Notification notif) {
         notif.setSeen(true);
-        DatabaseHandler.getInstance().getDbManager().saveEntity(notif);
+        DatabaseHandler.getInstance().getDbManager().updateEntity(notif);
         setNotifs();
     }
 }
