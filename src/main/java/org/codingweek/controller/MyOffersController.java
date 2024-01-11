@@ -1,28 +1,18 @@
 package org.codingweek.controller;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import org.codingweek.ApplicationContext;
-import org.codingweek.ApplicationSettings;
-import org.codingweek.db.DatabaseManager;
-import org.codingweek.db.entity.Offer;
-import org.codingweek.db.entity.Query;
-import org.codingweek.db.entity.User;
+import javafx.event.*;
+import javafx.fxml.*;
+import javafx.scene.control.*;
+import javafx.scene.image.*;
+import javafx.scene.layout.*;
+import org.codingweek.*;
+import org.codingweek.db.*;
+import org.codingweek.db.entity.*;
 import org.codingweek.model.*;
 import org.codingweek.view.*;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.io.*;
+import java.net.*;
+import java.util.*;
 
 public class MyOffersController extends Controller implements Observeur {
 
@@ -74,6 +64,16 @@ public class MyOffersController extends Controller implements Observeur {
         ApplicationContext.getInstance().setPageType(Page.OFFER);
         try {
             ApplicationSettings.getInstance().setCurrentScene(new OfferCreateView().loadScene());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    public void sendToMyQueries(ActionEvent event) {
+        ApplicationContext.getInstance().setPageType(Page.OFFER);
+        try {
+            ApplicationSettings.getInstance().setCurrentScene(new MyQueriesView().loadScene());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

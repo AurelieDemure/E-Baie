@@ -5,12 +5,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codingweek.controller.MyOffersController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codingweek.controller.MyQueriesController">
     <children>
-      <Label layoutX="81.0" layoutY="197.0" text="Mes offres" underline="true">
+      <Label layoutX="81.0" layoutY="197.0" text="Mes demandes" underline="true">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -24,12 +25,13 @@
                 </AnchorPane>
             </content>
         </ScrollPane>
-      <Button layoutX="933.0" layoutY="202.0" mnemonicParsing="false" onAction="#sendToCreateOffer" scaleX="1.5" scaleY="1.5" styleClass="buttonSave" stylesheets="@../css/main.css" text="Créer une offre" />
-      <Button layoutX="271.0" layoutY="202.0" mnemonicParsing="false" onAction="#sendToMyQueries" scaleX="1.5" scaleY="1.5" styleClass="buttonSave" stylesheets="@../css/main.css" text="Mes demandes" />
-    <fx:include fx:id="navbar" source="navbar.fxml" />
+      <Button layoutX="315.0" layoutY="202.0" mnemonicParsing="false" onAction="#sendToMyOffers" scaleX="1.5" scaleY="1.5" styleClass="buttonSave" stylesheets="@../css/main.css" text="Mes Offres" />
+      <Pane layoutX="1.0" prefHeight="150.0" prefWidth="1200.0" style="-fx-background-color: -fx-dark-green;" />
+        <fx:include fx:id="navbar" source="navbar.fxml" />
     </children>
     <stylesheets>
         <URL value="@../css/main.css" />
-        <URL value="@../css/offer.css" />
+        <URL value="@../css/myqueries.css" />
+      <URL value="@../css/market.css" />
     </stylesheets>
 </AnchorPane>

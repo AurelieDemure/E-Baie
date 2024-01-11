@@ -16,7 +16,7 @@ public class EntryPoint extends Application {
 
     private final static boolean isDev = true;
 
-    private final static String emailDev = "dev@mail.com";
+    private final static String emailDev = "a@a.aa";
 
     @Override
     public void start(Stage stage) throws IOException {
