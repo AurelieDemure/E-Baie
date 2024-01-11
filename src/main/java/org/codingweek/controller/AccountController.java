@@ -39,42 +39,8 @@ public class AccountController extends Controller implements Observeur{
 
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.FRENCH);
     public Label errordisplay;
-
-    private void toggleErro(boolean visible) {
-        errordisplay.setVisible(visible);
-        errordisplay.setManaged(visible);
-    }
-
-
-    @FXML
-    private void showConfirmationAddDialog() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation");
-        alert.setHeaderText("Etes vous sur ?");
-        alert.setContentText("Voulez vous vraiment supprimer votre compte ?");
-
-        alert.showAndWait().ifPresent(response -> {
-            if (response == javafx.scene.control.ButtonType.OK) {
-                ApplicationContext.getInstance().setPageType(Page.NONE);
-                try {
-                    User user = ApplicationContext.getInstance().getUser_authentified();
-                    DatabaseHandler.getInstance().getDbManager().deleteEntity(user);
-                    ApplicationSettings.getInstance().setCurrentScene(new ConnexionView().loadScene());
-                    ApplicationContext.getInstance().setUser_authentified(null);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
-    }
-
     @Override
     public void refresh() {
-
-    }
-
-    @Override
-    public void update() {
         User user = ApplicationContext.getInstance().getUser_authentified();
         firstnameField.setText(user.getFirstName());
         lastnameField.setText(user.getLastName());
@@ -104,7 +70,15 @@ public class AccountController extends Controller implements Observeur{
     }
 
     @Override
+    public void update() {
+        /*if (ApplicationContext.getInstance().getUser_authentified() != null)
+            refresh();*/
+    }
+
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //DatabaseHandler.getInstance().getDbManager().addObserveur(this);
+
         ApplicationContext.getInstance().setPageType(Page.ACCOUNT);
         StringConverter<LocalDate> converter = new LocalDateStringConverter(formatter, formatter);
         birthDateField.setEditable(false);
@@ -112,7 +86,8 @@ public class AccountController extends Controller implements Observeur{
         emailField.setEditable(false);
         toggleErro(false);
         birthDateField.setDayCellFactory(InputFieldValidator.getPastDayCellFactory());
-        update();
+
+        refresh();
     }
 
     public void disconnect(ActionEvent actionEvent) {
@@ -174,5 +149,33 @@ public class AccountController extends Controller implements Observeur{
         DatabaseHandler.getInstance().getDbManager().updateEntity(user);
         update();
         ModalHelper.showInformationModal("Sauvegarde", "Vos modifications ont bien été sauvegardées");
+    }
+
+    private void toggleErro(boolean visible) {
+        errordisplay.setVisible(visible);
+        errordisplay.setManaged(visible);
+    }
+
+
+    @FXML
+    private void showConfirmationAddDialog() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Etes vous sur ?");
+        alert.setContentText("Voulez vous vraiment supprimer votre compte ?");
+
+        alert.showAndWait().ifPresent(response -> {
+            if (response == javafx.scene.control.ButtonType.OK) {
+                ApplicationContext.getInstance().setPageType(Page.NONE);
+                try {
+                    User user = ApplicationContext.getInstance().getUser_authentified();
+                    DatabaseHandler.getInstance().getDbManager().deleteEntity(user);
+                    ApplicationSettings.getInstance().setCurrentScene(new ConnexionView().loadScene());
+                    ApplicationContext.getInstance().setUser_authentified(null);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
     }
 }

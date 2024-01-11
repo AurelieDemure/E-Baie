@@ -1,6 +1,7 @@
 package org.codingweek.db;
 
 import org.codingweek.db.entity.*;
+import org.codingweek.model.Observable;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -14,7 +15,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.logging.Level;
 
-public class DatabaseManager {
+public class DatabaseManager extends Observable {
     private SessionFactory factory;
 
     private String databaseName = "database.sqlite";
@@ -83,6 +84,7 @@ public class DatabaseManager {
             tx = session.beginTransaction();
             session.save(entity);
             tx.commit();
+            notifyObserveurs();
         } catch (Exception e) {
             if (tx != null) tx.rollback();
             e.printStackTrace();
@@ -98,6 +100,7 @@ public class DatabaseManager {
             tx = session.beginTransaction();
             session.update(entity);
             tx.commit();
+            notifyObserveurs();
         } catch (Exception e) {
             if (tx != null) tx.rollback();
             e.printStackTrace();
@@ -113,6 +116,7 @@ public class DatabaseManager {
             tx = session.beginTransaction();
             session.delete(entity);
             tx.commit();
+            notifyObserveurs();
         } catch (Exception e) {
             if (tx != null) tx.rollback();
             e.printStackTrace();
@@ -188,6 +192,7 @@ public class DatabaseManager {
             session.createQuery("delete from Notification").executeUpdate();
             session.createQuery("delete from Query").executeUpdate();
             tx.commit();
+            notifyObserveurs();
         } catch (Exception e) {
             if (tx != null) tx.rollback();
             e.printStackTrace();
@@ -207,6 +212,7 @@ public class DatabaseManager {
             session.createQuery("from Notification").list().forEach(System.out::println);
             session.createQuery("from Query").list().forEach(System.out::println);
             tx.commit();
+            notifyObserveurs();
         } catch (Exception e) {
             if (tx != null) tx.rollback();
             e.printStackTrace();
