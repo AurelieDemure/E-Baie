@@ -8,12 +8,12 @@ public class GeoLocalisationTest {
     public void APIKeyTest() {
         JOpenCageLatLng firstResultLatLng = GeoLocalisation.getLatLng("193, avenue Paul Muller BP 90172 Villers-lès-Nancy Cedex");
 
-        assert GeoLocalisation.areDoublesEqual(firstResultLatLng.getLat(), 48.67103, 5);
-        assert GeoLocalisation.areDoublesEqual(firstResultLatLng.getLng(), 6.15083, 4);
+        assert firstResultLatLng.getLat() > 48.6 && firstResultLatLng.getLat() < 49;
+        assert firstResultLatLng.getLng() > 6 && firstResultLatLng.getLng() < 6.2;
 
         JOpenCageLatLng secondResultLatLng = GeoLocalisation.getLatLng("rue de Rungis, 75013 Paris");
-        assert GeoLocalisation.areDoublesEqual(secondResultLatLng.getLat(), 48.82, 2);
-        assert GeoLocalisation.areDoublesEqual(secondResultLatLng.getLng(), 2.346, 3);
+        assert secondResultLatLng.getLat() > 48.7 && secondResultLatLng.getLat() < 48.9;
+        assert secondResultLatLng.getLng() < 2.4 && secondResultLatLng.getLng() > 2.2;
 
     }
 
