@@ -6,13 +6,13 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codingweek.controller.TchatController">
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codingweek.controller.TchatController">
     <children>
         <fx:include fx:id="navbar" source="navbar.fxml" />
     </children>
@@ -24,19 +24,31 @@
     <ScrollPane layoutX="-1.0" layoutY="211.0" prefHeight="590.0" prefWidth="258.0">
         <VBox fx:id="contact_list" alignment="TOP_CENTER" />
     </ScrollPane>
-    <ScrollPane fx:id="scrollPaneConversation" layoutX="258.0" layoutY="151.0" prefHeight="443.0" prefWidth="686.0">
-        <GridPane fx:id="conversation" alignment="TOP_CENTER" vgap="10.0">
+    <ScrollPane fx:id="scrollPaneConversation" fitToWidth="true" hbarPolicy="NEVER" hmax="0.0" layoutX="258.0" layoutY="151.0" maxWidth="686" minViewportWidth="686.0" minWidth="-Infinity" prefHeight="443.0" prefViewportWidth="686.0" prefWidth="686.0">
+        <GridPane fx:id="conversation" alignment="TOP_CENTER" maxWidth="686" minWidth="686" prefWidth="686" vgap="10.0">
             <columnConstraints>
                 <ColumnConstraints halignment="LEFT" />
                 <ColumnConstraints halignment="RIGHT" />
             </columnConstraints>
         </GridPane>
     </ScrollPane>
-    <TextArea fx:id="message" layoutX="428.0" layoutY="630.0" prefHeight="26.0" prefWidth="350.0" styleClass="text-areaMessage" promptText="Ecrivez un message..." />
-    <Button fx:id="send" layoutX="850.0" layoutY="650.0" mnemonicParsing="false" onAction="#sendMessage" text="Envoyer" styleClass="buttonSend">
+    <TextArea fx:id="message" layoutX="428.0" layoutY="630.0" prefHeight="26.0" prefWidth="350.0" promptText="Ecrivez un message..." styleClass="text-areaMessage" />
+    <Button fx:id="send" layoutX="841.0" layoutY="640.0" mnemonicParsing="false" onAction="#sendMessage" scaleX="1.5" scaleY="1.5" styleClass="buttonSend" text="Envoyer">
     </Button>
     <Label layoutX="31.0" layoutY="173.0" styleClass="large-label" text="Contacts" />
     <Pane layoutX="946.0" layoutY="149.0" prefHeight="650.0" prefWidth="252.0">
-        <Label fx:id="receiver" layoutX="87.0" layoutY="27.0" prefHeight="23.0" prefWidth="100.0" styleClass="large-label" text="You" />
+        <Label fx:id="receiver" layoutX="76.0" layoutY="29.0" prefHeight="23.0" prefWidth="100.0" styleClass="large-label" text="Vous" />
+      <Label fx:id="email" layoutX="45.0" layoutY="77.0" styleClass="italic-label" stylesheets="@../css/chat.css" text="Email">
+         <font>
+            <Font name="System Italic" size="14.0" />
+         </font></Label>
+      <Label fx:id="tel" layoutX="45.0" layoutY="115.0" styleClass="italic-label" stylesheets="@../css/chat.css" text="Tel">
+         <font>
+            <Font name="System Italic" size="14.0" />
+         </font></Label>
+      <Label fx:id="address" layoutX="45.0" layoutY="154.0" styleClass="italic-label" stylesheets="@../css/chat.css" text="Adresse">
+        <font>
+            <Font name="System Italic" size="14.0" />
+        </font></Label>
     </Pane>
 </AnchorPane>
