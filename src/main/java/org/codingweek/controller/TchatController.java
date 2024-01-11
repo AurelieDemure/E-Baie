@@ -7,6 +7,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import org.codingweek.ApplicationContext;
 import org.codingweek.db.entity.Chat;
+import org.codingweek.db.entity.Notification;
 import org.codingweek.db.entity.User;
 import org.codingweek.model.ChatModel;
 import org.codingweek.model.DatabaseHandler;
@@ -181,6 +182,9 @@ public class TchatController extends Controller implements Observeur {
 
             Chat chat = new Chat(sender, receiver_user, message, createDate(Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE)));
             DatabaseHandler.getInstance().getDbManager().saveEntity(chat);
+
+            Notification notification = new Notification("Message de " + sender.getFirstName() + " " + sender.getLastName(),receiver_user, false, "unique", new Date());
+            DatabaseHandler.getInstance().getDbManager().saveEntity(notification);
 
             refresh();
         }
