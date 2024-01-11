@@ -25,10 +25,11 @@
             </content>
         </ScrollPane>
       <Button layoutX="933.0" layoutY="202.0" mnemonicParsing="false" onAction="#sendToCreateOffer" scaleX="1.5" scaleY="1.5" styleClass="buttonSave" stylesheets="@../css/main.css" text="Créer une offre" />
-        <fx:include fx:id="navbar" source="navbar.fxml" />
+      <Button layoutX="271.0" layoutY="202.0" mnemonicParsing="false" onAction="#sendToMyQueries" scaleX="1.5" scaleY="1.5" styleClass="buttonSave" stylesheets="@../css/main.css" text="Mes demandes" />
+    <fx:include fx:id="navbar" source="navbar.fxml" />
     </children>
     <stylesheets>
         <URL value="@../css/main.css" />
-        <URL value="@../css/market.css" />
+        <URL value="@../css/offer.css" />
     </stylesheets>
 </AnchorPane>

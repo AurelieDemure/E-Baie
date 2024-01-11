@@ -62,12 +62,12 @@ public class MarketModel {
            offers = offers.stream()
                     .filter(offer -> switch (distance) {
                                 case ALLDISTANCE -> true;
-                                case LESS5KM -> GeoLocalisation.distance(offer.getLat(), offer.getLon(), user.getLat(), user.getLong()) < 5;
-                                case LESS20KM -> GeoLocalisation.distance(offer.getLat(), offer.getLon(), user.getLat(), user.getLong()) < 20;
-                                case LESS30KM -> GeoLocalisation.distance(offer.getLat(), offer.getLon(), user.getLat(), user.getLong()) < 30;
-                                case LESS60KM -> GeoLocalisation.distance(offer.getLat(), offer.getLon(), user.getLat(), user.getLong()) < 60;
-                                case LESS100KM -> GeoLocalisation.distance(offer.getLat(), offer.getLon(), user.getLat(), user.getLong()) < 100;
-                                case LESS200KM -> GeoLocalisation.distance(offer.getLat(), offer.getLon(), user.getLat(), user.getLong()) < 200;
+                                case LESS5KM -> GeoLocalisation.distance(offer.getLat(), offer.getLon(), user.getLat(), user.getLon()) < 5;
+                                case LESS20KM -> GeoLocalisation.distance(offer.getLat(), offer.getLon(), user.getLat(), user.getLon()) < 20;
+                                case LESS30KM -> GeoLocalisation.distance(offer.getLat(), offer.getLon(), user.getLat(), user.getLon()) < 30;
+                                case LESS60KM -> GeoLocalisation.distance(offer.getLat(), offer.getLon(), user.getLat(), user.getLon()) < 60;
+                                case LESS100KM -> GeoLocalisation.distance(offer.getLat(), offer.getLon(), user.getLat(), user.getLon()) < 100;
+                                case LESS200KM -> GeoLocalisation.distance(offer.getLat(), offer.getLon(), user.getLat(), user.getLon()) < 200;
                             }
                     ).collect(Collectors.toList());
         }

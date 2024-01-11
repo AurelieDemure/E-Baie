@@ -38,14 +38,18 @@ public class Offer {
     @Column(name = "localization")
     private String localization;
 
-    private Double lat, lon;
+
+    @Column(name = "lat")
+    private Double lat;
+
+    @Column(name = "lon")
+    private Double lon;
 
     @Column(name = "path_offer")
     private String path;
 
     @OneToMany(mappedBy = "offer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Query> queries;
-
 
 
     public Offer(String title, String description, User owner, double price, OfferType type, Frequency frequency, String localization, String path) {
@@ -56,6 +60,12 @@ public class Offer {
         this.type = type.getValue();
         this.frequency = frequency.getValue();
         this.localization = localization;
+        JOpenCageLatLng res = GeoLocalisation.getLatLng(localization);
+        if (res != null) {
+            lat = res.getLat();
+            lon = res.getLng();
+        }
+
         this.path = path;
     }
 
@@ -90,28 +100,10 @@ public class Offer {
     }
 
     public Double getLat() {
-        if (lat == null) {
-            if (localization != null) {
-                JOpenCageLatLng res = GeoLocalisation.getLatLng(localization);
-                if (res != null) {
-                    lat = res.getLat();
-                    lon = res.getLng();
-                }
-            }
-        }
         return lat;
     }
 
     public Double getLon() {
-        if (lon == null) {
-            if (localization != null) {
-                JOpenCageLatLng res = GeoLocalisation.getLatLng(localization);
-                if (res != null) {
-                    lat = res.getLat();
-                    lon = res.getLng();
-                }
-            }
-        }
         return lon;
     }
 
@@ -149,6 +141,12 @@ public class Offer {
 
     public void setLocalization(String localization) {
         this.localization = localization;
+        JOpenCageLatLng res = GeoLocalisation.getLatLng(localization);
+        if (res != null) {
+            lat = res.getLat();
+            lon = res.getLng();
+        }
+
     }
 
     public String getPath() {
