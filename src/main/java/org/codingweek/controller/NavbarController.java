@@ -2,6 +2,7 @@ package org.codingweek.controller;
 
 import org.codingweek.*;
 import org.codingweek.db.entity.Notification;
+import org.codingweek.db.entity.Offer;
 import org.codingweek.model.*;
 import java.io.*;
 import java.net.*;
@@ -14,6 +15,9 @@ import javafx.scene.layout.*;
 import org.codingweek.view.*;
 
 public class NavbarController extends Controller implements Observeur{
+
+    @FXML
+    private VBox notifList;
 
     @FXML
     private Button accountButton;
@@ -32,6 +36,12 @@ public class NavbarController extends Controller implements Observeur{
 
     @FXML
     private Label notifLabel;
+
+    @FXML
+    private ScrollPane notifBox;
+
+    private List<Notification> notifications = ApplicationContext.getInstance().getUser_authentified().getNotifications();
+    private int count = 0;
 
     @FXML
     void clickLogo(MouseEvent event) {
@@ -91,6 +101,7 @@ public class NavbarController extends Controller implements Observeur{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        this.notifBox.setVisible(false);
         setNotifs();
         switch(ApplicationContext.getInstance().getPageType()){
             case ACCOUNT:
@@ -140,24 +151,59 @@ public class NavbarController extends Controller implements Observeur{
     }
 
     public void setNotifs(){
-        List<Notification> notifications = ApplicationContext.getInstance().getUser_authentified().getNotifications();
-        int count = 0;
-        this.notifLabel.setVisible(true);
-        for(Notification notif : notifications) {
+        this.count = 0;        
+        for(Notification notif : this.notifications) {
             if (!notif.getSeen()) {
-                count++;
+                this.count++;
             }
         }
-        if (count > 99) {
+        if (this.count > 99) {
             this.notifLabel.setText("99+");
-        } else if (count == 0) {
+        } else if (this.count == 0) {
             this.notifLabel.setVisible(false);
         } else {
-            this.notifLabel.setText("" + count);
+            this.notifLabel.setText("" + this.count);
         }
-        
+
+        this.notifList.getChildren().clear();
+        if (count == 0) {
+            Label noNotif = new Label("Pas de notification");
+            noNotif.getStyleClass().add("noNotif");
+            this.notifList.getChildren().add(noNotif);
+        }
+        else {
+            for (Notification notif : this.notifications) {
+                if (!notif.getSeen()) {
+                    this.notifList.getChildren().add(makeNotif(notif));
+                }
+            }
+            
+        }
+    }
+    
+    @FXML
+    void notifChange(MouseEvent event) {
+        if (this.notifBox.isVisible()) {
+            this.notifBox.setVisible(false);
+        } else {
+            this.notifBox.setVisible(true);
+            setNotifs();
+        }
     }
 
+    public Pane makeNotif(Notification notif){
 
+        Label typeLabel = new Label(notif.getType());
+
+        Label dateLabel = new Label(notif.getDate().toString());
+
+        VBox vbox = new VBox();
+        vbox.getChildren().addAll(typeLabel, dateLabel);
+
+        Pane pane = new Pane();
+        pane.getStyleClass().add("notif");
+        pane.getChildren().add(vbox);
+        pane.setOnMouseClicked( (event -> setNotifs()));
+        return pane;
+    }
 }
-

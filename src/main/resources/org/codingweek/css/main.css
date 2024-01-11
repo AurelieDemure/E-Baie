@@ -24,7 +24,9 @@
     -fx-light-green-opa: rgba(161, 232, 175, 0.27);
 }
 
-
+.invisible {
+    -fx-background-color: rgba(0, 0, 0, 0);
+}
 .navbar{
     -fx-background-color: -fx-dark-green;
 }
@@ -82,4 +84,8 @@
 
 .large-label {
     -fx-font-size: 20px;
+}
+
+.notifLogo:hover {
+    -fx-cursor: hand;
 }

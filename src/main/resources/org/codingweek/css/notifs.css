@@ -1,0 +1,31 @@
+.fond {
+    -fx-background-color: -fx-dark-green;
+}
+
+.pane {
+    -fx-cursor: hand;
+}
+
+.notifsBox {
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-background-color: -fx-grey;
+}
+
+.noNotif {
+    -fx-text-fill: -fx-white;
+}
+
+.notif {
+    -fx-background-color: -fx-light-green;
+    -fx-padding: 10px;
+    -fx-border-insets: 10px;
+    -fx-background-insets: 10px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-cursor: hand;
+}
+
+.notif:hover{
+    -fx-background-color: -fx-dark-green;
+}
