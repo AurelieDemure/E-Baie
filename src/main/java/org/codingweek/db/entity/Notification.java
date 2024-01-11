@@ -72,6 +72,10 @@ public class Notification {
         this.seen = seen;
     }
 
+    public boolean getSeen() {
+        return this.seen;
+    }
+
     public String getFrequency() {
         return frequency;
     }

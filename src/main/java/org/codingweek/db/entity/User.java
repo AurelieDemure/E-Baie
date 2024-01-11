@@ -43,6 +43,10 @@ public class User {
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Offer> offers;
 
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Notification> notifications;
+
     private Double lat,longi;
 
     public User(String email,String firstName, String lastName, String password, String phone, String address, String description, int balance, Date date_birth) {
@@ -176,5 +180,13 @@ public class User {
 
     public void setDate_birth(Date date_birth) {
         this.date_birth = date_birth;
+    }
+
+    public List<Notification> getNotifications() {
+        return this.notifications;
+    }
+
+    public void setNotifications(List<Notification> notifications) {
+        this.notifications = notifications;
     }
 }

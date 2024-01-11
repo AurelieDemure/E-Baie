@@ -12,7 +12,6 @@
 <?import javafx.scene.control.TextArea?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codingweek.controller.AccountController">
     <children>
-        <fx:include fx:id="navbar" source="navbar.fxml" />
       <VBox layoutX="63.0" layoutY="269.0" prefHeight="341.0" prefWidth="465.0" spacing="15.0">
          <children>
             <Label text="Prénom">
@@ -88,5 +87,6 @@
          </font>
       </Label>
        <Button layoutX="1004.0" layoutY="208.0" mnemonicParsing="false" onAction="#disconnect" scaleX="1.5" scaleY="1.5" styleClass="buttonDisconnect" text="Se déconnecter" />
+      <fx:include fx:id="navbar" source="navbar.fxml" />
     </children>
 </AnchorPane>

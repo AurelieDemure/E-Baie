@@ -1,0 +1,39 @@
+.fond {
+    -fx-background-color: #0000002a;
+}
+
+.notifsBox {
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-background-color: -fx-grey;
+}
+
+.noNotif {
+    -fx-text-fill: -fx-white;
+}
+
+VBox{
+    -fx-alignment: center ;
+    -fx-padding: 10 ;
+}
+
+.notif {
+    -fx-background-color: -fx-light-green;
+    -fx-padding: 3px;
+    -fx-border-insets: 3px;
+    -fx-background-insets: 3px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.notif:hover{
+    -fx-background-color: -fx-dark-green;
+}
+
+.title{
+    -fx-font-size: 20px;
+    -fx-padding: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+}

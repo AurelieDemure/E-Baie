@@ -1,8 +1,8 @@
 package org.codingweek.controller;
 
-import javafx.scene.image.Image;
+import javafx.scene.image.*;
 import org.codingweek.*;
-import org.codingweek.db.entity.User;
+import org.codingweek.db.entity.*;
 import org.codingweek.model.*;
 import java.io.*;
 import java.net.*;
@@ -13,13 +13,15 @@ import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import org.codingweek.view.*;
-import javafx.scene.image.ImageView;
 
 
 
 //import javax.swing.text.html.ImageView;
 
 public class NavbarController extends Controller implements Observeur{
+
+    @FXML
+    private VBox notifList;
 
     public Button deconnexion;
     @FXML
@@ -36,6 +38,18 @@ public class NavbarController extends Controller implements Observeur{
 
     @FXML
     private Button offerButton;
+
+    @FXML
+    private Label notifLabel;
+
+    @FXML
+    private ScrollPane notifBox;
+
+    @FXML
+    private Pane notifFond;
+
+    private List<Notification> notifications;
+    private int count = 0;
 
     @FXML
     void clickLogo(MouseEvent event) {
@@ -95,6 +109,8 @@ public class NavbarController extends Controller implements Observeur{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        notifExited();
+        setNotifs();
         ImageView deco = new ImageView(new Image(
                 Objects.requireNonNull(ApplicationContext.class
                         .getResourceAsStream("/org/codingweek/img/doorDisconnect.png"))
@@ -127,6 +143,7 @@ public class NavbarController extends Controller implements Observeur{
 
     @Override
     public void refresh() {
+        setNotifs();
         this.accountButton.setStyle("-fx-text-fill: -fx-dark");
         this.marketButton.setStyle("-fx-text-fill: -fx-dark");
         this.messageButton.setStyle("-fx-text-fill: -fx-dark");
@@ -157,5 +174,85 @@ public class NavbarController extends Controller implements Observeur{
             throw new RuntimeException(e);
         }
     }
-}
+    
+    public void setNotifs(){        
+        this.notifications = ApplicationContext.getInstance().getUser_authentified().getNotifications();
+        if (this.notifications == null) {
+            this.notifications = new ArrayList<Notification>();
+        }
+        this.count = 0;        
+        for(Notification notif : this.notifications) {
+            if (!notif.getSeen()) {
+                this.count++;
+            }
+        }
+        if (this.count > 99) {
+            this.notifLabel.setText("99+");
+        } else if (this.count == 0) {
+            this.notifLabel.setVisible(false);
+        } else {
+            this.notifLabel.setText("" + this.count);
+        }
 
+        this.notifList.getChildren().clear();
+        if (count == 0) {
+            Label noNotif = new Label("Pas de notification");
+            noNotif.getStyleClass().add("noNotif");
+            this.notifList.getChildren().add(noNotif);
+        }
+        else {
+            for (Notification notif : this.notifications) {
+                if (!notif.getSeen()) {
+                    this.notifList.getChildren().add(makeNotif(notif));
+                }
+            }
+            
+        }
+    }
+
+    @FXML
+    void clickNotifEnter(MouseEvent event) {
+        notifEnter();
+    }
+
+    @FXML
+    void clickNotifExited(MouseEvent event) {
+        notifExited();
+    }
+
+    void notifEnter() {
+        this.notifBox.setVisible(true);
+        this.notifFond.setVisible(true);
+        setNotifs();
+    }
+
+    void notifExited() {
+        this.notifBox.setVisible(false);
+        this.notifFond.setVisible(false);
+    }
+
+    public Pane makeNotif(Notification notif){
+
+        Label typeLabel = new Label(notif.getType());
+        typeLabel.getStyleClass().add("title");
+
+        Label dateLabel = new Label(notif.getDate().toString());
+
+        VBox vbox = new VBox();
+        vbox.getChildren().addAll(typeLabel, dateLabel);
+
+        Pane pane = new Pane();
+        pane.setMinSize(150, 60);
+        pane.getStyleClass().add("notif");
+        pane.getChildren().add(vbox);
+        pane.setOnMouseClicked(event -> clickNotif(event, notif));
+        return pane;
+    }
+
+    @FXML
+    void clickNotif(MouseEvent event, Notification notif) {
+        notif.setSeen(true);
+        DatabaseHandler.getInstance().getDbManager().saveEntity(notif);
+        setNotifs();
+    }
+}
