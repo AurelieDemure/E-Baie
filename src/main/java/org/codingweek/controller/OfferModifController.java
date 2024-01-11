@@ -12,10 +12,7 @@ import org.codingweek.ApplicationSettings;
 import org.codingweek.db.DatabaseManager;
 import org.codingweek.db.entity.Offer;
 import org.codingweek.db.entity.User;
-import org.codingweek.model.DatabaseHandler;
-import org.codingweek.model.ImageHandler;
-import org.codingweek.model.OfferModifModel;
-import org.codingweek.model.Page;
+import org.codingweek.model.*;
 import org.codingweek.model.filter.Frequency;
 import org.codingweek.model.filter.OfferType;
 import org.codingweek.view.ConnexionView;
@@ -97,6 +94,13 @@ public class OfferModifController extends Controller implements Observeur {
         if (title.getText().isEmpty() || description.getText().isEmpty() || price.getText().isEmpty() || type_offer.getValue() == null || frequency.getValue() == null || localization.getText().isEmpty()) {
             errorFillAll.setText("Veuillez remplir tous les champs");
             toggleErrorFillAll(true);
+        }
+        if (!InputFieldValidator.validAdress(localization.getText()) && localization.getText() != null) {
+            if (!localization.getText().isEmpty()) {
+                errorFillAll.setText("Adresse non reconnue");
+                toggleErrorFillAll(true);
+                return;
+            }
         } else {
             Double prices;
             try {
