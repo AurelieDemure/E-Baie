@@ -5,11 +5,6 @@
     -fx-background-insets: 20px;
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
-    -fx-cursor: hand;
-}
-
-.offer:hover{
-    -fx-background-color: -fx-dark-green;
 }
 
 .margin{
@@ -46,7 +41,8 @@ HBox, VBox, ImageView{
     transition-duration: 0.4s;
     -fx-cursor: hand;
     -fx-min-width: 30px;
-    -fx-font-size: 10px;
+    -fx-font-size: 15px;
+    margin-top: 10px;
     -fx-padding: 10px;
     -fx-border-insets: 2px;
     -fx-background-insets: 2px;
@@ -60,8 +56,12 @@ HBox, VBox, ImageView{
     -fx-background-color: -fx-light-blue;
     transition-duration: 0.4s;
     -fx-cursor: hand;
+    -fx-min-width: 30px;
     -fx-font-size: 15px;
     margin-top: 10px;
+    -fx-padding: 10px;
+    -fx-border-insets: 2px;
+    -fx-background-insets: 2px;
 }
 
 .buttonSupOffer:hover {
@@ -72,6 +72,12 @@ HBox, VBox, ImageView{
     -fx-background-color: -fx-lila;
     transition-duration: 0.4s;
     -fx-cursor: hand;
+    -fx-min-width: 30px;
+    -fx-font-size: 15px;
+    margin-top: 10px;
+    -fx-padding: 10px;
+    -fx-border-insets: 2px;
+    -fx-background-insets: 2px;
 }
 
 .buttonConsult:hover {
