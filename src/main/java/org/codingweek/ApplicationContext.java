@@ -1,5 +1,6 @@
 package org.codingweek;
 
+import org.codingweek.db.entity.Offer;
 import org.codingweek.model.Page;
 import org.codingweek.db.entity.User;
 
@@ -22,6 +23,8 @@ public class ApplicationContext {
     private User contactUser;
 
     private Integer offerId;
+
+    private Offer acceptOffer;
 
     private ApplicationContext() {
 
@@ -72,5 +75,13 @@ public class ApplicationContext {
 
     public void setIndex(Integer index){
         this.index = index;
+    }
+
+    public Offer getAcceptOffer() {
+        return acceptOffer;
+    }
+
+    public void setAcceptOffer(Offer acceptOffer) {
+        this.acceptOffer = acceptOffer;
     }
 }

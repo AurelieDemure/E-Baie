@@ -20,10 +20,7 @@ import org.codingweek.db.entity.User;
 import org.codingweek.model.*;
 import org.codingweek.model.filter.Frequency;
 import org.codingweek.model.filter.OfferType;
-import org.codingweek.view.MyOffersView;
-import org.codingweek.view.OfferCreateView;
-import org.codingweek.view.OfferModalView;
-import org.codingweek.view.OfferModifView;
+import org.codingweek.view.*;
 
 import javax.swing.plaf.ButtonUI;
 import java.io.IOException;
@@ -146,7 +143,14 @@ public class MyOffersController extends Controller implements Observeur {
         if(numberNotify != 0){
             Button notification = new Button(String.valueOf(numberNotify));
             notification.setOnAction(e -> {
-                showAcceptOfferDialog(e, offer);
+                ApplicationContext.getInstance().setAcceptOffer(offer);
+                ApplicationContext.getInstance().setPageType(Page.OFFER);
+                try {
+                    ApplicationSettings.getInstance().setCurrentScene(new AcceptOfferView().loadScene());
+                } catch (IOException exception) {
+                    throw new RuntimeException(exception);
+                }
+                refresh();
             });
             vbox.getChildren().add(notification);
         }
@@ -159,27 +163,6 @@ public class MyOffersController extends Controller implements Observeur {
         pane.setMinSize(100, 100);
         pane.getChildren().add(hbox);
         return pane;
-    }
-
-    private void showAcceptOfferDialog(ActionEvent e, Offer offer) {
-        VBox vbox = new VBox();
-        List<Query> queries = MyOffersModel.getQueriesByOffer(offer);
-
-        for (Query query : queries) {
-            if (!query.isAccepted()) {
-                HBox hbox = new HBox();
-
-                Label label = new Label(query.getUser().getFirstName() + " " + query.getUser().getLastName());
-                Button accept = new Button("Accepter");
-                Button refuse = new Button("Refuser");
-
-                hbox.getChildren().addAll(label, accept, refuse);
-                vbox.getChildren().add(hbox);
-            }
-        }
-
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setContent(vbox);
     }
 
     private int getNumberNotif(Offer offer) {
