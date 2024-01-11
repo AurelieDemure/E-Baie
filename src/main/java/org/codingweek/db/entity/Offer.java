@@ -69,6 +69,20 @@ public class Offer {
         this.path = path;
     }
 
+    /** Create a offer for test purpose without calling API for lat lon */
+    public static Offer getOfferTest(String title, String description, User owner, double price, OfferType type, Frequency frequency, String localization, String path) {
+        Offer offer = new Offer();
+        offer.title = title;
+        offer.description = description;
+        offer.owner = owner;
+        offer.price = price;
+        offer.type = type.getValue();
+        offer.frequency = frequency.getValue();
+        offer.localization = localization;
+        offer.path = path;
+        return offer;
+    }
+
     public Offer() {}
 
     public int getId() {
