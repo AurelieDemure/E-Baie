@@ -45,7 +45,7 @@ HBox, VBox, ImageView{
     -fx-background-color: -fx-logo;
     transition-duration: 0.4s;
     -fx-cursor: hand;
-    -fx-width: 30px;
+    -fx-min-width: 30px;
     -fx-font-size: 10px;
     -fx-padding: 10px;
     -fx-border-insets: 2px;
