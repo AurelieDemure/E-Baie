@@ -73,27 +73,27 @@
                </font>
             </Button>
             <Button fx:id="deconnexion" layoutX="1100.0" layoutY="50.0" mnemonicParsing="false" onAction="#Disconnect" styleClass="buttonNavbar" stylesheets="@../css/main.css" text="" />
-            <Pane layoutX="1083.0" layoutY="16.0" onMouseClicked="#notifChange" prefHeight="34.0" prefWidth="78.0">
+            <ScrollPane fx:id="notifBox" layoutX="776.0" layoutY="18.0" maxHeight="400.0" maxWidth="200.0" prefWidth="200.0" styleClass="fond" stylesheets="@../css/notifs.css">
+              <content>
+                <AnchorPane maxWidth="180.0" minHeight="0.0" minWidth="0.0" prefWidth="195.0" stylesheets="@../css/notifs.css">
+                     <children>
+                        <VBox fx:id="notifList" layoutY="2.0" maxWidth="180.0" minHeight="25.0" minWidth="195.0" styleClass="notifsBox" stylesheets="@../css/notifs.css" />
+                     </children>
+                     <styleClass>
+                        <String fx:value="fond" />
+                        <String fx:value="pane" />
+                     </styleClass>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+            <Pane layoutX="976.0" layoutY="19.0" onMouseClicked="#notifChange" prefHeight="34.0" prefWidth="36.0" styleClass="notifLogo" stylesheets="@../css/notifs.css">
                <children>
-                  <ScrollPane fx:id="notifBox" layoutX="-159.0" layoutY="-3.0" maxHeight="400.0" prefWidth="200.0" styleClass="fond" stylesheets="@../css/notifs.css">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="195.0" stylesheets="@../css/notifs.css">
-                           <children>
-                              <VBox fx:id="notifList" layoutY="44.0" minHeight="25.0" minWidth="195.0" styleClass="notifsBox" stylesheets="@../css/notifs.css" />
-                           </children>
-                           <styleClass>
-                              <String fx:value="fond" />
-                              <String fx:value="pane" />
-                           </styleClass>
-                        </AnchorPane>
-                    </content>
-                  </ScrollPane>
-                  <ImageView fitHeight="34.0" fitWidth="38.0" layoutX="44.0" pickOnBounds="true" preserveRatio="true" styleClass="pane">
+                  <ImageView fitHeight="34.0" fitWidth="38.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/img_489991.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="notifLabel" alignment="CENTER" layoutX="59.0" layoutY="-5.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: red; -fx-background-radius: 15px;" styleClass="pane" text="10">
+                  <Label fx:id="notifLabel" alignment="CENTER" layoutX="17.0" layoutY="-5.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: red; -fx-background-radius: 15px;" text="10">
                      <font>
                         <Font name="DejaVu Sans Bold" size="15.0" />
                      </font>

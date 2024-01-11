@@ -2,10 +2,6 @@
     -fx-background-color: -fx-dark-green;
 }
 
-.pane {
-    -fx-cursor: hand;
-}
-
 .notifsBox {
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
@@ -18,14 +14,22 @@
 
 .notif {
     -fx-background-color: -fx-light-green;
-    -fx-padding: 10px;
-    -fx-border-insets: 10px;
-    -fx-background-insets: 10px;
-    -fx-border-radius: 10px;
-    -fx-background-radius: 10px;
+    -fx-padding: 3px;
+    -fx-border-insets: 3px;
+    -fx-background-insets: 3px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
     -fx-cursor: hand;
 }
 
 .notif:hover{
     -fx-background-color: -fx-dark-green;
+}
+
+.title{
+    -fx-width: 20px;
+    -fx-font-size: 15px;
+    -fx-padding: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
 }

@@ -26,9 +26,6 @@ public class NavbarController extends Controller implements Observeur{
     @FXML
     private VBox notifList;
 
-    @FXML
-    private VBox notifList;
-
     public Button deconnexion;
     @FXML
     private Button accountButton;
@@ -51,7 +48,7 @@ public class NavbarController extends Controller implements Observeur{
     @FXML
     private ScrollPane notifBox;
 
-    private List<Notification> notifications = ApplicationContext.getInstance().getUser_authentified().getNotifications();
+    private List<Notification> notifications;
     private int count = 0;
 
     @FXML
@@ -177,7 +174,18 @@ public class NavbarController extends Controller implements Observeur{
             throw new RuntimeException(e);
         }
     }
+    
     public void setNotifs(){
+        if (this.notifBox.isVisible()) {
+            this.notifBox.setVisible(true);
+        } else {
+            this.notifBox.setVisible(false);
+        }
+        
+        this.notifications = ApplicationContext.getInstance().getUser_authentified().getNotifications();
+        if (this.notifications == null) {
+            this.notifications = new ArrayList<Notification>();
+        }
         this.count = 0;        
         for(Notification notif : this.notifications) {
             if (!notif.getSeen()) {
@@ -221,6 +229,8 @@ public class NavbarController extends Controller implements Observeur{
     public Pane makeNotif(Notification notif){
 
         Label typeLabel = new Label(notif.getType());
+        typeLabel.getStyleClass().add("titre");
+        typeLabel.setMaxWidth(50);
 
         Label dateLabel = new Label(notif.getDate().toString());
 
@@ -228,9 +238,13 @@ public class NavbarController extends Controller implements Observeur{
         vbox.getChildren().addAll(typeLabel, dateLabel);
 
         Pane pane = new Pane();
+        pane.setMinSize(150, 60);
         pane.getStyleClass().add("notif");
         pane.getChildren().add(vbox);
-        pane.setOnMouseClicked( (event -> setNotifs()));
+        pane.setOnMouseClicked( (event -> {
+            notif.setSeen(true);
+            setNotifs();
+        }));
         return pane;
     }
 }
