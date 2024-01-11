@@ -229,8 +229,7 @@ public class NavbarController extends Controller implements Observeur{
     public Pane makeNotif(Notification notif){
 
         Label typeLabel = new Label(notif.getType());
-        typeLabel.getStyleClass().add("titre");
-        typeLabel.setMaxWidth(50);
+        typeLabel.getStyleClass().add("title");
 
         Label dateLabel = new Label(notif.getDate().toString());
 
@@ -243,6 +242,7 @@ public class NavbarController extends Controller implements Observeur{
         pane.getChildren().add(vbox);
         pane.setOnMouseClicked( (event -> {
             notif.setSeen(true);
+            DatabaseHandler.getInstance().getDbManager().saveEntity(notif);
             setNotifs();
         }));
         return pane;

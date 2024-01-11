@@ -12,6 +12,11 @@
     -fx-text-fill: -fx-white;
 }
 
+VBox{
+    -fx-alignment: center ;
+    -fx-padding: 10 ;
+}
+
 .notif {
     -fx-background-color: -fx-light-green;
     -fx-padding: 3px;
@@ -27,8 +32,7 @@
 }
 
 .title{
-    -fx-width: 20px;
-    -fx-font-size: 15px;
+    -fx-font-size: 20px;
     -fx-padding: 5px;
     -fx-border-insets: 5px;
     -fx-background-insets: 5px;
