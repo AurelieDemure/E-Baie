@@ -76,6 +76,11 @@ public class AcceptOfferController extends Controller implements Observeur {
             acceptBtn.getStyleClass().add("button_accept");
             acceptBtn.setOnAction(event -> {
                 query.acceptQuery();
+
+                double balance = query.getUser().getBalance() - offer.getPrice();
+                query.getUser().setBalance((int) balance);
+                DatabaseHandler.getInstance().getDbManager().saveEntity(query.getUser());
+
                 refresh();
             });
 
