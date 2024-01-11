@@ -44,6 +44,10 @@ public class InputFieldValidator {
         return phone.length() == 10 && phone.matches("\\d+");
     }
 
+    public static boolean validAdress(String adress) {
+        return GeoLocalisation.getLatLng(adress) != null;
+    }
+
     public static Callback<DatePicker, DateCell> getPastDayCellFactory() {
         return datePicker -> new DateCell() {
             @Override

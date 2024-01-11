@@ -8,21 +8,36 @@ import org.codingweek.Configuration;
 
 public class GeoLocalisation {
 
+
+    private static GeoLocalisation instance = null;
+    private JOpenCageGeocoder jOpenCageGeocoder = null;
+
+    public GeoLocalisation() {
+        jOpenCageGeocoder = new JOpenCageGeocoder(Configuration.API_KEY);
+    }
+
+    public static GeoLocalisation getInstance() {
+        if (instance == null) {
+            instance = new GeoLocalisation();
+        }
+        return instance;
+    }
+
+
     /**
-     * Return the longitude latitude from a address
+     * Return the longitude latitude from an address
      * Return NULL if address not valid
      */
     public static JOpenCageLatLng getLatLng(String address) {
         if (address == null) {
             return null;
         }
-        JOpenCageGeocoder jOpenCageGeocoder = new JOpenCageGeocoder(Configuration.API_KEY);
         JOpenCageForwardRequest request = new JOpenCageForwardRequest(address);
 
         request.setMinConfidence(1);
         request.setNoAnnotations(false);
         request.setNoDedupe(true);
-        JOpenCageResponse response = jOpenCageGeocoder.forward(request);
+        JOpenCageResponse response = getInstance().jOpenCageGeocoder.forward(request);
         if (response == null) return null;
         return response.getFirstPosition();
     }
@@ -50,6 +65,24 @@ public class GeoLocalisation {
 
         return rayon_earth * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     }
+
+    public static double distance(double lat1, double lon1, double lat2, double lon2) {
+        int rayon_earth = 6371;
+
+        lat1 = Math.toRadians(lat1);
+        lon1 = Math.toRadians(lon1);
+        lat2 = Math.toRadians(lat2);
+        lon2 = Math.toRadians(lon2);
+
+        double dLat = lat2 - lat1;
+        double dLon = lon2 - lon1;
+
+        double a = Math.pow(Math.sin(dLat / 2), 2)
+                + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(dLon / 2), 2);
+
+        return rayon_earth * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    }
+
 
     /** Test if two double are equals with a precision
      *  Return true if equals

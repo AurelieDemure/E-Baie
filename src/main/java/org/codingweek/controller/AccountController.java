@@ -140,6 +140,13 @@ public class AccountController extends Controller implements Observeur{
             toggleErro(true);
             return;
         }
+        if (!InputFieldValidator.validAdress(addressField.getText()) && addressField.getText() != null) {
+            if (!addressField.getText().isEmpty()) {
+                errordisplay.setText("Adresse non reconnue");
+                toggleErro(true);
+                return;
+            }
+        }
         toggleErro(false);
 
         User user = ApplicationContext.getInstance().getUser_authentified();
@@ -160,7 +167,9 @@ public class AccountController extends Controller implements Observeur{
         }
 
         user.setPhone(phoneNumberField.getText());
-        user.setAddress(addressField.getText());
+        if (addressField.getText() != user.getAddress()) {
+            user.setAddress(addressField.getText());
+        }
         user.setDescription(descriptionField.getText());
         DatabaseHandler.getInstance().getDbManager().updateEntity(user);
         update();

@@ -6,11 +6,10 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.codingweek.ApplicationContext;
 import org.codingweek.db.entity.Offer;
-import org.codingweek.model.filter.Frequency;
-import org.codingweek.model.filter.OfferType;
-import org.codingweek.model.filter.Price;
-import org.codingweek.model.filter.SortOffer;
+import org.codingweek.db.entity.User;
+import org.codingweek.model.filter.*;
 
 public class MarketModel {
 
@@ -29,7 +28,7 @@ public class MarketModel {
 
     /** Return all the offer on the database with filtering
      * Email is the value of the offer to be excluded */
-    public static List<Offer> getOffersAvailableFiltered(String email, String research, OfferType type, Frequency frequency, Price price, SortOffer sortOffer) {
+    public static List<Offer> getOffersAvailableFiltered(String email, String research, OfferType type, Frequency frequency, Price price, SortOffer sortOffer, Distance distance) {
         List<Offer> offers = getOffersAvailable(email);
         if (research != null)
             offers = offers.stream()
@@ -55,6 +54,20 @@ public class MarketModel {
                                 case FROM300TO400 -> offer.getPrice() >= 300 && offer.getPrice() < 400;
                                 case FROM400TO500 -> offer.getPrice() >= 400 && offer.getPrice() < 500;
                                 case MORE500 -> offer.getPrice() >= 500;
+                            }
+                    ).collect(Collectors.toList());
+        }
+       if (distance != null && ApplicationContext.getInstance().getUser_authentified() != null) {
+           User user = ApplicationContext.getInstance().getUser_authentified();
+           offers = offers.stream()
+                    .filter(offer -> switch (distance) {
+                                case ALLDISTANCE -> true;
+                                case LESS5KM -> GeoLocalisation.distance(offer.getLat(), offer.getLon(), user.getLat(), user.getLong()) < 5;
+                                case LESS20KM -> GeoLocalisation.distance(offer.getLat(), offer.getLon(), user.getLat(), user.getLong()) < 20;
+                                case LESS30KM -> GeoLocalisation.distance(offer.getLat(), offer.getLon(), user.getLat(), user.getLong()) < 30;
+                                case LESS60KM -> GeoLocalisation.distance(offer.getLat(), offer.getLon(), user.getLat(), user.getLong()) < 60;
+                                case LESS100KM -> GeoLocalisation.distance(offer.getLat(), offer.getLon(), user.getLat(), user.getLong()) < 100;
+                                case LESS200KM -> GeoLocalisation.distance(offer.getLat(), offer.getLon(), user.getLat(), user.getLong()) < 200;
                             }
                     ).collect(Collectors.toList());
         }
