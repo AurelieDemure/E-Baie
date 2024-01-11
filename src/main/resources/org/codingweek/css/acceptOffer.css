@@ -21,10 +21,30 @@ HBox, VBox, ImageView{
     -fx-background-color: -fx-light-green;
 }
 
+.button_accept:hover {
+    -fx-background-color: -fx-dark-green;
+}
+
 .button_decline {
     -fx-background-color: #FFB6C1;
 }
 
+.button_decline:hover {
+    -fx-background-color: #FF69B4;
+}
+
 .buttonBack {
     -fx-background-color: #D3D3D3;
+}
+
+.buttonBack:hover {
+    -fx-background-color: #A9A9A9;
+}
+
+.button_contact {
+    -fx-background-color: #ADD8E6;
+}
+
+.button_contact:hover {
+    -fx-background-color: #87CEEB;
 }
