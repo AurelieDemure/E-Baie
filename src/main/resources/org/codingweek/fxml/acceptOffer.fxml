@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codingweek.controller.AcceptOfferController">
+    <fx:include fx:id="navbar" source="navbar.fxml" />
+    <Label layoutX="81.0" layoutY="197.0" text="Demandes" underline="true">
+        <font>
+            <Font name="System Bold" size="24.0" />
+        </font>
+    </Label>
+    <ScrollPane layoutX="258.0" layoutY="250.0" prefHeight="400.0" prefWidth="686.0">
+        <GridPane fx:id="content" alignment="TOP_CENTER" vgap="10.0">
+        </GridPane>
+    </ScrollPane>
+    <Button onAction="#goBack" layoutX="1020.0" layoutY="202.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="67.0" text="Retour" styleClass="buttonBack" />
+    <stylesheets>
+        <URL value="@../css/main.css" />
+        <URL value="@../css/acceptOffer.css" />
+    </stylesheets>
+</AnchorPane>

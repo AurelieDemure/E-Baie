@@ -124,7 +124,7 @@ public class Query {
     /** Accept the query and send a notification to the user */
     public void acceptQuery() {
         accepted = true;
-        DatabaseHandler.getInstance().getDbManager().saveEntity(this);
+        DatabaseHandler.getInstance().getDbManager().updateEntity(this);
         DatabaseHandler.getInstance().getDbManager().saveEntity(new Notification("Votre offre pour " + offer.getTitle() + " a été accepté", offer.getOwner(), false, "once", new Date()));
     }
 }
