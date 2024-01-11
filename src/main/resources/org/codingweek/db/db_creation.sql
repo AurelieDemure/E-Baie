@@ -3,9 +3,11 @@ CREATE TABLE User (
                       firstName TEXT NOT NULL,
                       lastName TEXT NOT NULL,
                       password TEXT NOT NULL,
-                        phone TEXT,
-                        address TEXT,
-                        description TEXT,
+                      phone TEXT,
+                      address TEXT,
+                      lat REAL NOT NULL,
+                      lon REAL NOT NULL,
+                      description TEXT,
                       balance INTEGER DEFAULT 100
 );
 
@@ -15,6 +17,8 @@ CREATE TABLE Offer (
                        description TEXT,
                        owner TEXT NOT NULL,
                        price REAL NOT NULL,
+                       lat REAL NOT NULL,
+                       lon REAL NOT NULL,
                        type_offer BOOLEAN NOT NULL,
                        frequency TEXT,
                        localization TEXT,
@@ -38,7 +42,7 @@ CREATE TABLE Query (
 CREATE TABLE Chat (
                       id INTEGER PRIMARY KEY,
                       sender INTEGER NOT NULL,
-                        receiver INTEGER NOT NULL,
+                      receiver INTEGER NOT NULL,
                       message TEXT NOT NULL,
                       date_message date,
                       FOREIGN KEY (sender) REFERENCES User(email),
