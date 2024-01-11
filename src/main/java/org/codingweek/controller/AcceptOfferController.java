@@ -86,6 +86,8 @@ public class AcceptOfferController extends Controller implements Observeur {
                 refresh();
             });
 
+            acceptBtn.setDisable(query.getUser().getBalance() < offer.getPrice());
+
             Button contact = new Button("Contact");
             contact.getStyleClass().add("button_contact");
             contact.setOnAction(event -> {
