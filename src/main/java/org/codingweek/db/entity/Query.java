@@ -5,6 +5,7 @@ import org.codingweek.model.DatabaseHandler;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "Query")
@@ -25,17 +26,25 @@ public class Query {
     @Column(name = "date_query")
     private LocalDateTime date;
 
+    @Column(name = "date_begin")
+    private Date dateBegin;
+
+    @Column(name = "date_end")
+    private Date dateEnd;
+
     @Column(name = "accepted")
     private boolean accepted;
 
     @Column(name = "notation")
     private int notation;
 
-    public Query(Offer offer, User user, boolean accepted, int notation) {
+    public Query(Offer offer, User user, boolean accepted, int notation, Date dateBegin, Date dateEnd) {
         this.date = LocalDateTime.now();
         this.offer = offer;
         this.user = user;
         this.date = date;
+        this.dateBegin = dateBegin;
+        this.dateEnd = dateEnd;
         this.accepted = accepted;
         this.notation = notation;
     }
@@ -72,6 +81,22 @@ public class Query {
 
     public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+
+    public void setDateBegin(Date dateBegin) {
+        this.dateBegin = dateBegin;
+    }
+
+    public Date getDateBegin() {
+        return this.dateBegin;
+    }
+
+    public void setDateEnd(Date dateEnd) {
+        this.dateEnd = dateEnd;
+    }
+
+    public Date getDateEnd() {
+        return this.dateEnd;
     }
 
     public boolean isAccepted() {

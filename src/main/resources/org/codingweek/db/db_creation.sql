@@ -27,6 +27,8 @@ CREATE TABLE Query (
                        offer_id INTEGER NOT NULL,
                        user_mail INTEGER NOT NULL,
                        date_query date,
+                       date_begin date,
+                       dtae_end date,
                        accepted BOOLEAN,
                        notation INTEGER NOT NULL,
                        FOREIGN KEY (offer_id) REFERENCES Offer(id),
