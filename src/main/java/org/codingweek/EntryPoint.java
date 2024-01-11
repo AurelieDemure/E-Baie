@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class EntryPoint extends Application {
 
-    private final static boolean isDev = true;
+    private final static boolean isDev = false;
 
     private final static String emailDev = "dev@mail.com";
 

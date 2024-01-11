@@ -35,13 +35,13 @@ public class AcceptOfferController extends Controller implements Observeur {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        DatabaseHandler.getInstance().getDbManager().addObserveur(this);
+        //DatabaseHandler.getInstance().getDbManager().addObserveur(this);
         refresh();
     }
 
     @Override
     public void update() {
-        refresh();
+        //refresh();
     }
 
     @Override

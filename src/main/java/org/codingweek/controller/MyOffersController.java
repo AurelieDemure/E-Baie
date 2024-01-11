@@ -35,18 +35,20 @@ public class MyOffersController extends Controller implements Observeur {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        DatabaseHandler.getInstance().getDbManager().addObserveur(this);
+        //DatabaseHandler.getInstance().getDbManager().addObserveur(this);
 
         ApplicationContext.getInstance().setPageType(Page.OFFER);
-        this.myOffers.clear();
-        User user = ApplicationContext.getInstance().getUser_authentified();
-        this.myOffers = MyOffersModel.getMyOffers(user.getEmail());
 
         refresh();
     }
 
     @Override
     public void refresh() {
+        indexModify = -1;
+        this.myOffers.clear();
+        User user = ApplicationContext.getInstance().getUser_authentified();
+        this.myOffers = MyOffersModel.getMyOffers(user.getEmail());
+
         this.scrollField.getChildren().clear();
         Pane pane;
         int x = 0;
@@ -67,9 +69,7 @@ public class MyOffersController extends Controller implements Observeur {
     }
 
     @Override
-    public void update() {
-        refresh();
-    }
+    public void update() {}
     public void sendToCreateOffer(ActionEvent actionEvent) {
         ApplicationContext.getInstance().setPageType(Page.OFFER);
         try {

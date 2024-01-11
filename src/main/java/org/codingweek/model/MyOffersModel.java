@@ -1,5 +1,6 @@
 package org.codingweek.model;
 
+import org.codingweek.controller.Observeur;
 import org.codingweek.db.DatabaseManager;
 import org.codingweek.db.entity.Offer;
 import org.codingweek.db.entity.Query;
@@ -11,15 +12,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MyOffersModel {
-    private static List<Offer> myOffers;
+public class MyOffersModel  {
 
     public static List<Offer> getMyOffers(String email) {
-        if (myOffers == null) {
-            DatabaseManager db = DatabaseHandler.getInstance().getDbManager();
-            myOffers = db.getAllEntity(Offer.class);
-        }
-        return myOffers.stream()
+        DatabaseManager db = DatabaseHandler.getInstance().getDbManager();
+        return db.getAllEntity(Offer.class).stream()
                 .filter(offer -> offer.getOwner().getEmail().equals(email))
                 .collect(Collectors.toList());
     }
@@ -32,5 +29,4 @@ public class MyOffersModel {
                 .filter(query -> !query.isAccepted())
                 .collect(Collectors.toList());
     }
-
 }

@@ -165,7 +165,7 @@ public class TchatController extends Controller implements Observeur {
 
     @Override
     public void update() {
-        refresh();
+        //refresh();
     }
 
     @FXML

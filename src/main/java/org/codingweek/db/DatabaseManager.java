@@ -133,7 +133,6 @@ public class DatabaseManager extends Observable {
             tx = session.beginTransaction();
             entity = (T) session.get(entityClass, id);
             tx.commit();
-            notifyObserveurs();
         } catch (Exception e) {
             if (tx != null) tx.rollback();
             e.printStackTrace();
@@ -151,7 +150,6 @@ public class DatabaseManager extends Observable {
             tx = session.beginTransaction();
             entity =  session.createQuery("FROM " + entityClass.getName()).list();
             tx.commit();
-            notifyObserveurs();
         } catch (Exception e) {
             if (tx != null) tx.rollback();
             e.printStackTrace();
@@ -170,7 +168,6 @@ public class DatabaseManager extends Observable {
             tx = session.beginTransaction();
             entity = (T) session.get(entityClass, email);
             tx.commit();
-            notifyObserveurs();
         } catch (Exception e) {
             if (tx != null) tx.rollback();
             e.printStackTrace();

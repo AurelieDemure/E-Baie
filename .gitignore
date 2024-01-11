@@ -46,3 +46,4 @@ src/main/resources/org/codingweek/db/database.sqlite
 src/main/resources/org/codingweek/db/database_test.sqlite
 src/main/resources/org/codingweek/db/database_test.sqlite-journal
 package-lock.json
+database.sqlite
