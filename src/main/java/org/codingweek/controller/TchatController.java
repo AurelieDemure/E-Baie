@@ -44,6 +44,10 @@ public class TchatController extends Controller implements Observeur {
 
     public Boolean isFirstContact = false;
 
+    public Label email;
+    public Label tel;
+    public Label address;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -96,6 +100,13 @@ public class TchatController extends Controller implements Observeur {
         if(current_receiver != null){
             User user = DatabaseHandler.getInstance().getDbManager().getEntity(User.class, current_receiver);
             this.receiver.setText(user.getFirstName() + " " + user.getLastName());
+            this.email.setText(user.getEmail());
+            if (user.getPhone() == null) {
+                this.tel.setText("Pas de numero disponible");
+            } else {this.tel.setText(user.getPhone());}
+            if (user.getAddress() == null) {
+                this.tel.setText("Pas d'adresse disponible");
+            } else {this.address.setText(user.getAddress());}
         } else {
             this.receiver.setText("No receiver selected");
         }
