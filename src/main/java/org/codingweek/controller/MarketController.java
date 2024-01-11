@@ -21,6 +21,8 @@ import org.codingweek.view.TchatView;
 
 public class MarketController extends Controller implements Observeur{
 
+    @FXML
+    public ChoiceBox<String> distanceChoice;
     private int offerId = -1;
 
     private List<Offer> offers = new ArrayList<Offer>();
@@ -61,6 +63,12 @@ public class MarketController extends Controller implements Observeur{
         this.sortChoice.getItems().setAll("Prix croissant", "Prix décroissant", "Titre A-Z", "Titre Z-A");
         this.sortChoice.getSelectionModel().select(0);
         this.sortChoice.setOnAction( (event -> {
+            search();
+        }));
+        this.distanceChoice.setDisable(ApplicationContext.getInstance().getUser_authentified().getAddress() == null || ApplicationContext.getInstance().getUser_authentified().getAddress().isEmpty());
+        this.distanceChoice.getItems().setAll("Toutes distances", "Moins de 5km", "Moins de 20km", "Moins de 30km", "Moins de 60km", "Moins de 100km", "Moins de 200km", "Toutes distances");
+        this.distanceChoice.getSelectionModel().select(0);
+        this.distanceChoice.setOnAction( (event -> {
             search();
         }));
         this.offers.clear();
@@ -120,10 +128,14 @@ public class MarketController extends Controller implements Observeur{
         if(price == Price.ALLPRICE){
             price = null;
         }
+        Distance distance = Distance.fromString(this.distanceChoice.getValue());
+        if (distance == Distance.ALLDISTANCE){
+            distance = null;
+        }
 
         SortOffer sortOffer = SortOffer.fromString(this.sortChoice.getValue());
 
-        this.offers = MarketModel.getOffersAvailableFiltered(email, text, offerType, frequency, price, sortOffer);
+        this.offers = MarketModel.getOffersAvailableFiltered(email, text, offerType, frequency, price, sortOffer, distance);
         refresh();
     }
 

@@ -1,5 +1,7 @@
 package org.codingweek.db.entity;
 
+import com.opencagedata.jopencage.model.JOpenCageLatLng;
+import org.codingweek.model.GeoLocalisation;
 import org.codingweek.model.PasswordUtility;
 
 import javax.persistence.*;
@@ -45,6 +47,7 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Notification> notifications;
 
+    private Double lat,longi;
 
     public User(String email,String firstName, String lastName, String password, String phone, String address, String description, int balance, Date date_birth) {
         this.email = email;
@@ -56,6 +59,8 @@ public class User {
         this.description = description;
         this.balance = balance;
         this.date_birth = date_birth;
+        lat = null;
+        longi = null;
     }
 
     public User() {}
@@ -67,6 +72,41 @@ public class User {
     public String getFirstName() {
         return firstName;
     }
+
+    /** Get the latitude of the user
+     * @return the latitude of the user
+     * NULL if the user has not a valid address
+     */
+    public Double getLat() {
+        if (lat == null) {
+            if (address != null) {
+                JOpenCageLatLng res = GeoLocalisation.getLatLng(address);
+                if (res != null) {
+                    lat = res.getLat();
+                    longi = res.getLng();
+                }
+            }
+        }
+        return lat;
+    }
+
+    /** Get the longitude of the user
+     * @return the latitude of the user
+     * NULL if the user has not a valid address
+     */
+    public Double getLong() {
+        if (longi == null) {
+            if (address != null) {
+                JOpenCageLatLng res = GeoLocalisation.getLatLng(address);
+                if (res != null) {
+                    lat = res.getLat();
+                    longi = res.getLng();
+                }
+            }
+        }
+        return longi;
+    }
+
 
     public String getLastName() {
         return lastName;
@@ -110,6 +150,12 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+        JOpenCageLatLng res = GeoLocalisation.getLatLng(address);
+        if (res != null) {
+            lat = res.getLat();
+            longi = res.getLng();
+        }
+
     }
 
     public String getDescription() {

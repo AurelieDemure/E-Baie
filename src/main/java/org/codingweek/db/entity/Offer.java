@@ -1,5 +1,7 @@
 package org.codingweek.db.entity;
 
+import com.opencagedata.jopencage.model.JOpenCageLatLng;
+import org.codingweek.model.GeoLocalisation;
 import org.codingweek.model.filter.Frequency;
 import org.codingweek.model.filter.OfferType;
 
@@ -35,6 +37,8 @@ public class Offer {
 
     @Column(name = "localization")
     private String localization;
+
+    private Double lat, lon;
 
     @Column(name = "path_offer")
     private String path;
@@ -83,6 +87,32 @@ public class Offer {
 
     public User getOwner() {
         return owner;
+    }
+
+    public Double getLat() {
+        if (lat == null) {
+            if (localization != null) {
+                JOpenCageLatLng res = GeoLocalisation.getLatLng(localization);
+                if (res != null) {
+                    lat = res.getLat();
+                    lon = res.getLng();
+                }
+            }
+        }
+        return lat;
+    }
+
+    public Double getLon() {
+        if (lon == null) {
+            if (localization != null) {
+                JOpenCageLatLng res = GeoLocalisation.getLatLng(localization);
+                if (res != null) {
+                    lat = res.getLat();
+                    lon = res.getLng();
+                }
+            }
+        }
+        return lon;
     }
 
     public void setOwner(User owner) {

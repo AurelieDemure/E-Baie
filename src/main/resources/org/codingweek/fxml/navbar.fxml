@@ -52,26 +52,27 @@
                   <Image url="@../img/logo.png" />
                </image>
             </ImageView>
-            <Button fx:id="accountButton" layoutX="1011.0" layoutY="50.0" mnemonicParsing="false" onAction="#clickAccount" prefHeight="50.0" prefWidth="128.0" styleClass="buttonNavbar" text="Compte">
+            <Button fx:id="accountButton" layoutX="930.0" layoutY="50.0" mnemonicParsing="false" onAction="#clickAccount" prefHeight="50.0" prefWidth="128.0" styleClass="buttonNavbar" text="Compte">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="messageButton" layoutX="811.0" layoutY="50.0" mnemonicParsing="false" onAction="#clickMessage" prefHeight="50.0" prefWidth="158.0" styleClass="buttonNavbar" text="Messagerie">
+            <Button fx:id="messageButton" layoutX="750.0" layoutY="50.0" mnemonicParsing="false" onAction="#clickMessage" prefHeight="50.0" prefWidth="158.0" styleClass="buttonNavbar" text="Messagerie">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="offerButton" layoutX="611.0" layoutY="50.0" mnemonicParsing="false" onAction="#clickOffer" prefHeight="50.0" prefWidth="158.0" styleClass="buttonNavbar" text="Mes offres">
+            <Button fx:id="offerButton" layoutX="550.0" layoutY="50.0" mnemonicParsing="false" onAction="#clickOffer" prefHeight="50.0" prefWidth="158.0" styleClass="buttonNavbar" text="Mes offres">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="marketButton" layoutX="411.0" layoutY="50.0" mnemonicParsing="false" onAction="#clickMarket" prefHeight="50.0" prefWidth="120.0" styleClass="buttonNavbar" text="Marché">
+            <Button fx:id="marketButton" layoutX="400.0" layoutY="50.0" mnemonicParsing="false" onAction="#clickMarket" prefHeight="50.0" prefWidth="120.0" styleClass="buttonNavbar" text="Marché">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Button>
+            <Button fx:id="deconnexion" layoutX="1100.0" layoutY="50.0" mnemonicParsing="false" onAction="#Disconnect" styleClass="buttonNavbar" stylesheets="@../css/main.css" text="" />
             <Pane layoutX="1083.0" layoutY="16.0" onMouseClicked="#notifChange" prefHeight="34.0" prefWidth="78.0">
                <children>
                   <ScrollPane fx:id="notifBox" layoutX="-159.0" layoutY="-3.0" maxHeight="400.0" prefWidth="200.0" styleClass="fond" stylesheets="@../css/notifs.css">

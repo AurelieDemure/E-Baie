@@ -6,15 +6,54 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.logging.Level;
 
 public class DatabaseManager {
     private SessionFactory factory;
 
-    private String database_name = "database.sqlite";
+    private String databaseName = "database.sqlite";
+
+    private final String databaseFolder = "codingweek-11";
+
+    private final String userHome = System.getProperty("user.home");
+
+    private void createFolder() {
+        File folder = new File(userHome, databaseFolder);
+        if (!folder.exists()) {
+            if (!folder.mkdir()) {
+                throw new RuntimeException("Cannot create folder");
+            } else {
+                System.out.println("Folder created");
+            }
+        }
+    }
+
+    private void createFile() {
+        File file = new File(userHome + "/" + databaseFolder + "/" + databaseName);
+        if (!file.exists()) {
+            try {
+                if (!file.createNewFile()) {
+                    throw new RuntimeException("Cannot create file");
+                } else {
+                    System.out.println("File created");
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
 
     public void setup() {
+        createFolder();
+        createFile();
+
         java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
         Configuration configuration = new Configuration()
                 .addAnnotatedClass(User.class)
@@ -23,7 +62,7 @@ public class DatabaseManager {
                 .addAnnotatedClass(Notification.class)
                 .addAnnotatedClass(Query.class)
                 .setProperty("hibernate.connection.driver_class", "org.sqlite.JDBC")
-                .setProperty("hibernate.connection.url", "jdbc:sqlite:src/main/resources/org/codingweek/db/" + database_name)
+                .setProperty("hibernate.connection.url", "jdbc:sqlite:" + Paths.get(userHome, databaseFolder, databaseName))
                 .setProperty("hibernate.dialect", "org.codingweek.db.SQLiteDialect")
                 .setProperty("hibernate.show_sql", "false")
                 .setProperty("hibernate.hbm2ddl.auto", "update")
@@ -33,7 +72,7 @@ public class DatabaseManager {
     }
 
     public void setupTest() {
-        database_name = "database_test.sqlite";
+        databaseName = "database_test.sqlite";
         setup();
     }
 

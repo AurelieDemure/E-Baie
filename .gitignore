@@ -3,6 +3,7 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
+identifier.sqlite
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
@@ -43,4 +44,5 @@ bin/
 .idea
 src/main/resources/org/codingweek/db/database.sqlite
 src/main/resources/org/codingweek/db/database_test.sqlite
+src/main/resources/org/codingweek/db/database_test.sqlite-journal
 package-lock.json

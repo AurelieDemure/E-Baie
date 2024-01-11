@@ -6,7 +6,7 @@
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
     -fx-cursor: hand;
-}   
+}
 
 .offer:hover{
     -fx-background-color: -fx-dark-green;
@@ -36,5 +36,45 @@ HBox, VBox, ImageView{
     -fx-padding: 10px;
     -fx-border-insets: 10px;
     -fx-background-insets: 10px;
+    -fx-padding: 10px;
+    -fx-border-insets: 10px;
+    -fx-background-insets: 10px;
+}
+
+.buttonModOffer{
+    -fx-background-color: -fx-logo;
+    transition-duration: 0.4s;
+    -fx-cursor: hand;
+    -fx-width: 30px;
+    -fx-font-size: 10px;
+    -fx-padding: 10px;
+    -fx-border-insets: 2px;
+    -fx-background-insets: 2px;
+}
+
+.buttonModOffer:hover{
+    -fx-background-color: -fx-logo-hand;
+}
+
+.buttonSupOffer {
+    -fx-background-color: -fx-light-blue;
+    transition-duration: 0.4s;
+    -fx-cursor: hand;
+    -fx-font-size: 15px;
+    margin-top: 10px;
+}
+
+.buttonSupOffer:hover {
+    -fx-background-color: -fx-dark-blue;
+}
+
+.buttonConsult {
+    -fx-background-color: -fx-lila;
+    transition-duration: 0.4s;
+    -fx-cursor: hand;
+}
+
+.buttonConsult:hover {
+    -fx-background-color: -fx-lila-light;
 }
 

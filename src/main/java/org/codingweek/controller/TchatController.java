@@ -42,6 +42,8 @@ public class TchatController extends Controller implements Observeur {
     @FXML
     public Button send;
 
+    public Boolean isFirstContact = false;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -49,7 +51,14 @@ public class TchatController extends Controller implements Observeur {
         this.chats.clear();
         this.current_user = ApplicationContext.getInstance().getUser_authentified().getEmail();
 
-        if(ChatModel.getContacts(current_user).size() > 0 && ChatModel.getContacts(current_user) != null){
+        if(ApplicationContext.getInstance().getContactUser() != null){
+            this.current_receiver = ApplicationContext.getInstance().getContactUser().getEmail();
+            this.isFirstContact = true;
+            ApplicationContext.getInstance().setContactUser(null);
+            this.send.setDisable(false);
+            this.message.setDisable(false);
+            refresh();
+        } else if(ChatModel.getContacts(current_user).size() > 0 && ChatModel.getContacts(current_user) != null){
             this.current_receiver = ChatModel.getContacts(current_user).get(0).getEmail();
             this.send.setDisable(false);
             this.message.setDisable(false);
@@ -83,6 +92,7 @@ public class TchatController extends Controller implements Observeur {
 
         this.message.setText("");
 
+        /* receiver information (right panel) */
         if(current_receiver != null){
             User user = DatabaseHandler.getInstance().getDbManager().getEntity(User.class, current_receiver);
             this.receiver.setText(user.getFirstName() + " " + user.getLastName());
@@ -90,12 +100,26 @@ public class TchatController extends Controller implements Observeur {
             this.receiver.setText("No receiver selected");
         }
 
-        for(User user : this.contacts){
+        /* add first contact */
+        if (this.isFirstContact) {
+            User user = DatabaseHandler.getInstance().getDbManager().getEntity(User.class, current_receiver);
             Button button = makeContactButton(user);
             button.getStyleClass().add("contact-button");
             this.contact_list.getChildren().add(button);
         }
 
+        /* contact list (left panel) */
+        for(User user : this.contacts){
+            /* if it is the first contact, he is already displayed */
+            if(this.isFirstContact && user.getEmail().equals(current_receiver)){
+                continue;
+            }
+            Button button = makeContactButton(user);
+            button.getStyleClass().add("contact-button");
+            this.contact_list.getChildren().add(button);
+        }
+
+        /* conversation */
         for(Chat chat: this.chats){
             Label label = new Label(chat.getMessage());
 
@@ -109,7 +133,8 @@ public class TchatController extends Controller implements Observeur {
             conversation.add(label, column, messageCounter);
 
             messageCounter++;
-      }
+        }
+        this.isFirstContact = false;
     }
 
     public Button makeContactButton(User user){

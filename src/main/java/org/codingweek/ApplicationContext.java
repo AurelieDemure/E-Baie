@@ -19,6 +19,10 @@ public class ApplicationContext {
 
     private Page pageType;
 
+    private User contactUser;
+
+    private Integer offerId;
+
     private ApplicationContext() {
 
     }
@@ -28,6 +32,14 @@ public class ApplicationContext {
             instance = new ApplicationContext();
         }
         return instance;
+    }
+
+    public void setContactUser(User contactUser){
+        this.contactUser = contactUser;
+    }
+
+    public User getContactUser(){
+        return this.contactUser;
     }
 
     public void setPageType(Page pageType){
@@ -44,6 +56,14 @@ public class ApplicationContext {
 
     public void setUser_authentified(User user_authentified) {
         this.user_authentified = user_authentified;
+    }
+
+    public Integer getOfferId() {
+        return offerId;
+    }
+
+    public void setOfferId(Integer offerId) {
+        this.offerId = offerId;
     }
 
     public Integer getIndex(){
