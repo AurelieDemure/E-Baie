@@ -132,4 +132,13 @@ public class OfferMarketController extends Controller implements Observeur{
     public void setOffer(Offer offer){
         this.offer = offer;
     }
+
+    public void returnMarket(ActionEvent event) {
+        ApplicationContext.getInstance().setPageType(Page.MARKET);
+        try {
+            ApplicationSettings.getInstance().setCurrentScene(new MarketView().loadScene());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

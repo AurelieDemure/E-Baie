@@ -32,7 +32,7 @@
                 <Font name="Arial" size="16.0" />
             </font>
         </Label>
-        <Button layoutX="957.0" layoutY="634.0" mnemonicParsing="false" onAction="#showConfirmationAddDialog" scaleX="1.5" scaleY="1.5" styleClass="buttonConnect" stylesheets="@../css/main.css" text="Réserver l'offre">
+        <Button layoutX="1016.0" layoutY="633.0" mnemonicParsing="false" onAction="#showConfirmationAddDialog" scaleX="1.5" scaleY="1.5" styleClass="buttonSave" stylesheets="@../css/main.css" text="Réserver l'offre">
          <font>
             <Font name="Arial" size="12.0" />
          </font></Button>
@@ -58,7 +58,7 @@
          </font>
       </Label>
       <DatePicker fx:id="dateEnd" layoutX="960.0" layoutY="583.0" onAction="#selectDateEnd" styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
-      <Button layoutX="1030.0" layoutY="260.0" mnemonicParsing="false" onAction="#contactAuthor" scaleX="1.5" scaleY="1.5" styleClass="buttonConnect" stylesheets="@../css/main.css" text="Contacter l'auteur">
+      <Button layoutX="1030.0" layoutY="260.0" mnemonicParsing="false" onAction="#contactAuthor" scaleX="1.5" scaleY="1.5" styleClass="buttonDisconnect" stylesheets="@../css/main.css" text="Contacter l'auteur">
          <font>
             <Font name="Arial" size="12.0" />
          </font></Button>
@@ -86,5 +86,6 @@
             </ImageView>
          </children>
       </Pane>
+      <Button layoutX="881.0" layoutY="633.0" mnemonicParsing="false" onAction="#returnMarket" scaleX="1.5" scaleY="1.5" styleClass="buttonConnect" stylesheets="@../css/main.css" text="Retour" />
     </children>
 </AnchorPane>
