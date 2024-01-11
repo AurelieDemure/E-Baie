@@ -8,64 +8,59 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codingweek.controller.OfferModalController">
+<AnchorPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codingweek.controller.OfferModalController">
     <children>
       <ImageView fx:id="OfferImage" fitHeight="152.0" fitWidth="232.0" layoutX="138.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="OffreTitle" layoutX="415.0" layoutY="250.0" text="Titre">
+      <Label fx:id="OffreTitle" layoutX="309.0" layoutY="191.0" text="Titre">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="OfferPrice" layoutX="402.0" layoutY="250.0" text="Prix">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="OfferDescription" layoutX="138.0" layoutY="432.0" text="Description">
+      <Label fx:id="OfferTypeServ" layoutX="402.0" layoutY="301.0" text="Type de service">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="OfferPrice" layoutX="415.0" layoutY="308.0" text="Prix">
+      <Label fx:id="OfferFrequency" layoutX="402.0" layoutY="360.0" text="Fréquence">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="OfferTypeServ" layoutX="415.0" layoutY="362.0" text="Type de service">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Label fx:id="OfferFrequency" layoutX="138.0" layoutY="691.0" text="Fréquence">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Label fx:id="OfferLoc" layoutX="138.0" layoutY="633.0" text="Localisation">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Button layoutX="1044.0" layoutY="742.0" mnemonicParsing="false" onAction="#showConfirmationAddDialog" scaleX="1.5" scaleY="1.5" styleClass="buttonConnect" stylesheets="@../css/main.css" text="Modifier l'offre" />
-      <Label layoutX="138.0" layoutY="186.0" text="Mon offre" underline="true">
+      <Button layoutX="278.0" layoutY="588.0" mnemonicParsing="false" onAction="#goToModifyOffer" scaleX="1.5" scaleY="1.5" styleClass="buttonSave" stylesheets="@../css/main.css" text="Modifier l'offre" />
+      <Label layoutX="138.0" layoutY="186.0" text="Mon offre : " underline="true">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <ScrollPane hbarPolicy="NEVER" layoutX="778.0" layoutY="199.0" prefHeight="447.0" prefWidth="319.0">
+      <ScrollPane hbarPolicy="NEVER" layoutX="676.0" layoutY="228.0" prefHeight="347.0" prefWidth="423.0" stylesheets="@../css/main.css">
          <content>
-            <VBox prefHeight="508.0" prefWidth="329.0">
+            <VBox fx:id="scrollfield" prefHeight="139.0" prefWidth="329.0">
                <children>
                   <Label fx:id="OfferBook" text="Date de prise, date de rendu, utilisateur" />
                </children>
             </VBox>
          </content>
       </ScrollPane>
-      <Label layoutX="778.0" layoutY="742.0" text="Notation : ">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Label id="notation" layoutX="881.0" layoutY="741.0" text="4/5">
+      <Label id="notation" fx:id="note" layoutX="55.0" layoutY="190.0" text="4/5">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
       </Label>
-      <fx:include fx:id="navbar" source="navbar.fxml" />
+      <Label fx:id="OfferDescription" layoutX="138.0" layoutY="423.0" text="Description">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Button layoutX="151.0" layoutY="588.0" mnemonicParsing="false" onAction="#returnToMyOffers" scaleX="1.5" scaleY="1.5" styleClass="buttonConnect" stylesheets="@../css/main.css" text="Retour" />
+      <Label layoutX="676.0" layoutY="192.0" text="Historique des réservations : ">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Button layoutX="892.0" layoutY="588.0" mnemonicParsing="false" onAction="#hideExpired" scaleX="1.25" scaleY="1.25" styleClass="buttonSave" stylesheets="@../css/main.css" text="Cacher les réservations expirées" /><fx:include fx:id="navbar" source="navbar.fxml" />
     </children>
 </AnchorPane>
