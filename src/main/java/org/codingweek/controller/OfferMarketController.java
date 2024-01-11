@@ -59,6 +59,11 @@ public class OfferMarketController extends Controller implements Observeur{
                     db.saveEntity(query);
 
                     ApplicationContext.getInstance().setPageType(Page.MARKET);
+
+                    DatabaseHandler.getInstance().getDbManager().saveEntity(
+                            new Notification("Demande de réservation", this.offer.getOwner(), false, "Demande de réservation", new Date())
+                    );
+
                     try {
                         ApplicationSettings.getInstance().setCurrentScene(new MarketView().loadScene());
                     } catch (IOException e) {
