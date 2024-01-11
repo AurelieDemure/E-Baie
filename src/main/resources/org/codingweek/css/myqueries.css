@@ -1,0 +1,45 @@
+.query{
+    -fx-background-color: -fx-light-green;
+    -fx-padding: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-cursor: hand;
+}
+
+.query:hover {
+    -fx-background-color: -fx-dark-green;
+}
+
+HBox, VBox{
+    -fx-alignment: center ;
+    -fx-padding: 5 ;
+}
+
+.title{
+    -fx-font-size: 20px;
+    -fx-padding: 10px;
+    -fx-border-insets: 10px;
+    -fx-background-insets: 10px;
+}
+
+.price{
+    -fx-font-size: 20px;
+    -fx-padding: 10px;
+    -fx-border-insets: 10px;
+    -fx-background-insets: 10px;
+}
+
+.accepted {
+    -fx-font-size: 20px;
+    -fx-padding: 10px;
+    -fx-border-insets: 10px;
+    -fx-background-insets: 10px;
+}
+
+.margin{
+    -fx-padding: 10px;
+    -fx-border-insets: 10px;
+    -fx-background-insets: 10px;
+}

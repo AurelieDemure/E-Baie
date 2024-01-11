@@ -197,7 +197,7 @@ public class MarketController extends Controller implements Observeur{
         }
         Label offerTypeLabel = new Label(offerType);
 
-        Label ownerLabel = new Label("by : " + offer.getOwner().getFirstName() + " " + offer.getOwner().getLastName());
+        Label ownerLabel = new Label("de : " + offer.getOwner().getFirstName() + " " + offer.getOwner().getLastName());
 
         Label frequencyLabel = new Label(offer.getFrequency().getValue());
 
