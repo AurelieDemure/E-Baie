@@ -1,0 +1,86 @@
+.offer{
+    -fx-background-color: -fx-light-green;
+    -fx-padding: 20px;
+    -fx-border-insets: 20px;
+    -fx-background-insets: 20px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+.margin{
+    -fx-padding: 40px;
+    -fx-border-insets: 40px;
+    -fx-background-insets: 40px;
+}
+
+HBox, VBox, ImageView{
+    -fx-alignment: center ;
+    -fx-padding: 10 ;
+}
+
+.title{
+    -fx-width: 200px;
+    -fx-font-size: 30px;
+    -fx-padding: 10px;
+    -fx-border-insets: 10px;
+    -fx-background-insets: 10px;
+}
+
+.price{
+    -fx-font-size: 20px;
+    -fx-padding: 10px;
+    -fx-border-insets: 10px;
+    -fx-background-insets: 10px;
+    -fx-padding: 10px;
+    -fx-border-insets: 10px;
+    -fx-background-insets: 10px;
+}
+
+.buttonModOffer{
+    -fx-background-color: -fx-logo;
+    transition-duration: 0.4s;
+    -fx-cursor: hand;
+    -fx-min-width: 30px;
+    -fx-font-size: 15px;
+    margin-top: 10px;
+    -fx-padding: 10px;
+    -fx-border-insets: 2px;
+    -fx-background-insets: 2px;
+}
+
+.buttonModOffer:hover{
+    -fx-background-color: -fx-logo-hand;
+}
+
+.buttonSupOffer {
+    -fx-background-color: -fx-light-blue;
+    transition-duration: 0.4s;
+    -fx-cursor: hand;
+    -fx-min-width: 30px;
+    -fx-font-size: 15px;
+    margin-top: 10px;
+    -fx-padding: 10px;
+    -fx-border-insets: 2px;
+    -fx-background-insets: 2px;
+}
+
+.buttonSupOffer:hover {
+    -fx-background-color: -fx-dark-blue;
+}
+
+.buttonConsult {
+    -fx-background-color: -fx-lila;
+    transition-duration: 0.4s;
+    -fx-cursor: hand;
+    -fx-min-width: 30px;
+    -fx-font-size: 15px;
+    margin-top: 10px;
+    -fx-padding: 10px;
+    -fx-border-insets: 2px;
+    -fx-background-insets: 2px;
+}
+
+.buttonConsult:hover {
+    -fx-background-color: -fx-lila-light;
+}
+
