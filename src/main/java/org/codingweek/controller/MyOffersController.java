@@ -1,12 +1,10 @@
 package org.codingweek.controller;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -18,15 +16,11 @@ import org.codingweek.db.entity.Offer;
 import org.codingweek.db.entity.Query;
 import org.codingweek.db.entity.User;
 import org.codingweek.model.*;
-import org.codingweek.model.filter.Frequency;
-import org.codingweek.model.filter.OfferType;
 import org.codingweek.view.*;
 
-import javax.swing.plaf.ButtonUI;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -166,14 +160,8 @@ public class MyOffersController extends Controller implements Observeur {
     }
 
     private int getNumberNotif(Offer offer) {
-        List<Query> queries = MyOffersModel.getQueriesByOffer(offer);
-        int number = 0;
-        for (Query query : queries) {
-            if (!query.isAccepted()) {
-                number++;
-            }
-        }
-        return number;
+        List<Query> queries = MyOffersModel.getNotAcceptedQueriesByOffer(offer);
+        return queries.size();
     }
 
     private void showOfferModif(ActionEvent event) {

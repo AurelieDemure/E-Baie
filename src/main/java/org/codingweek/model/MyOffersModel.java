@@ -24,11 +24,13 @@ public class MyOffersModel {
                 .collect(Collectors.toList());
     }
 
-    public static List<Query> getQueriesByOffer(Offer offer) {
+    public static List<Query> getNotAcceptedQueriesByOffer(Offer offer) {
         DatabaseManager db = DatabaseHandler.getInstance().getDbManager();
         List<Query> queries = db.getAllEntity(Query.class);
         return queries.stream()
                 .filter(query -> query.getOffer().getId() == offer.getId())
+                .filter(query -> !query.isAccepted())
                 .collect(Collectors.toList());
     }
+
 }
