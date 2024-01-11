@@ -50,6 +50,8 @@ public class MarketController extends Controller implements Observeur{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        DatabaseHandler.getInstance().getDbManager().addObserveur(this);
+
         this.priceChoice.getItems().setAll("Tout type de prix", "Moins de 100 florains", "Entre 100 et 200 florains", "Entre 200 et 300 florains", "Entre 300 et 400 florains", "Entre 400 et 500 florains", "Plus de 500 florains");
         this.priceChoice.getSelectionModel().select(0);
         this.priceChoice.setOnAction( (event -> {
@@ -79,8 +81,7 @@ public class MarketController extends Controller implements Observeur{
 
     @Override
     public void update() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        refresh();
     }
 
     @Override
