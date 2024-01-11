@@ -40,6 +40,13 @@ public class User {
     @Column(name = "date_birth")
     private Date date_birth;
 
+
+    @Column(name = "lat")
+    private Double lat;
+
+    @Column(name = "lon")
+    private Double lon;
+
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Offer> offers;
 
@@ -47,7 +54,6 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Notification> notifications;
 
-    private Double lat,longi;
 
     public User(String email,String firstName, String lastName, String password, String phone, String address, String description, int balance, Date date_birth) {
         this.email = email;
@@ -58,9 +64,13 @@ public class User {
         this.address = address;
         this.description = description;
         this.balance = balance;
+        JOpenCageLatLng res = GeoLocalisation.getLatLng(address);
+        if (res != null) {
+            lat = res.getLat();
+            lon = res.getLng();
+        }
         this.date_birth = date_birth;
-        lat = null;
-        longi = null;
+
     }
 
     public User() {}
@@ -78,15 +88,6 @@ public class User {
      * NULL if the user has not a valid address
      */
     public Double getLat() {
-        if (lat == null) {
-            if (address != null) {
-                JOpenCageLatLng res = GeoLocalisation.getLatLng(address);
-                if (res != null) {
-                    lat = res.getLat();
-                    longi = res.getLng();
-                }
-            }
-        }
         return lat;
     }
 
@@ -94,17 +95,8 @@ public class User {
      * @return the latitude of the user
      * NULL if the user has not a valid address
      */
-    public Double getLong() {
-        if (longi == null) {
-            if (address != null) {
-                JOpenCageLatLng res = GeoLocalisation.getLatLng(address);
-                if (res != null) {
-                    lat = res.getLat();
-                    longi = res.getLng();
-                }
-            }
-        }
-        return longi;
+    public Double getLon() {
+        return lon;
     }
 
 
@@ -153,7 +145,7 @@ public class User {
         JOpenCageLatLng res = GeoLocalisation.getLatLng(address);
         if (res != null) {
             lat = res.getLat();
-            longi = res.getLng();
+            lon = res.getLng();
         }
 
     }

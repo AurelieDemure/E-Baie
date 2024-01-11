@@ -133,6 +133,22 @@ public class MyOffersController extends Controller implements Observeur {
         vbox.getChildren().addAll(titleLabel, priceLabel, offerTypeLabel, frequencyLabel, consulter, modifier, supprimer);
         vbox.getStyleClass().add("margin");
 
+        int numberNotify = getNumberNotif(offer);
+        if(numberNotify != 0){
+            Button notification = new Button(String.valueOf(numberNotify));
+            notification.setOnAction(e -> {
+                ApplicationContext.getInstance().setAcceptOffer(offer);
+                ApplicationContext.getInstance().setPageType(Page.OFFER);
+                try {
+                    ApplicationSettings.getInstance().setCurrentScene(new AcceptOfferView().loadScene());
+                } catch (IOException exception) {
+                    throw new RuntimeException(exception);
+                }
+                refresh();
+            });
+            vbox.getChildren().add(notification);
+        }
+
         HBox hbox = new HBox();
         hbox.getChildren().addAll(image, vbox);
 
@@ -141,6 +157,11 @@ public class MyOffersController extends Controller implements Observeur {
         pane.setMinSize(100, 100);
         pane.getChildren().add(hbox);
         return pane;
+    }
+
+    private int getNumberNotif(Offer offer) {
+        List<Query> queries = MyOffersModel.getNotAcceptedQueriesByOffer(offer);
+        return queries.size();
     }
 
     private void showOfferModif(ActionEvent event) {

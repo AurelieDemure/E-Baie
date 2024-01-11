@@ -5,6 +5,8 @@ CREATE TABLE User (
                       password TEXT NOT NULL,
                         phone TEXT,
                         address TEXT,
+                      lat REAL NOT NULL,
+                      lon REAL NOT NULL,
                         description TEXT,
                       balance INTEGER DEFAULT 100
 );
@@ -15,6 +17,8 @@ CREATE TABLE Offer (
                        description TEXT,
                        owner TEXT NOT NULL,
                        price REAL NOT NULL,
+                       lat REAL NOT NULL,
+                       lon REAL NOT NULL,
                        type_offer BOOLEAN NOT NULL,
                        frequency TEXT,
                        localization TEXT,
