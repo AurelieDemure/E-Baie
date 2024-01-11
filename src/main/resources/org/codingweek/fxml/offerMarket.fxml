@@ -11,7 +11,6 @@
 
 <AnchorPane prefHeight="300.0" prefWidth="600.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codingweek.controller.OfferMarketController">
     <children>
-        <fx:include fx:id="navbar" source="navbar.fxml" />
         <Label fx:id="OffreTitle" layoutX="178.0" layoutY="182.0" text="Titre" underline="true" wrapText="true">
             <font>
                 <Font name="Arial Bold" size="25.0" />
@@ -86,5 +85,6 @@
             </ImageView>
          </children>
       </Pane>
+      <fx:include fx:id="navbar" source="navbar.fxml" />
     </children>
 </AnchorPane>

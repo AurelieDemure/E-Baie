@@ -10,7 +10,6 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codingweek.controller.OfferModalController">
     <children>
-        <fx:include fx:id="navbar" source="navbar.fxml" />
       <ImageView fx:id="OfferImage" fitHeight="152.0" fitWidth="232.0" layoutX="138.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="OffreTitle" layoutX="415.0" layoutY="250.0" text="Titre">
          <font>
@@ -67,5 +66,6 @@
             <Font name="System Bold" size="19.0" />
          </font>
       </Label>
+      <fx:include fx:id="navbar" source="navbar.fxml" />
     </children>
 </AnchorPane>

@@ -1,10 +1,8 @@
 package org.codingweek.controller;
 
-import javafx.scene.image.Image;
+import javafx.scene.image.*;
 import org.codingweek.*;
-import org.codingweek.db.entity.User;
-import org.codingweek.db.entity.Notification;
-import org.codingweek.db.entity.Offer;
+import org.codingweek.db.entity.*;
 import org.codingweek.model.*;
 import java.io.*;
 import java.net.*;
@@ -15,7 +13,6 @@ import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import org.codingweek.view.*;
-import javafx.scene.image.ImageView;
 
 
 
@@ -47,6 +44,9 @@ public class NavbarController extends Controller implements Observeur{
 
     @FXML
     private ScrollPane notifBox;
+
+    @FXML
+    private Pane notifFond;
 
     private List<Notification> notifications;
     private int count = 0;
@@ -109,7 +109,7 @@ public class NavbarController extends Controller implements Observeur{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.notifBox.setVisible(false);
+        notifExited();
         setNotifs();
         ImageView deco = new ImageView(new Image(
                 Objects.requireNonNull(ApplicationContext.class
@@ -175,13 +175,7 @@ public class NavbarController extends Controller implements Observeur{
         }
     }
     
-    public void setNotifs(){
-        if (this.notifBox.isVisible()) {
-            this.notifBox.setVisible(true);
-        } else {
-            this.notifBox.setVisible(false);
-        }
-        
+    public void setNotifs(){        
         this.notifications = ApplicationContext.getInstance().getUser_authentified().getNotifications();
         if (this.notifications == null) {
             this.notifications = new ArrayList<Notification>();
@@ -215,15 +209,26 @@ public class NavbarController extends Controller implements Observeur{
             
         }
     }
-    
+
     @FXML
-    void notifChange(MouseEvent event) {
-        if (this.notifBox.isVisible()) {
-            this.notifBox.setVisible(false);
-        } else {
-            this.notifBox.setVisible(true);
-            setNotifs();
-        }
+    void clickNotifEnter(MouseEvent event) {
+        notifEnter();
+    }
+
+    @FXML
+    void clickNotifExited(MouseEvent event) {
+        notifExited();
+    }
+
+    void notifEnter() {
+        this.notifBox.setVisible(true);
+        this.notifFond.setVisible(true);
+        setNotifs();
+    }
+
+    void notifExited() {
+        this.notifBox.setVisible(false);
+        this.notifFond.setVisible(false);
     }
 
     public Pane makeNotif(Notification notif){
@@ -240,11 +245,14 @@ public class NavbarController extends Controller implements Observeur{
         pane.setMinSize(150, 60);
         pane.getStyleClass().add("notif");
         pane.getChildren().add(vbox);
-        pane.setOnMouseClicked( (event -> {
-            notif.setSeen(true);
-            DatabaseHandler.getInstance().getDbManager().saveEntity(notif);
-            setNotifs();
-        }));
+        pane.setOnMouseClicked(event -> clickNotif(event, notif));
         return pane;
+    }
+
+    @FXML
+    void clickNotif(MouseEvent event, Notification notif) {
+        notif.setSeen(true);
+        DatabaseHandler.getInstance().getDbManager().saveEntity(notif);
+        setNotifs();
     }
 }

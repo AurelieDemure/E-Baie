@@ -33,6 +33,7 @@
 -->
 
 <?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -43,7 +44,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="150.0" prefWidth="1200.0" style="-fx-background-color: #f1f1f1;" styleClass="invisible" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codingweek.controller.NavbarController">
+<AnchorPane prefHeight="150.0" prefWidth="1200.0" style="-fx-background-color: #f1f1f1;" styleClass="invisible" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codingweek.controller.NavbarController">
    <children>
       <Pane fx:id="navbar" prefHeight="150.0" prefWidth="1200.0" styleClass="navbar">
          <children>
@@ -73,20 +74,7 @@
                </font>
             </Button>
             <Button fx:id="deconnexion" layoutX="1100.0" layoutY="50.0" mnemonicParsing="false" onAction="#Disconnect" styleClass="buttonNavbar" stylesheets="@../css/main.css" text="" />
-            <ScrollPane fx:id="notifBox" layoutX="776.0" layoutY="18.0" maxHeight="400.0" maxWidth="200.0" prefWidth="200.0" styleClass="fond" stylesheets="@../css/notifs.css">
-              <content>
-                <AnchorPane maxWidth="180.0" minHeight="0.0" minWidth="0.0" prefWidth="195.0" stylesheets="@../css/notifs.css">
-                     <children>
-                        <VBox fx:id="notifList" layoutY="2.0" maxWidth="180.0" minHeight="25.0" minWidth="195.0" styleClass="notifsBox" stylesheets="@../css/notifs.css" />
-                     </children>
-                     <styleClass>
-                        <String fx:value="fond" />
-                        <String fx:value="pane" />
-                     </styleClass>
-                  </AnchorPane>
-              </content>
-            </ScrollPane>
-            <Pane layoutX="976.0" layoutY="19.0" onMouseClicked="#notifChange" prefHeight="34.0" prefWidth="36.0" styleClass="notifLogo" stylesheets="@../css/notifs.css">
+            <Pane layoutX="976.0" layoutY="19.0" onMouseClicked="#clickNotifEnter" prefHeight="34.0" prefWidth="36.0" styleClass="notifLogo" stylesheets="@../css/notifs.css">
                <children>
                   <ImageView fitHeight="34.0" fitWidth="38.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -100,7 +88,25 @@
                   </Label>
                </children>
             </Pane>
+            <Pane fx:id="notifFond" onMouseClicked="#clickNotifExited" prefHeight="700.0" prefWidth="1200.0" styleClass="fond" stylesheets="@../css/notifs.css" />
+            <ScrollPane fx:id="notifBox" layoutX="780.0" layoutY="20.0" maxHeight="400.0" maxWidth="200.0" prefWidth="200.0" styleClass="fond" stylesheets="@../css/notifs.css">
+              <content>
+                <AnchorPane maxWidth="180.0" minHeight="0.0" minWidth="0.0" prefWidth="195.0" stylesheets="@../css/notifs.css">
+                     <children>
+                        <VBox fx:id="notifList" layoutY="2.0" maxWidth="180.0" minHeight="25.0" minWidth="195.0" styleClass="notifsBox" stylesheets="@../css/notifs.css" />
+                     </children>
+                     <styleClass>
+                        <String fx:value="fond" />
+                        <String fx:value="pane" />
+                     </styleClass>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
          </children>
       </Pane>
    </children>
+   <stylesheets>
+      <URL value="@../css/main.css" />
+      <URL value="@../css/notifs.css" />
+   </stylesheets>
 </AnchorPane>
