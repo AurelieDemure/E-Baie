@@ -33,7 +33,17 @@ public class MyOffersController extends Controller implements Observeur {
     @FXML
     public VBox scrollField;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        DatabaseHandler.getInstance().getDbManager().addObserveur(this);
 
+        ApplicationContext.getInstance().setPageType(Page.OFFER);
+        this.myOffers.clear();
+        User user = ApplicationContext.getInstance().getUser_authentified();
+        this.myOffers = MyOffersModel.getMyOffers(user.getEmail());
+
+        refresh();
+    }
 
     @Override
     public void refresh() {
@@ -58,18 +68,8 @@ public class MyOffersController extends Controller implements Observeur {
 
     @Override
     public void update() {
-
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        ApplicationContext.getInstance().setPageType(Page.OFFER);
-        this.myOffers.clear();
-        User user = ApplicationContext.getInstance().getUser_authentified();
-        this.myOffers = MyOffersModel.getMyOffers(user.getEmail());
         refresh();
     }
-
     public void sendToCreateOffer(ActionEvent actionEvent) {
         ApplicationContext.getInstance().setPageType(Page.OFFER);
         try {
@@ -144,7 +144,6 @@ public class MyOffersController extends Controller implements Observeur {
                 } catch (IOException exception) {
                     throw new RuntimeException(exception);
                 }
-                refresh();
             });
             vbox.getChildren().add(notification);
         }

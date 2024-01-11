@@ -54,6 +54,7 @@ public class TchatController extends Controller implements Observeur {
         this.contacts.clear();
         this.chats.clear();
         this.current_user = ApplicationContext.getInstance().getUser_authentified().getEmail();
+        scrollPaneConversation.vvalueProperty().bind(conversation.heightProperty());
 
         if(ApplicationContext.getInstance().getContactUser() != null){
             this.current_receiver = ApplicationContext.getInstance().getContactUser().getEmail();
@@ -85,8 +86,6 @@ public class TchatController extends Controller implements Observeur {
     @Override
     public void refresh() {
         int messageCounter = 0;
-
-        scrollPaneConversation.vvalueProperty().bind(conversation.heightProperty());
 
         this.contacts = ChatModel.getContacts(current_user);
         this.chats = ChatModel.getChats(current_user, current_receiver);
@@ -165,7 +164,9 @@ public class TchatController extends Controller implements Observeur {
     }
 
     @Override
-    public void update() {}
+    public void update() {
+        refresh();
+    }
 
     @FXML
     public void sendMessage(ActionEvent actionEvent) {
