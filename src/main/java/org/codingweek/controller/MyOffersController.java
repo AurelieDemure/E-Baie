@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -14,8 +15,11 @@ import org.codingweek.ApplicationContext;
 import org.codingweek.ApplicationSettings;
 import org.codingweek.db.DatabaseManager;
 import org.codingweek.db.entity.Offer;
+import org.codingweek.db.entity.Query;
 import org.codingweek.db.entity.User;
 import org.codingweek.model.*;
+import org.codingweek.model.filter.Frequency;
+import org.codingweek.model.filter.OfferType;
 import org.codingweek.view.MyOffersView;
 import org.codingweek.view.OfferCreateView;
 import org.codingweek.view.OfferModalView;
@@ -25,6 +29,7 @@ import javax.swing.plaf.ButtonUI;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -137,6 +142,15 @@ public class MyOffersController extends Controller implements Observeur {
         vbox.getChildren().addAll(titleLabel, priceLabel, offerTypeLabel, frequencyLabel, consulter, modifier, supprimer);
         vbox.getStyleClass().add("margin");
 
+        int numberNotify = getNumberNotif(offer);
+        if(numberNotify != 0){
+            Button notification = new Button(String.valueOf(numberNotify));
+            notification.setOnAction(e -> {
+                showAcceptOfferDialog(e, offer);
+            });
+            vbox.getChildren().add(notification);
+        }
+
         HBox hbox = new HBox();
         hbox.getChildren().addAll(image, vbox);
 
@@ -145,6 +159,38 @@ public class MyOffersController extends Controller implements Observeur {
         pane.setMinSize(100, 100);
         pane.getChildren().add(hbox);
         return pane;
+    }
+
+    private void showAcceptOfferDialog(ActionEvent e, Offer offer) {
+        VBox vbox = new VBox();
+        List<Query> queries = MyOffersModel.getQueriesByOffer(offer);
+
+        for (Query query : queries) {
+            if (!query.isAccepted()) {
+                HBox hbox = new HBox();
+
+                Label label = new Label(query.getUser().getFirstName() + " " + query.getUser().getLastName());
+                Button accept = new Button("Accepter");
+                Button refuse = new Button("Refuser");
+
+                hbox.getChildren().addAll(label, accept, refuse);
+                vbox.getChildren().add(hbox);
+            }
+        }
+
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setContent(vbox);
+    }
+
+    private int getNumberNotif(Offer offer) {
+        List<Query> queries = MyOffersModel.getQueriesByOffer(offer);
+        int number = 0;
+        for (Query query : queries) {
+            if (!query.isAccepted()) {
+                number++;
+            }
+        }
+        return number;
     }
 
     private void showOfferModif(ActionEvent event) {
