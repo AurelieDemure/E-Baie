@@ -23,6 +23,9 @@ import java.time.format.*;
 public class OfferMarketController extends Controller implements Observeur{
 
     public Offer offer;
+
+    @FXML
+    public DatePicker chooseDate;
     @FXML
     private Label noteLabel;
     public ImageView OfferImage;

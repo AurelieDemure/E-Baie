@@ -45,7 +45,13 @@
             <Font name="Arial" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="850.0" layoutY="536.0" text="Date début : ">
+        <Label layoutX="850.0" layoutY="489.0" text="Date : ">
+            <font>
+                <Font name="Arial Italic" size="16.0" />
+            </font>
+        </Label>
+        <DatePicker fx:id="chooseDate" layoutX="960.0" layoutY="489.0" onAction="#selectDateBegin" styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
+        <Label layoutX="850.0" layoutY="536.0" text="Date début : ">
          <font>
             <Font name="Arial Italic" size="16.0" />
          </font>
