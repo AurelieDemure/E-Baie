@@ -59,31 +59,65 @@ public class OfferMarketController extends Controller implements Observeur{
         }else if (this.dateBegin.getValue() != null && this.dateEnd.getValue() != null) {
             Date dateBegin = Date.from(this.dateBegin.getValue().atStartOfDay().atZone(java.time.ZoneId.systemDefault()).toInstant());
             Date dateEnd = Date.from(this.dateEnd.getValue().atStartOfDay().atZone(java.time.ZoneId.systemDefault()).toInstant());
-            Query query = new Query(this.offer, ApplicationContext.getInstance().getUser_authentified(), false, 0, dateBegin, dateEnd);
 
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation");
-            alert.setHeaderText("Etes vous sur ?");
-            alert.setContentText("Voulez vous vraiment réserver cette offre ?");
+            Date selectedDate;
+            if (this.offer.getTypeOffer() != OfferType.LOAN && this.offer.getFrequency() != Frequency.DAYLY) {
+                selectedDate = Date.from(this.chooseDate.getValue().atStartOfDay().atZone(java.time.ZoneId.systemDefault()).toInstant());
 
-            alert.showAndWait().ifPresent(response -> {
-                if (response == javafx.scene.control.ButtonType.OK) {
+                int frequency;
+                if(this.offer.getFrequency() == Frequency.MONTHLY){
+                    frequency = 30;
+                }else{
+                    frequency = 7;
+                }
+
+                Calendar c = Calendar.getInstance();
+                c.setTime(selectedDate);
+                c.add(Calendar.DATE, 7);
+                while(dateBegin.before(dateEnd)){
+                    Query query = new Query(this.offer, ApplicationContext.getInstance().getUser_authentified(), false, 0, c.getTime(),c.getTime());
                     DatabaseManager db = DatabaseHandler.getInstance().getDbManager();
                     db.saveEntity(query);
-
-                    ApplicationContext.getInstance().setPageType(Page.MARKET);
-
-                    DatabaseHandler.getInstance().getDbManager().saveEntity(
-                            new Notification("Demande de réservation", this.offer.getOwner(), false, "Demande de réservation", new Date())
-                    );
-
-                    try {
-                        ApplicationSettings.getInstance().setCurrentScene(new MarketView().loadScene());
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    c.add(Calendar.DATE, frequency);
+                    dateBegin = c.getTime();
                 }
-            });
+
+                ApplicationContext.getInstance().setPageType(Page.MARKET);
+
+                try {
+                    ApplicationSettings.getInstance().setCurrentScene(new MarketView().loadScene());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+            } else {
+
+                Query query = new Query(this.offer, ApplicationContext.getInstance().getUser_authentified(), false, 0, dateBegin, dateEnd);
+
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation");
+                alert.setHeaderText("Etes vous sur ?");
+                alert.setContentText("Voulez vous vraiment réserver cette offre ?");
+
+                alert.showAndWait().ifPresent(response -> {
+                    if (response == javafx.scene.control.ButtonType.OK) {
+                        DatabaseManager db = DatabaseHandler.getInstance().getDbManager();
+                        db.saveEntity(query);
+
+                        ApplicationContext.getInstance().setPageType(Page.MARKET);
+
+                        DatabaseHandler.getInstance().getDbManager().saveEntity(
+                                new Notification("Demande de réservation", this.offer.getOwner(), false, "Demande de réservation", new Date())
+                        );
+
+                        try {
+                            ApplicationSettings.getInstance().setCurrentScene(new MarketView().loadScene());
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                });
+            }
         }
     }
 
@@ -119,6 +153,7 @@ public class OfferMarketController extends Controller implements Observeur{
         this.OfferDescription.setText(this.offer.getDescription());
         this.OfferLoc.setText(this.offer.getLocalization());
         this.queries = offer.getQueries();
+        this.chooseDate.setDayCellFactory(InputFieldValidator.getDateBeginCellFactory(this.dateEnd.getValue(), this.queries));
         this.dateBegin.setDayCellFactory(InputFieldValidator.getDateBeginCellFactory(this.dateEnd.getValue(), this.queries));
         this.dateEnd.setDayCellFactory(InputFieldValidator.getDateBeginCellFactory(this.dateBegin.getValue(), this.queries));
         this.chooseDate.setVisible(false);
@@ -133,11 +168,13 @@ public class OfferMarketController extends Controller implements Observeur{
     @FXML
     void selectDateBegin(ActionEvent event) {
         this.dateEnd.setDayCellFactory(InputFieldValidator.getDateEndCellFactory(this.dateBegin.getValue(), this.queries));
+        this.chooseDate.setDayCellFactory(InputFieldValidator.getDateEndCellFactory(this.dateBegin.getValue(), this.queries));
     }
 
     @FXML
     void selectDateEnd(ActionEvent event) {
         this.dateBegin.setDayCellFactory(InputFieldValidator.getDateBeginCellFactory(this.dateEnd.getValue(), this.queries));
+        this.chooseDate.setDayCellFactory(InputFieldValidator.getDateBeginCellFactory(this.dateEnd.getValue(), this.queries));
     }
 
     public void contactAuthor(ActionEvent actionEvent) {
@@ -166,5 +203,11 @@ public class OfferMarketController extends Controller implements Observeur{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @FXML
+    public void selectDay(ActionEvent actionEvent) {
+        this.dateBegin.setDayCellFactory(InputFieldValidator.getDateBeginCellFactory(this.chooseDate.getValue(), this.queries));
+        this.dateEnd.setDayCellFactory(InputFieldValidator.getDateEndCellFactory(this.chooseDate.getValue(), this.queries));
     }
 }
