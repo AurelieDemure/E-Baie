@@ -25,7 +25,7 @@
                 </AnchorPane>
             </content>
         </ScrollPane>
-      <Button layoutX="315.0" layoutY="202.0" mnemonicParsing="false" onAction="#sendToMyOffers" scaleX="1.5" scaleY="1.5" styleClass="buttonSave" stylesheets="@../css/main.css" text="Mes Offres" />
+      <Button layoutX="315.0" layoutY="202.0" mnemonicParsing="false" onAction="#sendToMyOffers" scaleX="1.5" scaleY="1.5" styleClass="buttonSave" stylesheets="@../css/main.css" text="Mes offres" />
       <Pane layoutX="1.0" prefHeight="150.0" prefWidth="1200.0" style="-fx-background-color: -fx-dark-green;" />
         <fx:include fx:id="navbar" source="navbar.fxml" />
     </children>
