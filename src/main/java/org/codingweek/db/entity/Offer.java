@@ -198,4 +198,24 @@ public class Offer {
                     .filter(query -> !query.isAccepted())
                     .toList();
     }
+
+    public Integer getNotation() {
+        int c = 0;
+        int moyenne = 0;
+        boolean getNotation = false ;
+        for (Query query : queries) {
+            Integer note = query.getNotation();
+            if (note != null) {
+                getNotation = true;
+                c++;
+                moyenne += note;
+            }
+        }
+        if (getNotation) {
+            return moyenne / c ;
+        } else {
+            return null ; 
+        }
+        
+    }
 }

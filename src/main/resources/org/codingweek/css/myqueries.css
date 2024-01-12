@@ -12,9 +12,12 @@
     -fx-background-color: -fx-dark-green;
 }
 
+.note:hover {
+    -fx-background-color: -fx-light-green;
+}
+
 HBox, VBox{
     -fx-alignment: center ;
-    -fx-padding: 5 ;
 }
 
 .title{

@@ -53,7 +53,7 @@ public class OfferMarketController extends Controller implements Observeur{
         }else if (this.dateBegin.getValue() != null && this.dateEnd.getValue() != null) {
             Date dateBegin = Date.from(this.dateBegin.getValue().atStartOfDay().atZone(java.time.ZoneId.systemDefault()).toInstant());
             Date dateEnd = Date.from(this.dateEnd.getValue().atStartOfDay().atZone(java.time.ZoneId.systemDefault()).toInstant());
-            Query query = new Query(this.offer, ApplicationContext.getInstance().getUser_authentified(), false, 0, dateBegin, dateEnd);
+            Query query = new Query(this.offer, ApplicationContext.getInstance().getUser_authentified(), false, null, dateBegin, dateEnd);
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation");
@@ -102,7 +102,12 @@ public class OfferMarketController extends Controller implements Observeur{
         dateBegin.setConverter(converter);
         this.offer = OfferMarketModel.getOffer(ApplicationContext.getInstance().getIndex());
         ApplicationContext.getInstance().setIndex(null);
-        this.noteLabel.setText("5/5");
+        Integer note = this.offer.getNotation() ;
+        if (note != null) {
+            this.noteLabel.setText(note + "/5");
+        } else {
+            this.noteLabel.setText("./5");
+        }
         this.OfferImage.setImage(ImageHandler.getImage(this.offer.getPath())); 
         this.offerAuthor.setText(this.offer.getOwner().getFirstName() + " " + this.offer.getOwner().getLastName());
         this.OffreTitle.setText(this.offer.getTitle());

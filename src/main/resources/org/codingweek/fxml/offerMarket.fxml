@@ -82,5 +82,10 @@
             </ImageView>
       <Button layoutX="881.0" layoutY="633.0" mnemonicParsing="false" onAction="#returnMarket" scaleX="1.5" scaleY="1.5" styleClass="buttonConnect" stylesheets="@../css/main.css" text="Retour" />
       <fx:include fx:id="navbar" source="navbar.fxml" />
+      <ImageView fitHeight="35.0" fitWidth="48.0" layoutX="95.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/star.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>
