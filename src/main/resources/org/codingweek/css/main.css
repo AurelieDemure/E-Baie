@@ -61,7 +61,12 @@
 .text-fieldAccount {
     -fx-background-color: -fx-transparent;
     -fx-border-color: transparent transparent black transparent;
-
+    -fx-wrap-text: true;
+    -fx-max-width: 330px;
+    -fx-min-width: 0px;
+    -fx-wrap-text: true;
+    -fx-max-width: 330px;
+    -fx-min-width: 0px;
 }
 
 .buttonConnect{
@@ -100,4 +105,7 @@
 
 .notifLogo:hover {
     -fx-cursor: hand;
+    -fx-wrap-text: true;
+    -fx-max-width: 330px;
+    -fx-min-width: 0px;
 }

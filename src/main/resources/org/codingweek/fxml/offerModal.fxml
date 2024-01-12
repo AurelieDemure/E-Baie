@@ -31,7 +31,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Button layoutX="278.0" layoutY="588.0" mnemonicParsing="false" onAction="#goToModifyOffer" scaleX="1.5" scaleY="1.5" styleClass="buttonSave" stylesheets="@../css/main.css" text="Modifier l'offre" />
+      <Button layoutX="282.0" layoutY="623.0" mnemonicParsing="false" onAction="#goToModifyOffer" scaleX="1.5" scaleY="1.5" styleClass="buttonSave" stylesheets="@../css/main.css" text="Modifier l'offre" />
       <Label layoutX="138.0" layoutY="186.0" text="Mon offre : " underline="true">
          <font>
             <Font name="System Bold" size="24.0" />
@@ -51,11 +51,11 @@
             <Font name="System Bold" size="19.0" />
          </font>
       </Label>
-      <Label fx:id="OfferDescription" layoutX="138.0" layoutY="423.0" text="Description">
+      <Label fx:id="OfferDescription" layoutX="138.0" layoutY="423.0" styleClass="description" stylesheets="@../css/offer.css" text="Description">
          <font>
             <Font size="16.0" />
          </font></Label>
-      <Button layoutX="151.0" layoutY="588.0" mnemonicParsing="false" onAction="#returnToMyOffers" scaleX="1.5" scaleY="1.5" styleClass="buttonConnect" stylesheets="@../css/main.css" text="Retour" />
+      <Button layoutX="152.0" layoutY="623.0" mnemonicParsing="false" onAction="#returnToMyOffers" scaleX="1.5" scaleY="1.5" styleClass="buttonConnect" stylesheets="@../css/main.css" text="Retour" />
       <Label layoutX="676.0" layoutY="192.0" text="Historique des réservations : ">
          <font>
             <Font name="System Bold" size="16.0" />

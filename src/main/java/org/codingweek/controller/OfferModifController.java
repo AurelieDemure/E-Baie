@@ -76,6 +76,7 @@ public class OfferModifController extends Controller implements Observeur {
         frequency.setValue(offer.getFrequency().getValue());
         localization.setText(offer.getLocalization());
         path_offer.setImage(ImageHandler.getImage(offer.getPath()));
+        this.path = offer.getPath();
         ApplicationContext.getInstance().setOfferId(null);
     }
 

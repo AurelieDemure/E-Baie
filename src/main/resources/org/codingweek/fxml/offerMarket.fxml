@@ -6,7 +6,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="300.0" prefWidth="600.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codingweek.controller.OfferMarketController">
@@ -16,7 +15,7 @@
                 <Font name="Arial Bold" size="25.0" />
             </font>
         </Label>
-        <Label fx:id="OfferDescription" layoutX="50.0" layoutY="465.0" prefHeight="208.0" prefWidth="590.0" text="Description">
+        <Label fx:id="OfferDescription" layoutX="50.0" layoutY="465.0" prefHeight="208.0" prefWidth="590.0" styleClass="description" stylesheets="@../css/offer.css" text="Description">
             <font>
                 <Font name="Arial" size="16.0" />
             </font>

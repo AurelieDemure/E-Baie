@@ -115,7 +115,6 @@ public class OfferModalController extends Controller implements Observeur{
     public void initialize(URL location, ResourceBundle resources) {
         ApplicationContext.getInstance().setPageType(Page.OFFER);
         update();
-        ApplicationContext.getInstance().setOfferId(null);
     }
 
     public void goToModifyOffer(ActionEvent event) {

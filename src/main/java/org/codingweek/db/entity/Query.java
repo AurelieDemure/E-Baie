@@ -118,13 +118,13 @@ public class Query {
     /** Refuse the query and send a notification to the user */
     public void refuseQuery() {
         DatabaseHandler.getInstance().getDbManager().deleteEntity(this);
-        DatabaseHandler.getInstance().getDbManager().saveEntity(new Notification("Votre offre pour " + offer.getTitle() + " a été refusé", offer.getOwner(), false, "once", new Date()));
+        DatabaseHandler.getInstance().getDbManager().saveEntity(new Notification("Votre offre pour " + offer.getTitle() + " a été refusée", offer.getOwner(), false, "once", new Date()));
     }
 
     /** Accept the query and send a notification to the user */
     public void acceptQuery() {
         accepted = true;
         DatabaseHandler.getInstance().getDbManager().updateEntity(this);
-        DatabaseHandler.getInstance().getDbManager().saveEntity(new Notification("Votre offre pour " + offer.getTitle() + " a été accepté", offer.getOwner(), false, "once", new Date()));
+        DatabaseHandler.getInstance().getDbManager().saveEntity(new Notification("Votre offre pour " + offer.getTitle() + " a été acceptée", offer.getOwner(), false, "once", new Date()));
     }
 }

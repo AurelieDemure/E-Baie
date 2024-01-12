@@ -99,3 +99,9 @@ HBox, VBox, ImageView{
 .buttonNotif:hover {
     -fx-background-color: -fx-grey-blue-light;
 }
+
+.description {
+    -fx-wrap-text: true;
+    -fx-max-width: 400px;
+    -fx-min-width: 0px;
+}
