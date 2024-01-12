@@ -36,9 +36,9 @@ public class Query {
     private boolean accepted;
 
     @Column(name = "notation")
-    private int notation;
+    private Integer notation;
 
-    public Query(Offer offer, User user, boolean accepted, int notation, Date dateBegin, Date dateEnd) {
+    public Query(Offer offer, User user, boolean accepted, Integer notation, Date dateBegin, Date dateEnd) {
         this.date = LocalDateTime.now();
         this.offer = offer;
         this.user = user;
@@ -107,11 +107,11 @@ public class Query {
         this.accepted = accepted;
     }
 
-    public int getNotation() {
+    public Integer getNotation() {
         return notation;
     }
 
-    public void setNotation(int notation) {
+    public void setNotation(Integer notation) {
         this.notation = notation;
     }
 

@@ -42,6 +42,8 @@ public class OfferModalController extends Controller implements Observeur{
     public Label OfferTypeServ;
     public Label OfferFrequency;
     public Label OfferBook;
+    @FXML
+    private Label noteLabel;
 
     public List<Query> OfferBooks = new ArrayList<>();
     public VBox scrollfield;
@@ -59,6 +61,12 @@ public class OfferModalController extends Controller implements Observeur{
     public void update() {
         Offer offer = OfferModalModel.getMyOfferToModify(ApplicationContext.getInstance().getOfferId());
         indexModify = offer.getId();
+        Integer note = offer.getNotation() ;
+        if (note != null) {
+            this.noteLabel.setText(note + "/5");
+        } else {
+            this.noteLabel.setText("./5");
+        }
         OffreTitle.setText(offer.getTitle());
         OfferPrice.setText(String.valueOf(offer.getPrice()));
         OfferFrequency.setText(offer.getFrequency().getValue());
