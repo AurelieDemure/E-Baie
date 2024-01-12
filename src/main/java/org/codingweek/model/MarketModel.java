@@ -14,13 +14,11 @@ import org.codingweek.model.filter.*;
 public class MarketModel {
 
 
-    private static List<Offer> offersAvailable;
 
     /** Return all the offer on the database without the one of the user
      * Email is the value of the offer to be excluded */
     public static List<Offer> getOffersAvailable(String email) {
-        if (offersAvailable == null)
-            offersAvailable = DatabaseHandler.getInstance().getDbManager().getAllEntity(Offer.class);
+            List<Offer> offersAvailable = DatabaseHandler.getInstance().getDbManager().getAllEntity(Offer.class);
         return offersAvailable.stream()
                 .filter(offer -> !offer.getOwner().getEmail().equals(email))
                 .collect(Collectors.toList());
@@ -110,9 +108,4 @@ public class MarketModel {
         }
         return bool;
     }
-
-
-
-
-
 }

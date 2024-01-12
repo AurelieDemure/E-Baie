@@ -71,13 +71,13 @@ public class AccountController extends Controller implements Observeur{
 
     @Override
     public void update() {
-        /*if (ApplicationContext.getInstance().getUser_authentified() != null)
-            refresh();*/
+        if (ApplicationContext.getInstance().getUser_authentified() != null)
+            refresh();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //DatabaseHandler.getInstance().getDbManager().addObserveur(this);
+        DatabaseHandler.getInstance().getDbManager().addObserveur(this);
 
         ApplicationContext.getInstance().setPageType(Page.ACCOUNT);
         StringConverter<LocalDate> converter = new LocalDateStringConverter(formatter, formatter);
