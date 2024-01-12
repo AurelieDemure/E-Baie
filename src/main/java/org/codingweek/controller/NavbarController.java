@@ -251,7 +251,7 @@ public class NavbarController extends Controller implements Observeur{
         vbox.getChildren().addAll(typeLabel, dateLabel);
 
         Pane pane = new Pane();
-        pane.setMinSize(150, 60);
+        pane.setMinSize(200, 60);
         pane.getStyleClass().add("notif");
         pane.getChildren().add(vbox);
         pane.setOnMouseClicked(event -> clickNotif(event, notif));

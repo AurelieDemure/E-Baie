@@ -32,6 +32,5 @@
     <stylesheets>
         <URL value="@../css/main.css" />
         <URL value="@../css/myqueries.css" />
-      <URL value="@../css/market.css" />
     </stylesheets>
 </AnchorPane>
