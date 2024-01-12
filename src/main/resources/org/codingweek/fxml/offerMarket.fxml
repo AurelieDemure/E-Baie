@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="300.0" prefWidth="600.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codingweek.controller.OfferMarketController">
     <children>
@@ -44,7 +43,13 @@
             <Font name="Arial" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="850.0" layoutY="536.0" text="Date début : ">
+        <Label fx:id="labelDate" layoutX="850.0" layoutY="489.0" text="Date : ">
+            <font>
+                <Font name="Arial Italic" size="16.0" />
+            </font>
+        </Label>
+        <DatePicker fx:id="chooseDate" layoutX="960.0" layoutY="489.0" onAction="#selectDay" styleClass="text-fieldAccount" stylesheets="@../css/main.css" />
+        <Label layoutX="850.0" layoutY="536.0" text="Date début : ">
          <font>
             <Font name="Arial Italic" size="16.0" />
          </font>

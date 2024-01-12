@@ -28,7 +28,6 @@ public class MyOffersController extends Controller implements Observeur {
     public void initialize(URL location, ResourceBundle resources) {
         //DatabaseHandler.getInstance().getDbManager().addObserveur(this);
 
-        ApplicationContext.getInstance().setPageType(Page.OFFER);
 
         refresh();
     }
