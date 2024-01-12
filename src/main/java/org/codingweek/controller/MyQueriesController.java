@@ -11,6 +11,7 @@ import javafx.event.*;
 import javafx.fxml.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.util.StringConverter;
@@ -76,6 +77,21 @@ public class MyQueriesController extends Controller implements Observeur {
     }
 
     public Pane makePaneQuery(Query query) {
+        ImageView starImage = new ImageView(new Image(Objects.requireNonNull(ApplicationContext.class.getResourceAsStream("/org/codingweek/img/star.png"))));
+        starImage.setFitHeight(30);
+        starImage.setFitWidth(30);
+        starImage.setTranslateX(5);
+        starImage.setTranslateY(-5);
+        Label noteLabel = new Label();
+        Integer note = query.getNotation() ;
+        if (note != null) {
+            noteLabel.setText(note + "/5");
+        } else {
+            noteLabel.setText("Ajouter une note");
+        }
+        HBox notation = new HBox(noteLabel, starImage);
+        notation.getStyleClass().add("margin");
+
         ImageView image = new ImageView();
         image.setImage(ImageHandler.getImage(query.getOffer().getPath()));
         image.setTranslateX(5);
@@ -110,17 +126,17 @@ public class MyQueriesController extends Controller implements Observeur {
         contact.getStyleClass().add("buttonDisconnect");
         contact.setOnAction(e -> contactAuthor(e, query));
 
-        VBox vbox = new VBox();
-        vbox.getChildren().addAll(titleLabel, priceLabel, dateLabel, acceptedLabel, dateQueryLabel, ownerLabel, contact);
-        vbox.getStyleClass().add("margin");
+        VBox vbox1 = new VBox(notation, image);
+        vbox1.getStyleClass().add("margin");
 
-        HBox hbox = new HBox();
-        hbox.getChildren().addAll(image, vbox);
+        VBox vbox2 = new VBox(titleLabel, priceLabel, dateLabel, acceptedLabel, dateQueryLabel, ownerLabel, contact);
+        vbox2.getStyleClass().add("margin");
 
-        Pane pane = new Pane();
+        HBox hbox = new HBox(vbox1, vbox2);
+
+        Pane pane = new Pane(hbox);
         pane.getStyleClass().add("query");
         pane.setMinSize(10, 10);
-        pane.getChildren().add(hbox);
         pane.setOnMouseClicked(e -> {
             goToOffer(query.getOffer());
         });
