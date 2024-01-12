@@ -46,7 +46,16 @@ public class OfferCreateController extends Controller implements Observeur {
 
     @Override
     public void refresh() {
+        ApplicationContext.getInstance().setPageType(Page.OFFER);
+        toggleErrorFillAll(false);
+        toggleErrorNotDouble(false);
 
+        type_offer.getItems().clear();
+        frequency.getItems().clear();
+
+
+        type_offer.getItems().addAll("Pret", "Service");
+        frequency.getItems().addAll("Tout type de frequence", "Unique", "Journalier", "Hebdomadaire", "Mensuelle", "Annuelle");
     }
 
 
@@ -62,22 +71,19 @@ public class OfferCreateController extends Controller implements Observeur {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ApplicationContext.getInstance().setPageType(Page.OFFER);
-        toggleErrorFillAll(false);
-        toggleErrorNotDouble(false);
-        type_offer.getItems().addAll("Pret", "Service");
-        frequency.getItems().addAll("Tout type de frequence", "Unique", "Journalier", "Hebdomadaire", "Mensuelle", "Annuelle");
+        DatabaseHandler.getInstance().getDbManager().addObserveur(this);
+        refresh();
     }
 
     @Override
     public void update() {
-
+        refresh();
     }
 
     public void saveModifiedOffer(ActionEvent actionEvent) {
         if (title.getText().isEmpty() || description.getText().isEmpty() || price.getText().isEmpty() || type_offer.getValue() == null || frequency.getValue() == null || localization.getText().isEmpty()) {
-                errorFillAll.setText("Veuillez remplir tous les champs");
-                toggleErrorFillAll(true);
+            errorFillAll.setText("Veuillez remplir tous les champs");
+            toggleErrorFillAll(true);
         }
         if (!InputFieldValidator.validAdress(localization.getText()) && localization.getText() != null) {
             if (!localization.getText().isEmpty()) {
@@ -133,18 +139,4 @@ public class OfferCreateController extends Controller implements Observeur {
         this.path = path;
         path_offer.setImage(new Image(new File(path).toURI().toString()));
     }
-/*
-    public void showTypes(MouseEvent mouseEvent) {
-        type_offer.setItems(FXCollections.observableArrayList(
-                "Pret", "Service")
-        );
-    }
-
-    public void showFrequency(MouseEvent mouseEvent) {
-        frequency.setItems(FXCollections.observableArrayList(
-                "Tout type de frequence", "Unique", "Journalier", "Hebdomadaire", "Mensuelle", "Annuelle"
-        ));
-    }
-
- */
 }

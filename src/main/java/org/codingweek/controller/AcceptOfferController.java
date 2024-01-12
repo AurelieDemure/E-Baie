@@ -35,13 +35,13 @@ public class AcceptOfferController extends Controller implements Observeur {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //DatabaseHandler.getInstance().getDbManager().addObserveur(this);
+        DatabaseHandler.getInstance().getDbManager().addObserveur(this);
         refresh();
     }
 
     @Override
     public void update() {
-        //refresh();
+        refresh();
     }
 
     @Override
@@ -91,7 +91,11 @@ public class AcceptOfferController extends Controller implements Observeur {
 
                 double balance = query.getUser().getBalance() - offer.getPrice();
                 query.getUser().setBalance((int) balance);
-                DatabaseHandler.getInstance().getDbManager().saveEntity(query.getUser());
+                DatabaseHandler.getInstance().getDbManager().updateEntity(query.getUser());
+
+                DatabaseHandler.getInstance().getDbManager().saveEntity(
+                        new Notification("Demande acceptée", query.getUser(), false, "Votre demande a été acceptée", new Date())
+                );
 
                 refresh();
             });
