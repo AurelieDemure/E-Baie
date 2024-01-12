@@ -78,7 +78,7 @@ public class OfferMarketController extends Controller implements Observeur{
                 c.setTime(selectedDate);
                 c.add(Calendar.DATE, 7);
                 while(dateBegin.before(dateEnd)){
-                    Query query = new Query(this.offer, ApplicationContext.getInstance().getUser_authentified(), false, 0, c.getTime(),c.getTime());
+                    Query query = new Query(this.offer, ApplicationContext.getInstance().getUser_authentified(), false, null, c.getTime(),c.getTime());
                     DatabaseManager db = DatabaseHandler.getInstance().getDbManager();
                     db.saveEntity(query);
                     c.add(Calendar.DATE, frequency);
@@ -95,7 +95,7 @@ public class OfferMarketController extends Controller implements Observeur{
 
             } else {
 
-                Query query = new Query(this.offer, ApplicationContext.getInstance().getUser_authentified(), false, 0, dateBegin, dateEnd);
+                Query query = new Query(this.offer, ApplicationContext.getInstance().getUser_authentified(), false, null, dateBegin, dateEnd);
 
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Confirmation");
