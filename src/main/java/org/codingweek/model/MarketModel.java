@@ -21,6 +21,7 @@ public class MarketModel {
         List<Offer> offersAvailable = DatabaseHandler.getInstance().getDbManager().getAllEntity(Offer.class);
 
         return offersAvailable.stream()
+                .filter(offer -> !offer.getOwner().getEmail().equals(email))
                 .filter(offer -> !offer.getOwner().isSleeping())
                 .collect(Collectors.toList());
     }

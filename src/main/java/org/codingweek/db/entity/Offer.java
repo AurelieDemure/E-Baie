@@ -187,13 +187,15 @@ public class Offer {
 
     public List<Query> getAllAcceptedQueries() {
         return queries.stream()
+                .distinct()
                 .filter(Query::isAccepted)
                 .toList();
     }
 
     public List<Query> getAllPendingQueries() {
             return queries.stream()
-                .filter(query -> !query.isAccepted())
-                .toList();
+                    .distinct()
+                    .filter(query -> !query.isAccepted())
+                    .toList();
     }
 }

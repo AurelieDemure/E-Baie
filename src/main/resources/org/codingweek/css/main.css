@@ -4,6 +4,8 @@
     -fx-light-green-hand: #c8eace;
     -fx-dark-green: #94C595;
     -fx-grey: #747C92;
+    -fx-grey-blue: #59c4da;
+    -fx-grey-blue-light: #b5f0ff;
     -fx-purple: #372772;
     -fx-lila: #b18cda;
     -fx-lila-light: #d9b5f6;
@@ -59,7 +61,12 @@
 .text-fieldAccount {
     -fx-background-color: -fx-transparent;
     -fx-border-color: transparent transparent black transparent;
-
+    -fx-wrap-text: true;
+    -fx-max-width: 330px;
+    -fx-min-width: 0px;
+    -fx-wrap-text: true;
+    -fx-max-width: 330px;
+    -fx-min-width: 0px;
 }
 
 .buttonConnect{
@@ -98,4 +105,7 @@
 
 .notifLogo:hover {
     -fx-cursor: hand;
+    -fx-wrap-text: true;
+    -fx-max-width: 330px;
+    -fx-min-width: 0px;
 }

@@ -2,10 +2,7 @@ package org.codingweek.controller;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -33,7 +30,7 @@ import java.util.ResourceBundle;
 public class OfferCreateController extends Controller implements Observeur {
 
     public TextField title;
-    public TextField description;
+    public TextArea description;
     public Label errorNotDouble;
     public TextField price;
     public ChoiceBox type_offer;
@@ -81,9 +78,10 @@ public class OfferCreateController extends Controller implements Observeur {
     }
 
     public void saveModifiedOffer(ActionEvent actionEvent) {
-        if (title.getText().isEmpty() || description.getText().isEmpty() || price.getText().isEmpty() || type_offer.getValue() == null || frequency.getValue() == null || localization.getText().isEmpty()) {
-            errorFillAll.setText("Veuillez remplir tous les champs");
-            toggleErrorFillAll(true);
+        if (title.getText().isEmpty() || title.getText() != null || description.getText().isEmpty() || price.getText().isEmpty() || type_offer.getValue() == null || frequency.getValue() == null || localization.getText().isEmpty()) {
+                errorFillAll.setText("Veuillez remplir tous les champs");
+                toggleErrorFillAll(true);
+                return;
         }
         if (!InputFieldValidator.validAdress(localization.getText()) && localization.getText() != null) {
             if (!localization.getText().isEmpty()) {
@@ -139,4 +137,5 @@ public class OfferCreateController extends Controller implements Observeur {
         this.path = path;
         path_offer.setImage(new Image(new File(path).toURI().toString()));
     }
+
 }

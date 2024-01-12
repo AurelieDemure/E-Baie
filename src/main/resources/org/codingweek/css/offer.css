@@ -84,3 +84,24 @@ HBox, VBox, ImageView{
     -fx-background-color: -fx-lila-light;
 }
 
+.buttonNotif {
+    -fx-background-color: -fx-grey-blue;
+    transition-duration: 0.4s;
+    -fx-cursor: hand;
+    -fx-min-width: 30px;
+    -fx-font-size: 15px;
+    margin-top: 10px;
+    -fx-padding: 10px;
+    -fx-border-insets: 2px;
+    -fx-background-insets: 5px;
+}
+
+.buttonNotif:hover {
+    -fx-background-color: -fx-grey-blue-light;
+}
+
+.description {
+    -fx-wrap-text: true;
+    -fx-max-width: 400px;
+    -fx-min-width: 0px;
+}

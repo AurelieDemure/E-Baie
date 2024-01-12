@@ -73,7 +73,7 @@ public class AcceptOfferController extends Controller implements Observeur {
             Label firstName = new Label(query.getUser().getFirstName());
             Label lastName = new Label(query.getUser().getLastName());
 
-            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
             Date beginDate = query.getDateBegin();
             Date endDate = query.getDateEnd();
