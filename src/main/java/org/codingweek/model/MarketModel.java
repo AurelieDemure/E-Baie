@@ -22,6 +22,7 @@ public class MarketModel {
         if (offersAvailable == null)
             offersAvailable = DatabaseHandler.getInstance().getDbManager().getAllEntity(Offer.class);
         if (offersAvailable == null) return null;
+        offersAvailable = offersAvailable.stream().filter( offer ->  !offer.getOwner().isSleeping()).collect(Collectors.toList());
         return offersAvailable.stream()
                 .filter(offer -> !offer.getOwner().getEmail().equals(email))
                 .collect(Collectors.toList());
@@ -31,8 +32,7 @@ public class MarketModel {
      * Email is the value of the offer to be excluded */
     public static List<Offer> getOffersAvailableFiltered(String email, String research, OfferType type, Frequency frequency, Price price, SortOffer sortOffer, Distance distance) {
         List<Offer> offers = getOffersAvailable(email);
-        if (offers == null) return null;
-        offers = offers.stream().filter( offer ->  !offer.getOwner().isSleeping()).collect(Collectors.toList());
+
         if (research != null)
             offers = offers.stream()
                     .filter(offer -> compareTitle2(offer.getTitle(), research))

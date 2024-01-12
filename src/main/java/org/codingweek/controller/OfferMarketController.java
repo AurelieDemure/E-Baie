@@ -43,7 +43,14 @@ public class OfferMarketController extends Controller implements Observeur{
     @FXML
     private void showConfirmationAddDialog() {
 
-        if (this.dateBegin.getValue() != null && this.dateEnd.getValue() != null) {
+        if (ApplicationContext.getInstance().getUser_authentified().getBalance() < this.offer.getPrice()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Solde insuffisant");
+            alert.setContentText("Vous n'avez pas assez de florains pour réserver.");
+
+            alert.showAndWait();
+        }else if (this.dateBegin.getValue() != null && this.dateEnd.getValue() != null) {
             Date dateBegin = Date.from(this.dateBegin.getValue().atStartOfDay().atZone(java.time.ZoneId.systemDefault()).toInstant());
             Date dateEnd = Date.from(this.dateEnd.getValue().atStartOfDay().atZone(java.time.ZoneId.systemDefault()).toInstant());
             Query query = new Query(this.offer, ApplicationContext.getInstance().getUser_authentified(), false, 0, dateBegin, dateEnd);
@@ -59,6 +66,11 @@ public class OfferMarketController extends Controller implements Observeur{
                     db.saveEntity(query);
 
                     ApplicationContext.getInstance().setPageType(Page.MARKET);
+
+                    DatabaseHandler.getInstance().getDbManager().saveEntity(
+                            new Notification("Demande de réservation", this.offer.getOwner(), false, "Demande de réservation", new Date())
+                    );
+
                     try {
                         ApplicationSettings.getInstance().setCurrentScene(new MarketView().loadScene());
                     } catch (IOException e) {

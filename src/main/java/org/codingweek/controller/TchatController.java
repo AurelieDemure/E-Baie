@@ -7,6 +7,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import org.codingweek.ApplicationContext;
 import org.codingweek.db.entity.Chat;
+import org.codingweek.db.entity.Notification;
 import org.codingweek.db.entity.User;
 import org.codingweek.model.ChatModel;
 import org.codingweek.model.DatabaseHandler;
@@ -54,6 +55,7 @@ public class TchatController extends Controller implements Observeur {
         this.contacts.clear();
         this.chats.clear();
         this.current_user = ApplicationContext.getInstance().getUser_authentified().getEmail();
+        scrollPaneConversation.vvalueProperty().bind(conversation.heightProperty());
 
         if(ApplicationContext.getInstance().getContactUser() != null){
             this.current_receiver = ApplicationContext.getInstance().getContactUser().getEmail();
@@ -85,8 +87,6 @@ public class TchatController extends Controller implements Observeur {
     @Override
     public void refresh() {
         int messageCounter = 0;
-
-        scrollPaneConversation.vvalueProperty().bind(conversation.heightProperty());
 
         this.contacts = ChatModel.getContacts(current_user);
         this.chats = ChatModel.getChats(current_user, current_receiver);
@@ -165,7 +165,9 @@ public class TchatController extends Controller implements Observeur {
     }
 
     @Override
-    public void update() {}
+    public void update() {
+        //refresh();
+    }
 
     @FXML
     public void sendMessage(ActionEvent actionEvent) {
@@ -180,6 +182,9 @@ public class TchatController extends Controller implements Observeur {
 
             Chat chat = new Chat(sender, receiver_user, message, createDate(Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE)));
             DatabaseHandler.getInstance().getDbManager().saveEntity(chat);
+
+            Notification notification = new Notification("Message de " + sender.getFirstName() + " " + sender.getLastName(),receiver_user, false, "unique", new Date());
+            DatabaseHandler.getInstance().getDbManager().saveEntity(notification);
 
             refresh();
         }

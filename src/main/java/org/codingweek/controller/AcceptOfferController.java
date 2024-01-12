@@ -11,6 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.codingweek.ApplicationContext;
 import org.codingweek.ApplicationSettings;
+import org.codingweek.db.DatabaseManager;
 import org.codingweek.db.entity.Notification;
 import org.codingweek.db.entity.Offer;
 import org.codingweek.db.entity.Query;
@@ -31,6 +32,17 @@ public class AcceptOfferController extends Controller implements Observeur {
 
     @FXML
     public GridPane content;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        DatabaseHandler.getInstance().getDbManager().addObserveur(this);
+        refresh();
+    }
+
+    @Override
+    public void update() {
+        refresh();
+    }
 
     @Override
     public void refresh() {
@@ -76,6 +88,15 @@ public class AcceptOfferController extends Controller implements Observeur {
             acceptBtn.getStyleClass().add("button_accept");
             acceptBtn.setOnAction(event -> {
                 query.acceptQuery();
+
+                double balance = query.getUser().getBalance() - offer.getPrice();
+                query.getUser().setBalance((int) balance);
+                DatabaseHandler.getInstance().getDbManager().updateEntity(query.getUser());
+
+                DatabaseHandler.getInstance().getDbManager().saveEntity(
+                        new Notification("Demande acceptée", query.getUser(), false, "Votre demande a été acceptée", new Date())
+                );
+
                 refresh();
             });
 
@@ -83,8 +104,9 @@ public class AcceptOfferController extends Controller implements Observeur {
             refuse.getStyleClass().add("button_decline");
             refuse.setOnAction(event -> {
                 query.refuseQuery();
-                refresh();
             });
+
+            acceptBtn.setDisable(query.getUser().getBalance() < offer.getPrice());
 
             Button contact = new Button("Contact");
             contact.getStyleClass().add("button_contact");
@@ -108,17 +130,6 @@ public class AcceptOfferController extends Controller implements Observeur {
             content.add(contact, 6, queries.indexOf(query));
         }
     }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        refresh();
-    }
-
-    @Override
-    public void update() {
-
-    }
-
     @FXML
     public void goBack(ActionEvent actionEvent) {
         ApplicationContext.getInstance().setPageType(Page.OFFER);

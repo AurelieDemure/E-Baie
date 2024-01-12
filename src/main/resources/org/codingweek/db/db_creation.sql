@@ -3,12 +3,12 @@ CREATE TABLE User (
                       firstName TEXT NOT NULL,
                       lastName TEXT NOT NULL,
                       password TEXT NOT NULL,
-                        phone TEXT,
-                        address TEXT,
+                      phone TEXT,
+                      address TEXT,
                       lat REAL NOT NULL,
                       lon REAL NOT NULL,
-                        description TEXT,
                       sleeping BOOLEAN NOT NULL,
+                      description TEXT,
                       balance INTEGER DEFAULT 100
 );
 
@@ -43,7 +43,7 @@ CREATE TABLE Query (
 CREATE TABLE Chat (
                       id INTEGER PRIMARY KEY,
                       sender INTEGER NOT NULL,
-                        receiver INTEGER NOT NULL,
+                      receiver INTEGER NOT NULL,
                       message TEXT NOT NULL,
                       date_message date,
                       FOREIGN KEY (sender) REFERENCES User(email),

@@ -77,6 +77,21 @@ public class User {
 
     }
 
+    /** Usage on test create a User without calling API for lat lon */
+    public static User getUserTest(String email,String firstName, String lastName, String password, String phone, String address, String description, int balance, Date date_birth) {
+User user = new User();
+        user.email = email;
+        user.firstName = firstName;
+        user.lastName = lastName;
+        user.password = PasswordUtility.hashPassword(password);
+        user.phone = phone;
+        user.address = address;
+        user.description = description;
+        user.balance = balance;
+        user.date_birth = date_birth;
+        return user;
+    }
+
     public User() {}
 
     public void setFirstName(String firstName) {

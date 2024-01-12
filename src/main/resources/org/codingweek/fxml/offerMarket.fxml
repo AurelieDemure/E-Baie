@@ -76,15 +76,11 @@
                 <Font name="Arial" size="16.0" />
             </font>
         </Label>
-      <Pane layoutX="32.0" layoutY="226.0" prefHeight="230.0" prefWidth="400.0">
-         <children>
-              <ImageView fx:id="OfferImage" fitHeight="208.0" fitWidth="340.0" layoutX="96.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+              <ImageView fx:id="OfferImage" fitHeight="208.0" fitWidth="340.0" layoutX="50.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/notfoundimg.jpg" />
                </image>
             </ImageView>
-         </children>
-      </Pane>
       <Button layoutX="881.0" layoutY="633.0" mnemonicParsing="false" onAction="#returnMarket" scaleX="1.5" scaleY="1.5" styleClass="buttonConnect" stylesheets="@../css/main.css" text="Retour" />
       <fx:include fx:id="navbar" source="navbar.fxml" />
     </children>
