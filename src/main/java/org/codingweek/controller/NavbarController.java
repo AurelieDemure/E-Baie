@@ -147,7 +147,6 @@ public class NavbarController extends Controller implements Observeur{
 
     @Override
     public void update() {
-        setNotifs();
     }
 
     @Override

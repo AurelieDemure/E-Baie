@@ -204,6 +204,9 @@ public class User {
     }
 
     public List<Notification> getNotifications() {
+        if (this.notifications == null) {
+            return null;
+        }
         return this.notifications.stream().distinct().collect(Collectors.toList());
     }
 
