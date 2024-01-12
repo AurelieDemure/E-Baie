@@ -73,9 +73,7 @@ public class MarketController extends Controller implements Observeur{
         this.distanceChoice.setOnAction( (event -> {
             search();
         }));
-        this.offers.clear();
-        this.offers = MarketModel.getOffersAvailable(ApplicationContext.getInstance().getUser_authentified().getEmail());
-        
+
         refresh();
     }
 
@@ -86,6 +84,11 @@ public class MarketController extends Controller implements Observeur{
 
     @Override
     public void refresh() {
+
+        this.offers.clear();
+        if(ApplicationContext.getInstance().getUser_authentified() != null)
+            this.offers = MarketModel.getOffersAvailable(ApplicationContext.getInstance().getUser_authentified().getEmail());
+
         this.scrollField.getChildren().clear();
         Pane pane;
         int x = 0;
