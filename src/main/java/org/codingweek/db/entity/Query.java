@@ -32,6 +32,9 @@ public class Query {
     @Column(name = "date_end")
     private Date dateEnd;
 
+    @Column(name = "date_repeated")
+    private Date dateRepeated;
+
     @Column(name = "accepted")
     private boolean accepted;
 
@@ -43,6 +46,7 @@ public class Query {
         this.offer = offer;
         this.user = user;
         this.date = date;
+        this.dateRepeated = null;
         this.dateBegin = dateBegin;
         this.dateEnd = dateEnd;
         this.accepted = accepted;
@@ -50,6 +54,7 @@ public class Query {
     }
 
     public Query() {}
+
 
     public int getId() {
         return id;

@@ -2,11 +2,9 @@ package org.codingweek.model.filter;
 
 public enum Frequency {
     ALLFREQUENCY("Tout type de frequence"),
-    UNIQUE("Unique"),
     DAYLY("Journalier"),
     WEEKLY("Hebdomadaire"),
-    MONTHLY("Mensuelle"),
-    YEARLY("Annuelle");
+    MONTHLY("Mensuelle");
 
     private final String value;
 
