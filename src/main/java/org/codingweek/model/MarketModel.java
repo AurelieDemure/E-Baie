@@ -21,15 +21,18 @@ public class MarketModel {
     public static List<Offer> getOffersAvailable(String email) {
         if (offersAvailable == null)
             offersAvailable = DatabaseHandler.getInstance().getDbManager().getAllEntity(Offer.class);
+        if (offersAvailable == null) return null;
         return offersAvailable.stream()
                 .filter(offer -> !offer.getOwner().getEmail().equals(email))
                 .collect(Collectors.toList());
     }
 
-    /** Return all the offer on the database with filtering
+    /** Return all the offer on the database with filtering except the own owned by sleeping people
      * Email is the value of the offer to be excluded */
     public static List<Offer> getOffersAvailableFiltered(String email, String research, OfferType type, Frequency frequency, Price price, SortOffer sortOffer, Distance distance) {
         List<Offer> offers = getOffersAvailable(email);
+        if (offers == null) return null;
+        offers = offers.stream().filter( offer ->  !offer.getOwner().isSleeping()).collect(Collectors.toList());
         if (research != null)
             offers = offers.stream()
                     .filter(offer -> compareTitle2(offer.getTitle(), research))

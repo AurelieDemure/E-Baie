@@ -8,6 +8,7 @@ CREATE TABLE User (
                       lat REAL NOT NULL,
                       lon REAL NOT NULL,
                         description TEXT,
+                      sleeping BOOLEAN NOT NULL,
                       balance INTEGER DEFAULT 100
 );
 

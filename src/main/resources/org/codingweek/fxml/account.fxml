@@ -87,6 +87,7 @@
          </font>
       </Label>
        <Button layoutX="1004.0" layoutY="208.0" mnemonicParsing="false" onAction="#disconnect" scaleX="1.5" scaleY="1.5" styleClass="buttonDisconnect" text="Se déconnecter" />
+       <Button fx:id="sleepButton" layoutX="704.0" layoutY="208.0" mnemonicParsing="false" onAction="#sleep" scaleX="1.5" scaleY="1.5" styleClass="buttonDisconnect" text="Mettre le compte en veille" />
       <fx:include fx:id="navbar" source="navbar.fxml" />
     </children>
 </AnchorPane>

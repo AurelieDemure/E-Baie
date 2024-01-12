@@ -13,6 +13,7 @@ import org.codingweek.model.InputFieldValidator;
 import org.codingweek.model.ModalHelper;
 import org.codingweek.model.Page;
 import org.codingweek.view.ConnexionView;
+import org.codingweek.view.MyOffersView;
 
 import java.io.IOException;
 import java.net.URL;
@@ -39,6 +40,7 @@ public class AccountController extends Controller implements Observeur{
 
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.FRENCH);
     public Label errordisplay;
+    public Button sleepButton;
 
     private void toggleErro(boolean visible) {
         errordisplay.setVisible(visible);
@@ -76,10 +78,12 @@ public class AccountController extends Controller implements Observeur{
     @Override
     public void update() {
         User user = ApplicationContext.getInstance().getUser_authentified();
+
         firstnameField.setText(user.getFirstName());
         lastnameField.setText(user.getLastName());
         emailField.setText(user.getEmail());
         passwordField.setText("");
+        sleepButton.setText(user.isSleeping() ? "Réveiller le compte" : "Mettre le compte en veille");
         if (birthDateField.getValue() != null) {
             try {
                 user.setDate_birth(new SimpleDateFormat("yyyy-MM-dd").parse(birthDateField.getValue().toString()));
@@ -174,5 +178,25 @@ public class AccountController extends Controller implements Observeur{
         DatabaseHandler.getInstance().getDbManager().updateEntity(user);
         update();
         ModalHelper.showInformationModal("Sauvegarde", "Vos modifications ont bien été sauvegardées");
+    }
+
+    public void sleep(ActionEvent actionEvent) {
+        User user = ApplicationContext.getInstance().getUser_authentified();
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Etes vous sur ?");
+        alert.setContentText("Voulez vous vraiment " + (user.isSleeping() ? "réveiller": "mettre en veille") + " votre compte");
+
+        alert.showAndWait().ifPresent(response -> {
+            if (response == javafx.scene.control.ButtonType.OK) {
+
+                user.setSleeping(!user.isSleeping());
+                DatabaseHandler.getInstance().getDbManager().updateEntity(user);
+                sleepButton.setText(user.isSleeping() ? "Réveiller le compte" : "Mettre le compte en veille");
+
+            }
+        });
+
     }
 }

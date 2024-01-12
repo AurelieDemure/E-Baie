@@ -47,6 +47,9 @@ public class User {
     @Column(name = "lon")
     private Double lon;
 
+    @Column(name = "sleeping")
+    private Boolean sleeping;
+
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Offer> offers;
 
@@ -64,6 +67,7 @@ public class User {
         this.address = address;
         this.description = description;
         this.balance = balance;
+        this.sleeping = false;
         JOpenCageLatLng res = GeoLocalisation.getLatLng(address);
         if (res != null) {
             lat = res.getLat();
@@ -124,12 +128,21 @@ public class User {
         this.email = email;
     }
 
+
     public int getBalance() {
         return balance;
     }
 
     public String getPhone() {
         return phone;
+    }
+
+    public Boolean isSleeping() {
+        return sleeping;
+    }
+
+    public void setSleeping(Boolean sleeping) {
+        this.sleeping = sleeping;
     }
 
     public void setPhone(String phone) {

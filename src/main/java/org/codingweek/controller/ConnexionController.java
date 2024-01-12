@@ -117,6 +117,7 @@ public class ConnexionController extends Controller implements Observeur {
                 return;
             }
             User user = new User();
+            user.setSleeping(false);
             user.setFirstName(firstnameField.getText());
             user.setLastName(lastnameField.getText());
             user.setEmail(emailInscrField.getText());
