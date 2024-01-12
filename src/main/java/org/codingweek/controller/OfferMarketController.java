@@ -49,14 +49,17 @@ public class OfferMarketController extends Controller implements Observeur{
     @FXML
     private void showConfirmationAddDialog() {
 
-        if (ApplicationContext.getInstance().getUser_authentified().getBalance() < this.offer.getPrice()) {
+        int days_selected = this.dateBegin.getValue().compareTo(this.dateEnd.getValue());
+
+        if (ApplicationContext.getInstance().getUser_authentified().getBalance() < this.offer.getPrice()*days_selected || !(this.dateBegin.getValue() != null && this.dateEnd.getValue() != null)) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
-            alert.setHeaderText("Solde insuffisant");
+            alert.setHeaderText("Solde insuffisant : prix de l'offre = " + this.offer.getPrice() + " florains");
             alert.setContentText("Vous n'avez pas assez de florains pour réserver.");
 
             alert.showAndWait();
         }else if (this.dateBegin.getValue() != null && this.dateEnd.getValue() != null) {
+
             Date dateBegin = Date.from(this.dateBegin.getValue().atStartOfDay().atZone(java.time.ZoneId.systemDefault()).toInstant());
             Date dateEnd = Date.from(this.dateEnd.getValue().atStartOfDay().atZone(java.time.ZoneId.systemDefault()).toInstant());
 
