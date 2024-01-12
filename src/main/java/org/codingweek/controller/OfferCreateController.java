@@ -51,7 +51,7 @@ public class OfferCreateController extends Controller implements Observeur {
         frequency.getItems().clear();
 
 
-        type_offer.getItems().addAll("Pret", "Service");
+        type_offer.getItems().addAll(OfferType.LOAN.getValue(), OfferType.SERVICE.getValue());
         frequency.getItems().addAll("Tout type de frequence", "Unique", "Journalier", "Hebdomadaire", "Mensuelle", "Annuelle");
     }
 

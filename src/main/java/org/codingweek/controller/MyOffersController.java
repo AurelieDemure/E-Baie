@@ -9,6 +9,7 @@ import org.codingweek.*;
 import org.codingweek.db.*;
 import org.codingweek.db.entity.*;
 import org.codingweek.model.*;
+import org.codingweek.model.filter.OfferType;
 import org.codingweek.view.*;
 import java.io.*;
 import java.net.*;
@@ -97,10 +98,10 @@ public class MyOffersController extends Controller implements Observeur {
         String offerType;
         switch(offer.getTypeOffer()){
             case LOAN:
-                offerType = "Prêt";
+                offerType = OfferType.LOAN.getValue();
                 break;
             case SERVICE:
-                offerType = "Service";
+                offerType = OfferType.SERVICE.getValue();
                 break;
             default:
                 offerType = "";
