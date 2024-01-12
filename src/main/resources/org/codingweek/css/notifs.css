@@ -32,11 +32,11 @@ VBox{
 }
 
 .title{
-    -fx-font-size: 20px;
+    -fx-font-size: 15px;
     -fx-padding: 5px;
     -fx-border-insets: 5px;
     -fx-background-insets: 5px;
     -fx-wrap-text: true;
-    -fx-max-width: 140px;
+    -fx-max-width: 190px;
     -fx-min-width: 0px;
 }
