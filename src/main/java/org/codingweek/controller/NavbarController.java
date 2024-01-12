@@ -118,6 +118,7 @@ public class NavbarController extends Controller implements Observeur{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        DatabaseHandler.getInstance().getDbManager().addObserveur(this);
         notifExited();
         setNotifs();
         ImageView deco = new ImageView(new Image(
@@ -146,8 +147,7 @@ public class NavbarController extends Controller implements Observeur{
 
     @Override
     public void update() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        setNotifs();
     }
 
     @Override
@@ -184,10 +184,10 @@ public class NavbarController extends Controller implements Observeur{
         }
     }
     
-    public void setNotifs(){        
+    public void setNotifs(){
         this.notifications = ApplicationContext.getInstance().getUser_authentified().getNotifications();
         if (this.notifications == null) {
-            this.notifications = new ArrayList<Notification>();
+            this.notifications = new ArrayList<>();
         }
         this.count = 0;        
         for(Notification notif : this.notifications) {

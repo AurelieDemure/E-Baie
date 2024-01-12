@@ -7,6 +7,7 @@ import org.codingweek.model.PasswordUtility;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "User")
@@ -79,7 +80,7 @@ public class User {
 
     /** Usage on test create a User without calling API for lat lon */
     public static User getUserTest(String email,String firstName, String lastName, String password, String phone, String address, String description, int balance, Date date_birth) {
-User user = new User();
+        User user = new User();
         user.email = email;
         user.firstName = firstName;
         user.lastName = lastName;
@@ -203,7 +204,7 @@ User user = new User();
     }
 
     public List<Notification> getNotifications() {
-        return this.notifications;
+        return this.notifications.stream().distinct().collect(Collectors.toList());
     }
 
     public void setNotifications(List<Notification> notifications) {
