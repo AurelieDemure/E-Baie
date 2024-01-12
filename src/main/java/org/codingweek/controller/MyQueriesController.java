@@ -175,6 +175,7 @@ public class MyQueriesController extends Controller implements Observeur {
     }
 
     public void notePopUp(MouseEvent event, Query query) {
+        Integer oldNote = query.getNotation();
         ToggleGroup note = new ToggleGroup();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.getDialogPane().applyCss();
@@ -217,8 +218,12 @@ public class MyQueriesController extends Controller implements Observeur {
         alert.getDialogPane().setGraphic(graphic);
         alert.setTitle("Notation");
         alert.setHeaderText("Veuilliez attribuer une note à votre demande");
-        alert.showAndWait();
-
-        DatabaseHandler.getInstance().getDbManager().saveEntity(query);
+        
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.APPLY) {
+            DatabaseHandler.getInstance().getDbManager().updateEntity(query);
+        } else {
+            query.setNotation(oldNote);
+        }        
     }
 }
