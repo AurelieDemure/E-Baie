@@ -1,10 +1,7 @@
 package org.codingweek.controller;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.codingweek.ApplicationContext;
@@ -26,7 +23,7 @@ import java.util.ResourceBundle;
 public class OfferModifController extends Controller implements Observeur {
     public Label errorFillAll;
     public TextField title;
-    public TextField description;
+    public TextArea description;
     public Label errorNotDouble;
     public TextField price;
     public ChoiceBox type_offer;
@@ -115,6 +112,7 @@ public class OfferModifController extends Controller implements Observeur {
                 offer.setType(OfferType.fromString(type_offer.getValue().toString()));
                 offer.setFrequency(Frequency.fromString(frequency.getValue().toString()));
                 offer.setLocalization(localization.getText());
+                offer.setPath(path);
 
                 DatabaseManager db = DatabaseHandler.getInstance().getDbManager();
                 db.updateEntity(offer);

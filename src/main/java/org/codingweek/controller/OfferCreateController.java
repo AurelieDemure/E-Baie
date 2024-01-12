@@ -2,10 +2,7 @@ package org.codingweek.controller;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -33,7 +30,7 @@ import java.util.ResourceBundle;
 public class OfferCreateController extends Controller implements Observeur {
 
     public TextField title;
-    public TextField description;
+    public TextArea description;
     public Label errorNotDouble;
     public TextField price;
     public ChoiceBox type_offer;
@@ -133,18 +130,5 @@ public class OfferCreateController extends Controller implements Observeur {
         this.path = path;
         path_offer.setImage(new Image(new File(path).toURI().toString()));
     }
-/*
-    public void showTypes(MouseEvent mouseEvent) {
-        type_offer.setItems(FXCollections.observableArrayList(
-                "Pret", "Service")
-        );
-    }
 
-    public void showFrequency(MouseEvent mouseEvent) {
-        frequency.setItems(FXCollections.observableArrayList(
-                "Tout type de frequence", "Unique", "Journalier", "Hebdomadaire", "Mensuelle", "Annuelle"
-        ));
-    }
-
- */
 }
