@@ -93,6 +93,10 @@ public class AcceptOfferController extends Controller implements Observeur {
                 query.getUser().setBalance((int) balance);
                 DatabaseHandler.getInstance().getDbManager().updateEntity(query.getUser());
 
+                DatabaseHandler.getInstance().getDbManager().saveEntity(
+                        new Notification("Demande acceptée", query.getUser(), false, "Votre demande a été acceptée", new Date())
+                );
+
                 refresh();
             });
 
