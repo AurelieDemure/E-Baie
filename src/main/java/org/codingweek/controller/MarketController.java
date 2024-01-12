@@ -190,10 +190,10 @@ public class MarketController extends Controller implements Observeur{
         String offerType;
         switch(offer.getTypeOffer()){
             case LOAN:
-                offerType = "Prêt";
+                offerType = OfferType.LOAN.getValue();
                 break;
             case SERVICE:
-                offerType = "Service";
+                offerType = OfferType.SERVICE.getValue();
                 break;
             default:
                 offerType = "";

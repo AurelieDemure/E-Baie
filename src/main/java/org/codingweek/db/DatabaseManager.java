@@ -67,7 +67,10 @@ public class DatabaseManager extends Observable {
                 .setProperty("hibernate.dialect", "org.codingweek.db.SQLiteDialect")
                 .setProperty("hibernate.show_sql", "false")
                 .setProperty("hibernate.hbm2ddl.auto", "update")
-                .setProperty("hibernate.classLoader.application", "org.hibernate.boot.registry.classloading.internal.ClassLoaderServiceImpl");
+                .setProperty("hibernate.classLoader.application", "org.hibernate.boot.registry.classloading.internal.ClassLoaderServiceImpl")
+                .setProperty("hibernate.connection.CharSet", "utf8")
+                .setProperty("hibernate.connection.characterEncoding", "utf8")
+                .setProperty("hibernate.connection.useUnicode", "true");
 
         factory = configuration.buildSessionFactory();
     }

@@ -54,7 +54,7 @@ public class OfferModifController extends Controller implements Observeur {
         ApplicationContext.getInstance().setPageType(Page.OFFER);
         toggleErrorFillAll(false);
         toggleErrorNotDouble(false);
-        type_offer.getItems().addAll("Pret", "Service");
+        type_offer.getItems().addAll(OfferType.LOAN.getValue(), OfferType.SERVICE.getValue());
         frequency.getItems().addAll("Tout type de frequence", "Unique", "Journalier", "Hebdomadaire", "Mensuelle", "Annuelle");
         update();
     }
