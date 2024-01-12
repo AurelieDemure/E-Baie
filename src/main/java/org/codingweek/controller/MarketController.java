@@ -79,7 +79,7 @@ public class MarketController extends Controller implements Observeur{
 
     @Override
     public void update() {
-        refresh();
+       refresh();
     }
 
     @Override
@@ -137,10 +137,27 @@ public class MarketController extends Controller implements Observeur{
             distance = null;
         }
 
+
         SortOffer sortOffer = SortOffer.fromString(this.sortChoice.getValue());
 
         this.offers = MarketModel.getOffersAvailableFiltered(email, text, offerType, frequency, price, sortOffer, distance);
-        refresh();
+        if(ApplicationContext.getInstance().getUser_authentified() != null)
+         this.scrollField.getChildren().clear();
+        Pane pane;
+        int x = 0;
+        HBox hbox = new HBox();
+        for(Offer offer : this.offers){
+            pane = makePaneOffre(offer);
+            hbox.getChildren().add(pane);
+            x++;
+
+            if(x == 2){
+                this.scrollField.getChildren().add(hbox);
+                hbox = new HBox();
+                x = 0;
+            }
+        }
+        this.scrollField.getChildren().add(hbox);
     }
 
     @FXML
