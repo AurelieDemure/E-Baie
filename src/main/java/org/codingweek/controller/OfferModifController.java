@@ -91,6 +91,7 @@ public class OfferModifController extends Controller implements Observeur {
         if (title.getText().isEmpty() || description.getText().isEmpty() || price.getText().isEmpty() || type_offer.getValue() == null || frequency.getValue() == null || localization.getText().isEmpty()) {
             errorFillAll.setText("Veuillez remplir tous les champs");
             toggleErrorFillAll(true);
+            return;
         }
         if (!InputFieldValidator.validAdress(localization.getText()) && localization.getText() != null) {
             if (!localization.getText().isEmpty()) {

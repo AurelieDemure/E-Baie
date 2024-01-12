@@ -135,7 +135,8 @@ public class MyOffersController extends Controller implements Observeur {
 
         int numberNotify = getNumberNotif(offer);
         if(numberNotify != 0){
-            Button notification = new Button(String.valueOf(numberNotify));
+            Button notification = new Button("Demandes : " + String.valueOf(numberNotify));
+            notification.getStyleClass().add("buttonNotif");
             notification.setOnAction(e -> {
                 ApplicationContext.getInstance().setAcceptOffer(offer);
                 ApplicationContext.getInstance().setPageType(Page.OFFER);
