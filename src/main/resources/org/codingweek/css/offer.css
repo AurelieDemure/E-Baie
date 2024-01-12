@@ -20,10 +20,13 @@ HBox, VBox, ImageView{
 
 .title{
     -fx-width: 200px;
-    -fx-font-size: 30px;
+    -fx-font-size: 20px;
     -fx-padding: 10px;
     -fx-border-insets: 10px;
     -fx-background-insets: 10px;
+    -fx-wrap-text: true;
+    -fx-max-width: 400px;
+    -fx-min-width: 0px;
 }
 
 .price{
