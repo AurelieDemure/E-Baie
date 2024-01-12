@@ -22,6 +22,7 @@ public class MarketModel {
 
         return offersAvailable.stream()
                 .filter(offer -> !offer.getOwner().isSleeping())
+                .filter(offer -> !offer.getOwner().getEmail().equals(email))
                 .collect(Collectors.toList());
     }
 
