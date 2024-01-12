@@ -10,6 +10,8 @@ import org.codingweek.*;
 import org.codingweek.db.*;
 import org.codingweek.db.entity.*;
 import org.codingweek.model.*;
+import org.codingweek.model.filter.Frequency;
+import org.codingweek.model.filter.OfferType;
 import org.codingweek.view.MarketView;
 import org.codingweek.view.MyOffersView;
 import org.codingweek.view.TchatView;
@@ -26,6 +28,7 @@ public class OfferMarketController extends Controller implements Observeur{
 
     @FXML
     public DatePicker chooseDate;
+    public Label labelDate;
     @FXML
     private Label noteLabel;
     public ImageView OfferImage;
@@ -102,6 +105,7 @@ public class OfferMarketController extends Controller implements Observeur{
         dateBegin.setEditable(false);
         dateEnd.setEditable(false);
         dateEnd.setConverter(converter);
+        this.chooseDate.setConverter(converter);
         dateBegin.setConverter(converter);
         this.offer = OfferMarketModel.getOffer(ApplicationContext.getInstance().getIndex());
         ApplicationContext.getInstance().setIndex(null);
@@ -117,6 +121,13 @@ public class OfferMarketController extends Controller implements Observeur{
         this.queries = offer.getQueries();
         this.dateBegin.setDayCellFactory(InputFieldValidator.getDateBeginCellFactory(this.dateEnd.getValue(), this.queries));
         this.dateEnd.setDayCellFactory(InputFieldValidator.getDateBeginCellFactory(this.dateBegin.getValue(), this.queries));
+        this.chooseDate.setVisible(false);
+        this.labelDate.setVisible(false);
+        if (this.offer.getTypeOffer() != OfferType.LOAN && this.offer.getFrequency() != Frequency.DAYLY) {
+            this.chooseDate.setVisible(true);
+            this.labelDate.setVisible(true);
+        }
+
     }
 
     @FXML
