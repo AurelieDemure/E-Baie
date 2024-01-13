@@ -50,3 +50,6 @@ Vous avez aussi au root un fichier .sqlite qui contient une base de données ave
 
 ### Vidéo
 Vous pourrez trouver notre vidéo sur Youtube à l'adresse suivante : 
+https://www.youtube.com/watch?v=nSRcw8Cr52U
+
+Les menus déroulants ne sont pas affichés dans la vidéo, mais ils sont bien présent sur l'application !
